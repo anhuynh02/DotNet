@@ -1,8 +1,6 @@
 ## YouTube UI Clone
 YouTube UI Clones using TailwindCSS ⚡
 
-### <a href="https://youtubewebui.netlify.app" target="_blank">**Visit Now 🚀**</a>
-
 ## Tech Stack :
 [![HTML](https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white)](https://github.com/jigar-sable/Web-UI-Clones/search?l=html)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -16,4 +14,8 @@ YouTube UI Clones using TailwindCSS ⚡
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
-
+Chức năng admin:<br>
+Quản lý user: khóa tài khoản?<br>
+Quản lý video: khóa video, chọn feature video nếu không làm code recommend.<br>
+Quản lý tag<br>
+Quản lý Menu nếu có.<br>
