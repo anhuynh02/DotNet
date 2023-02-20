@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<TdtuTube.Models.Tag>
-
-<div class="tags-container">
+<a href="#" class="text-sm bg-white py-1.5 px-3 rounded-full text-black">All</a>
     @foreach (var i in Model)
     {
         <a href="#"
-           class="text-sm bg-pillsBg hover:bg-gray-700
+           class="tag-e bg-pillsBg hover:bg-gray-700
                py-1.5 px-3 rounded-full text-white border
                border-gray-700 transition duration-150">
             @i.name
         </a>
     }
-    </div>

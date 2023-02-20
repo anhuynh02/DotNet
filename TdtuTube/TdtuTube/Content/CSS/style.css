@@ -8,7 +8,9 @@
 Document
 ========
 */
-
+.tag-e{
+    white-space: nowrap
+}
 /**
 Use a better box model (opinionated).
 */
