@@ -397,6 +397,7 @@ FodyWeavers.xsd
 *.msm
 *.msp
 applicationhost.config
+*.suo
 # JetBrains Rider
 *.sln.iml
 
