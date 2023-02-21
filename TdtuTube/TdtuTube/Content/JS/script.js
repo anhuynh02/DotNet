@@ -19,10 +19,10 @@ function display_sidebar() {
         mainContainer.classList.add("lg:w-5/5")
     }
 }
-fetch("assets/videos.json")
+fetch("./Content/JSON/videos.json")
 .then(response => response.json())
 .then(videos => {
-    // console.log(videos);
+    console.log(videos);
 
     videos.forEach(video => {
         videoCard += `
