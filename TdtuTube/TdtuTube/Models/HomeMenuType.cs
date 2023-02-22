@@ -12,26 +12,18 @@ namespace TdtuTube.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class HomeMenuType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public HomeMenuType()
         {
-            this.Videos = new HashSet<Video>();
+            this.HomeMenus = new HashSet<HomeMenu>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public Nullable<int> subscribers { get; set; }
-        public string avatar_path { get; set; }
-        public int role_id { get; set; }
-        public string meta { get; set; }
-        public Nullable<System.DateTime> datebegin { get; set; }
     
-        public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Video> Videos { get; set; }
+        public virtual ICollection<HomeMenu> HomeMenus { get; set; }
     }
 }
