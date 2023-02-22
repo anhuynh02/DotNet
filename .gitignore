@@ -478,3 +478,16 @@ $RECYCLE.BIN/
 TdtuTube/.vs/TdtuTube/v17/.suo
 TdtuTube/.vs/TdtuTube/v17/.suo
 TdtuTube/.vs/TdtuTube/v17/.suo
+*.csdl
+*.diagram
+*.edmx
+*.cache
+*.csdl
+*.msl
+*.ssdl
+*.cache
+*.cache
+*.dll
+*.pdb
+*.dll
+*.dll
