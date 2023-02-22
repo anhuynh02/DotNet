@@ -9,6 +9,13 @@
         <EntityTypeShape EntityType="TdtuTubeModel.Tag" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TdtuTubeModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="TdtuTubeModel.User_Role_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TdtuTubeModel.AdminMenu" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TdtuTubeModel.HomeMenu" Width="1.5" PointX="5.625" PointY="7" />
+        <EntityTypeShape EntityType="TdtuTubeModel.HomeMenuType" Width="1.5" PointX="3.375" PointY="7.5" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Video" Width="1.5" PointX="5.25" PointY="1.75" />
+        <AssociationConnector Association="TdtuTubeModel.HomeMenu_Type_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Video_Tag_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Video_User_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

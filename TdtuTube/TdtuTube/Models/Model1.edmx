@@ -4,7 +4,38 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="meta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="HomeMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="link" Type="varchar(max)" />
+          <Property Name="meta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="hide" Type="bit" />
+          <Property Name="order" Type="int" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="datebegin" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="HomeMenuType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="id" />
@@ -33,6 +64,36 @@
           <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="datebegin" Type="datetime" />
         </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="tag_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="like" Type="int" />
+          <Property Name="view" Type="int" />
+          <Property Name="privacy" Type="bit" Nullable="false" />
+          <Property Name="length" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="thumbnail" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="path" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="feature" Type="bit" Nullable="false" />
+          <Property Name="datebegin" Type="datetime" />
+        </EntityType>
+        <Association Name="HomeMenu_Type_FK">
+          <End Role="HomeMenuType" Type="Self.HomeMenuType" Multiplicity="1" />
+          <End Role="HomeMenu" Type="Self.HomeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeMenuType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HomeMenu">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="User_Role_FK">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -45,17 +106,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Video_Tag_FK">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Video_User_FK">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TdtuTubeModelStoreContainer">
+          <EntitySet Name="AdminMenu" EntityType="Self.AdminMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeMenu" EntityType="Self.HomeMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeMenuType" EntityType="Self.HomeMenuType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="HomeMenu_Type_FK" Association="Self.HomeMenu_Type_FK">
+            <End Role="HomeMenuType" EntitySet="HomeMenuType" />
+            <End Role="HomeMenu" EntitySet="HomeMenu" />
+          </AssociationSet>
           <AssociationSet Name="User_Role_FK" Association="Self.User_Role_FK">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
+          <AssociationSet Name="Video_Tag_FK" Association="Self.Video_Tag_FK">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="Video_User_FK" Association="Self.Video_User_FK">
+            <End Role="User" EntitySet="User" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TdtuTubeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -73,6 +173,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Tag" ToRole="Video" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -88,6 +189,7 @@
           <Property Name="meta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="datebegin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Role" Relationship="Self.User_Role_FK" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_User_FK" FromRole="User" ToRole="Video" />
         </EntityType>
         <Association Name="User_Role_FK">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -109,7 +211,112 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="AdminMenus" EntityType="TdtuTubeModel.AdminMenu" />
+          <EntitySet Name="HomeMenus" EntityType="TdtuTubeModel.HomeMenu" />
+          <EntitySet Name="HomeMenuTypes" EntityType="TdtuTubeModel.HomeMenuType" />
+          <EntitySet Name="Videos" EntityType="TdtuTubeModel.Video" />
+          <AssociationSet Name="HomeMenu_Type_FK" Association="TdtuTubeModel.HomeMenu_Type_FK">
+            <End Role="HomeMenuType" EntitySet="HomeMenuTypes" />
+            <End Role="HomeMenu" EntitySet="HomeMenus" />
+          </AssociationSet>
+          <AssociationSet Name="Video_Tag_FK" Association="TdtuTubeModel.Video_Tag_FK">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="Video_User_FK" Association="TdtuTubeModel.Video_User_FK">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AdminMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="HomeMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="hide" Type="Boolean" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="datebegin" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="HomeMenuType" Relationship="TdtuTubeModel.HomeMenu_Type_FK" FromRole="HomeMenu" ToRole="HomeMenuType" />
+        </EntityType>
+        <EntityType Name="HomeMenuType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HomeMenus" Relationship="TdtuTubeModel.HomeMenu_Type_FK" FromRole="HomeMenuType" ToRole="HomeMenu" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="tag_id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="like" Type="Int32" />
+          <Property Name="view" Type="Int32" />
+          <Property Name="privacy" Type="Boolean" Nullable="false" />
+          <Property Name="length" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="thumbnail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="feature" Type="Boolean" Nullable="false" />
+          <Property Name="datebegin" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tag" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Video" ToRole="Tag" />
+          <NavigationProperty Name="User" Relationship="TdtuTubeModel.Video_User_FK" FromRole="Video" ToRole="User" />
+        </EntityType>
+        <Association Name="HomeMenu_Type_FK">
+          <End Type="TdtuTubeModel.HomeMenuType" Role="HomeMenuType" Multiplicity="1" />
+          <End Type="TdtuTubeModel.HomeMenu" Role="HomeMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeMenuType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HomeMenu">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Video_Tag_FK">
+          <End Type="TdtuTubeModel.Tag" Role="Tag" Multiplicity="1" />
+          <End Type="TdtuTubeModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Video_User_FK">
+          <End Type="TdtuTubeModel.User" Role="User" Multiplicity="1" />
+          <End Type="TdtuTubeModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -144,6 +351,59 @@
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminMenus">
+            <EntityTypeMapping TypeName="TdtuTubeModel.AdminMenu">
+              <MappingFragment StoreEntitySet="AdminMenu">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeMenus">
+            <EntityTypeMapping TypeName="TdtuTubeModel.HomeMenu">
+              <MappingFragment StoreEntitySet="HomeMenu">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="hide" ColumnName="hide" />
+                <ScalarProperty Name="meta" ColumnName="meta" />
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeMenuTypes">
+            <EntityTypeMapping TypeName="TdtuTubeModel.HomeMenuType">
+              <MappingFragment StoreEntitySet="HomeMenuType">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="TdtuTubeModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+                <ScalarProperty Name="feature" ColumnName="feature" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="length" ColumnName="length" />
+                <ScalarProperty Name="privacy" ColumnName="privacy" />
+                <ScalarProperty Name="view" ColumnName="view" />
+                <ScalarProperty Name="like" ColumnName="like" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
