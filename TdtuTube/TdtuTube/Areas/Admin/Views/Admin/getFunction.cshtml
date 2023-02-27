@@ -1,0 +1,14 @@
+﻿@model IEnumerable<TdtuTube.Models.AdminMenu>
+
+<ul class="sidebar-nav" id="sidebar-nav">
+    @foreach (var i in Model)
+    {
+        <li class="nav-item">
+            <a class="nav-link " href='@Url.Action("Index",@i.meta)' k>
+                <i class="bi bi-grid"></i>
+                <span>@i.name</span>
+            </a>
+        </li>
+    }
+
+</ul>
