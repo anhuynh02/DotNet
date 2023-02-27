@@ -14,6 +14,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Tag" ToRole="Video" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -29,6 +30,7 @@
     <Property Name="meta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="datebegin" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Role" Relationship="Self.User_Role_FK" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_User_FK" FromRole="User" ToRole="Video" />
   </EntityType>
   <Association Name="User_Role_FK">
     <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -50,5 +52,110 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="User" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="AdminMenus" EntityType="TdtuTubeModel.AdminMenu" />
+    <EntitySet Name="HomeMenus" EntityType="TdtuTubeModel.HomeMenu" />
+    <EntitySet Name="HomeMenuTypes" EntityType="TdtuTubeModel.HomeMenuType" />
+    <EntitySet Name="Videos" EntityType="TdtuTubeModel.Video" />
+    <AssociationSet Name="HomeMenu_Type_FK" Association="TdtuTubeModel.HomeMenu_Type_FK">
+      <End Role="HomeMenuType" EntitySet="HomeMenuTypes" />
+      <End Role="HomeMenu" EntitySet="HomeMenus" />
+    </AssociationSet>
+    <AssociationSet Name="Video_Tag_FK" Association="TdtuTubeModel.Video_Tag_FK">
+      <End Role="Tag" EntitySet="Tags" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
+    <AssociationSet Name="Video_User_FK" Association="TdtuTubeModel.Video_User_FK">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="AdminMenu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="HomeMenu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="type_id" Type="Int32" Nullable="false" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="HomeMenuType" Relationship="TdtuTubeModel.HomeMenu_Type_FK" FromRole="HomeMenu" ToRole="HomeMenuType" />
+  </EntityType>
+  <EntityType Name="HomeMenuType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HomeMenus" Relationship="TdtuTubeModel.HomeMenu_Type_FK" FromRole="HomeMenuType" ToRole="HomeMenu" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="tag_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="like" Type="Int32" />
+    <Property Name="view" Type="Int32" />
+    <Property Name="privacy" Type="Boolean" Nullable="false" />
+    <Property Name="length" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="thumbnail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="path" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="feature" Type="Boolean" Nullable="false" />
+    <Property Name="datebegin" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Tag" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Video" ToRole="Tag" />
+    <NavigationProperty Name="User" Relationship="TdtuTubeModel.Video_User_FK" FromRole="Video" ToRole="User" />
+  </EntityType>
+  <Association Name="HomeMenu_Type_FK">
+    <End Type="TdtuTubeModel.HomeMenuType" Role="HomeMenuType" Multiplicity="1" />
+    <End Type="TdtuTubeModel.HomeMenu" Role="HomeMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HomeMenuType">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="HomeMenu">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Video_Tag_FK">
+    <End Type="TdtuTubeModel.Tag" Role="Tag" Multiplicity="1" />
+    <End Type="TdtuTubeModel.Video" Role="Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Video_User_FK">
+    <End Type="TdtuTubeModel.User" Role="User" Multiplicity="1" />
+    <End Type="TdtuTubeModel.Video" Role="Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

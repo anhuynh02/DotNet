@@ -27,7 +27,7 @@ namespace TdtuTube.Controllers
 
             return View();
         }
-        public ActionResult getMenu() {
+        public ActionResult getTags() {
             var v = from t in db.Tags
                     orderby t.id ascending
                     select t;
@@ -43,7 +43,6 @@ namespace TdtuTube.Controllers
         }
         public ActionResult getVideos() {
             var v = from t in db.Videos
-                    join d in db.Users on t.user_id equals d.id
                     orderby t.id ascending
                     select t;
             return PartialView(v.ToList());
