@@ -3,7 +3,14 @@
     <!-- one video card -->
     @foreach (var i in Model)
     {
-        int count = (int)@i.view;
+        // Shorten title
+        String title = @i.title;
+        if (title.Length > 50)
+            title = title.Remove(50, i.title.Length - 50).Insert(50, "..");
+
+
+        // Readable number
+        int count = (int) @i.view;
         string num = "";
         if (count > 1000000000)
             num = Math.Round((double)count / 1000000000, 1) + " T";
@@ -13,38 +20,54 @@
             num = Math.Round((double)count / 1000, 1) + " N";
         else
             num = count.ToString("#,##0");
-        //Tinh tg
 
+        // Date ago
+        DateTime dateTime = (DateTime) @i.datebegin;
+        string dateAgo = "";
+        var timeSpan = DateTime.Now.Subtract(dateTime);
 
-                <div class="flex flex-col space-y-3 cursor-pointer">
-                    <!-- thumbnail -->
-                    <a href="#">
-                        <div class="relative h-52 sm:h-36 w-full">
-                            <img class="relative h-full w-full object-cover" src="@i.thumbnail" alt="">
-                            <span class="absolute right-1 bottom-1 p-0.5 px-1 rounded-sm bg-black text-white text-xs bg-opacity-70">@i.length</span>
-                        </div>
-                    </a>
-                    <!-- video details -->
-                    <div class="flex flex-col flex-auto space-y-1.5 mb-3">
+        if (timeSpan <= TimeSpan.FromSeconds(60))
+            dateAgo = string.Format("{0} giây trước", timeSpan.Seconds);
+        else if (timeSpan <= TimeSpan.FromMinutes(60))
+            dateAgo = string.Format("{0} phút trước", timeSpan.Minutes);
+        else if (timeSpan <= TimeSpan.FromHours(24))
+            dateAgo = string.Format("{0} giờ trước", timeSpan.Hours);
+        else if (timeSpan <= TimeSpan.FromDays(30))
+            dateAgo = string.Format("{0} ngày trước", timeSpan.Days);
+        else if (timeSpan <= TimeSpan.FromDays(365))
+            dateAgo = string.Format("{0} tháng trước", timeSpan.Days / 30);
+        else
+            dateAgo = string.Format("{0} năm trước", timeSpan.Days / 365);
 
-                        <div class="flex items-center space-x-3">
-                            <!-- channel logo -->
-                            <img class="w-12 h-12 rounded-full object-cover cursor-pointer" src="@i.User.avatar_path" alt="">
-                            <div class="flex items-start">
-                                <a href="#" class="text-sm text-bold text-white pr-1">@i.title</a>
-                                <i class="material-icons text-white md-21">more_vert</i>
-                            </div>
-                        </div>
-
-                        <!-- channel link and meta data -->
-                        <div class="flex flex-col pl-1 sm:pl-0 ml-14">
-                            <a href="" class="text-gray-400 text-sm hover:text-white">@i.User.name</a>
-                            <div class="flex space-x-1">
-                                <span class="text-sm text-gray-400">@num views</span>
-                                <span class="text-sm text-gray-400 sql-date">• 1 month ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                }
+    <div class="flex flex-col space-y-3 cursor-pointer">
+        <!-- thumbnail -->
+        <a href="#">
+            <div class="relative h-52 sm:h-36 w-full">
+                <img class="relative h-full w-full object-cover" src="@i.thumbnail" alt="">
+                <span class="absolute right-1 bottom-1 p-0.5 px-1 rounded-sm bg-black text-white text-xs bg-opacity-70">@i.length</span>
             </div>
+        </a>
+        <!-- video details -->
+        <div class="flex flex-col flex-auto space-y-1.5 mb-3">
+
+            <div class="flex items-center space-x-3">
+                <!-- channel logo -->
+                <img class="w-12 h-12 rounded-full object-cover cursor-pointer" src="@i.User.avatar_path" alt="">
+                <div class="flex items-start">
+                    <a href="#" class="text-sm text-bold text-white pr-1">@title</a>
+                    <i class="material-icons text-white md-21">more_vert</i>
+                </div>
+            </div>
+
+            <!-- channel link and meta data -->
+            <div class="flex flex-col pl-1 sm:pl-0 ml-14">
+                <a href="" class="text-gray-400 text-sm hover:text-white">@i.User.name</a>
+                <div class="flex space-x-1">
+                    <span class="text-sm text-gray-400">@num views</span>
+                    <span class="text-sm text-gray-400 sql-date">• @dateAgo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+</div>
