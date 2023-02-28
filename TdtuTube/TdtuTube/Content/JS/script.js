@@ -1,7 +1,7 @@
 let videosContainer = document.getElementById('videos-container');
 let videoCard = "";
 let mainContainer = document.getElementById("videoMainContainer");
-let menuBtn = document.getElementById('menu');
+let menuBtn = document.getElementById('sBtn');
 menuBtn.addEventListener("click", display_sidebar);
 function display_sidebar() {
     isShow = document.getElementById("sideBar");
