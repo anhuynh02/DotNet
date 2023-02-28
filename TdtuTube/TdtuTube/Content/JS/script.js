@@ -20,11 +20,15 @@ function display_sidebar() {
     }
 }
 
+
+
 function loadVideosWithTag(tagMeta) {
     event.preventDefault();
     // Need to fix CSS.
-    event.srcElement.className = "text-sm bg-white py-1.5 px-3 rounded-full text-black";
-    document.getElementsByClassName("text-sm bg-white py-1.5 px-3 rounded-full text-black").className = "tag-e bg-pillsBg hover:bg-gray-700 py - 1.5 px - 3 rounded - full text - white border border - gray - 700 transition duration - 150"
+    
+       
+    
+    
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4) {
