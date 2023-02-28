@@ -1,7 +1,7 @@
-let videosContainer = document.getElementById('videos-container');
+let videosContainer = document.getElementById("videos-container");
 let videoCard = "";
 let mainContainer = document.getElementById("videoMainContainer");
-let menuBtn = document.getElementById('sBtn');
+let menuBtn = document.getElementById('menu');
 menuBtn.addEventListener("click", display_sidebar);
 function display_sidebar() {
     isShow = document.getElementById("sideBar");
@@ -18,6 +18,23 @@ function display_sidebar() {
         mainContainer.classList.remove("xl:w-5/6");
         mainContainer.classList.add("lg:w-5/5")
     }
+}
+
+function loadVideosWithTag(tagMeta) {
+    event.preventDefault();
+    // Need to fix CSS.
+    event.srcElement.className = "text-sm bg-white py-1.5 px-3 rounded-full text-black";
+    document.getElementsByClassName("text-sm bg-white py-1.5 px-3 rounded-full text-black").className = "tag-e bg-pillsBg hover:bg-gray-700 py - 1.5 px - 3 rounded - full text - white border border - gray - 700 transition duration - 150"
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                videosContainer.innerHTML = this.responseText;
+            }
+        }
+    };
+    xhr.open("GET", "/Home/getVideosWithTag?meta=" + tagMeta, true);
+    xhr.send();
 }
 //fetch("./Content/JSON/videos.json")
 //.then(response => response.json())

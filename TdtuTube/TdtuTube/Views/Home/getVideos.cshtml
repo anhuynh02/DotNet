@@ -5,8 +5,8 @@
     {
         // Shorten title
         String title = @i.title;
-        if (title.Length > 50)
-            title = title.Remove(50, i.title.Length - 50).Insert(50, "..");
+        if (title.Length > 35)
+            title = title.Remove(35, i.title.Length - 35).Insert(35, "...");
 
         // Readable number
         int count = (int) @i.view;
