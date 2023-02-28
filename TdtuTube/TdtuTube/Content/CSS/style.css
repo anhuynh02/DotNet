@@ -15,6 +15,16 @@ Document
 Use a better box model (opinionated).
 */
 
+@media screen and (max-width: 1200px) {
+    #sideBar {
+        z-index: 2 /* The width is 100%, when the viewport is 800px or smaller */
+    }
+
+    .tags-container{
+        z-index: 1 !important;
+    }
+}
+
 *,
 ::before,
 ::after {

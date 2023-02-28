@@ -9,6 +9,7 @@
  
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/CSS/style.css"   >
+
 </head>
 <body class="body">
 
@@ -176,7 +177,8 @@
             </div>
 
             <div class="border border-searchIconBg"></div>
-            @{Html.RenderAction("getFooter", "Home");}
+            @{
+                Html.RenderAction("getFooter", "Home");}
 
         </div>
 

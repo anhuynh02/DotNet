@@ -37,7 +37,7 @@ namespace TdtuTube.Controllers
         {
             var v = from t in db.HomeMenus
                     where t.type_id != 4
-                    orderby t.id ascending
+                    orderby t.type_id ascending
                     select t;
             return PartialView(v.ToList());
         }
