@@ -32,7 +32,7 @@ CREATE TABLE [User]
 	[datebegin] DATETIME DEFAULT GETDATE(),
 	CONSTRAINT User_PK PRIMARY KEY([id]),
 	CONSTRAINT User_Email_U UNIQUE([email]),
-	CONSTRAINT USER_Meta_U UNIQUE([meta]),
+	CONSTRAINT User_Meta_U UNIQUE([meta]),
 	CONSTRAINT User_Role_FK FOREIGN KEY([role_id]) REFERENCES [Role]([id])
 )
 
@@ -54,25 +54,29 @@ CREATE TABLE [Tag]
 (
 	[id] INT IDENTITY(1,1),
 	[name] NVARCHAR(30) NOT NULL,
+	[meta] VARCHAR(50) NOT NULL,
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	CONSTRAINT Tag_Meta_U UNIQUE([meta]),
 	CONSTRAINT Tag_PK PRIMARY KEY([id])
 )
 
-INSERT INTO [Tag] ([name]) VALUES
-	(N'Âm nhạc'),
-	(N'Trò chơi'),
-	(N'Tin tức'),
-	(N'Thể thao'),
-	(N'Hoạt hình'),
-	(N'Toán học'),
-	(N'Thủ công'),
-	(N'Du lịch'),
-	(N'Bóng đá'),
-	(N'Nấu ăn'),
-	(N'Thiên nhiên'),
-	(N'Hoạt họa'),
-	(N'Vlog'),
-	(N'Diễn thuyết'),
-	(N'Hướng dẫn');
+INSERT INTO [Tag] ([name], [meta]) VALUES
+	(N'Âm nhạc', 'am-nhac'),
+	(N'Trò chơi', 'tro-choi'),
+	(N'Tin tức', 'tin-tuc'),
+	(N'Thể thao', 'the-thao'),
+	(N'Hoạt hình', 'hoat-hinh'),
+	(N'Toán học', 'toan-hoc'),
+	(N'Thủ công', 'thu-cong'),
+	(N'Du lịch', 'du-lich'),
+	(N'Bóng đá', 'bong-da'),
+	(N'Nấu ăn', 'nau-an'),
+	(N'Thiên nhiên', 'thien-nhien'),
+	(N'Hoạt họa', 'hoat-hoa'),
+	(N'Vlog', 'vlog'),
+	(N'Diễn thuyết', 'dien-thuyet'),
+	(N'Hướng dẫn', 'huong-dan');
 
 CREATE TABLE [Video]
 (
