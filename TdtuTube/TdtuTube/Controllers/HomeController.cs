@@ -27,24 +27,35 @@ namespace TdtuTube.Controllers
 
             return View();
         }
-        public ActionResult getTags() {
+        public ActionResult getTags()
+        {
             var v = from t in db.Tags
-                    orderby t.id ascending
+                    where t.hide == false
+                    orderby t.order descending
                     select t;
             return PartialView(v.ToList());
         }
         public ActionResult getFooter()
         {
-            var v = from t in db.HomeMenus
-                    where t.type_id != 4
-                    orderby t.type_id ascending
-                    select t;
+            var v = from f in db.HomeMenus
+                    where f.type_id != 4
+                    orderby f.type_id ascending
+                    select f;
             return PartialView(v.ToList());
         }
-        public ActionResult getVideos() {
-            var v = from t in db.Videos
-                    orderby t.id ascending
-                    select t;
+        public ActionResult getVideos()
+        {
+            var v = from i in db.Videos
+                    orderby i.id ascending
+                    select i;
+            return PartialView(v.ToList());
+        }
+        public ActionResult getVideosWithTag(String meta)
+        {
+            var v = from i in db.Videos
+                    where i.Tag.meta == meta
+                    orderby i.id ascending
+                    select i;
             return PartialView(v.ToList());
         }
     }
