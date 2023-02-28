@@ -22,10 +22,10 @@ function display_sidebar() {
 
 
 
-function loadVideosWithTag(tagMeta) {
+function loadVideosByTag(tagMeta) {
     event.preventDefault();
     // Need to fix CSS.
-    
+    event.srcElement.className = "tag-e bg-white py-1.5 px-3 rounded-full text-black border border-gray-700 transition duration-150"
        
     
     
@@ -37,7 +37,7 @@ function loadVideosWithTag(tagMeta) {
             }
         }
     };
-    xhr.open("GET", "/Home/getVideosWithTag?meta=" + tagMeta, true);
+    xhr.open("GET", "/Home/getVideosByTag?meta=" + tagMeta, true);
     xhr.send();
 }
 //fetch("./Content/JSON/videos.json")

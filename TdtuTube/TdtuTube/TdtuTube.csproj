@@ -609,7 +609,7 @@
     <Content Include="Views\Home\getTags.cshtml" />
     <Content Include="Views\Home\getFooter.cshtml" />
     <Content Include="Views\Home\getVideos.cshtml" />
-    <Content Include="Views\Home\getVideosWithTag.cshtml" />
+    <Content Include="Views\Home\getVideosByTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

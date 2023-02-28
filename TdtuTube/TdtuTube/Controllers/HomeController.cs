@@ -50,7 +50,7 @@ namespace TdtuTube.Controllers
                     select i;
             return PartialView(v.ToList());
         }
-        public ActionResult getVideosWithTag(String meta)
+        public ActionResult getVideosByTag(String meta)
         {
             var v = from i in db.Videos
                     where i.Tag.meta == meta
