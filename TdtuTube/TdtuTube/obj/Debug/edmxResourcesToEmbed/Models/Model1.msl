@@ -12,6 +12,9 @@
     <EntitySetMapping Name="Tags">
       <EntityTypeMapping TypeName="TdtuTubeModel.Tag">
         <MappingFragment StoreEntitySet="Tag">
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>

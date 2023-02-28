@@ -44,6 +44,9 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="meta" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
   </EntityType>
   <EntityType Name="User">
     <Key>
