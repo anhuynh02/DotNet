@@ -24,10 +24,8 @@ function display_sidebar() {
 
 function loadVideosByTag(tagMeta) {
     event.preventDefault();
-    // Need to fix CSS.
-    event.srcElement.className = "tag-e bg-white py-1.5 px-3 rounded-full text-black border border-gray-700 transition duration-150"
-       
-    
+    document.querySelector(".bg-white").className = "tag-e bg-pillsBg hover:bg-gray-700 py-1.5 px-3 rounded-full text-white border border-gray-700 transition duration-150"
+    event.srcElement.className = "tag-e bg-white py-1.5 px-3 rounded-full text-black"
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TdtuTube.Models.Tag>
 <div class="tags-container">
-    <a href="/" class="tag-e bg-white py-1.5 px-3 rounded-full text-black">All</a>
+    <a href="/" class="tag-e bg-white py-1.5 px-3 rounded-full text-black">Tất cả</a>
     @foreach (var i in Model)
     {
         <a href="#" onclick="loadVideosByTag('@i.meta')"
