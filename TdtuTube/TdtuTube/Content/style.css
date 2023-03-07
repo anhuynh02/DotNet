@@ -9,7 +9,8 @@ Document
 ========
 */
 .tag-e{
-    white-space: nowrap
+    white-space: nowrap;
+    user-select: none;
 }
 /**
 Use a better box model (opinionated).

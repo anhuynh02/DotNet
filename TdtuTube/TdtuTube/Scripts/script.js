@@ -78,3 +78,24 @@ function loadVideosByTag(tagMeta) {
 //    });
 //    videosContainer.innerHTML = videoCard;
 //})
+let isClick = false;
+
+let scrollContainer = document.getElementById("tagContainer")
+scrollContainer.addEventListener('mousedown', function (e) {
+    isClick = true;
+    console.log("Click !!");
+});
+scrollContainer.addEventListener('mouseup', function (e) {
+    isClick = false;
+});
+scrollContainer.addEventListener('mouseleave', function (e) {
+    isClick = false;
+});
+scrollContainer.addEventListener('mousemove', function (e) {
+    if (isClick == true) {
+        e.preventDefault();
+        scrollContainer.scrollLeft -= e.movementX;
+    }
+        
+    
+});
