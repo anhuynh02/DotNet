@@ -3,8 +3,8 @@
     <a href="/" class="tag-e bg-white py-1.5 px-3 rounded-full text-black">Tất cả</a>
     @foreach (var i in Model)
     {
-        <a href="#" onclick="loadVideosByTag('@i.meta')"
-           class="tag-e bg-pillsBg hover:bg-gray-700
+        <a id="@i.meta" href="/@ViewBag.Meta/@i.meta"
+            class="tag-e bg-pillsBg hover:bg-gray-700
                py-1.5 px-3 rounded-full text-white border
                border-gray-700 transition duration-150">
             @i.name

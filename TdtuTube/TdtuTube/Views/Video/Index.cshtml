@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "TdtuTube";
+}
+
+<div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="videoMainContainer">
+
+    @{Html.RenderAction("getTags", "Home");}
+
+    @{Html.RenderAction("getVideos", "Video");}
+
+</div>
+
+<script>
+    document.querySelector(".bg-white").className = "tag-e bg-pillsBg hover:bg-gray-700 py-1.5 px-3 rounded-full text-white border border-gray-700 transition duration-150"
+    document.getElementById("@ViewBag.Tag").className = "tag-e bg-white py-1.5 px-3 rounded-full text-black"
+</script>

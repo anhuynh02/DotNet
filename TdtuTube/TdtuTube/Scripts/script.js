@@ -20,24 +20,6 @@ function display_sidebar() {
     }
 }
 
-
-
-function loadVideosByTag(tagMeta) {
-    event.preventDefault();
-    document.querySelector(".bg-white").className = "tag-e bg-pillsBg hover:bg-gray-700 py-1.5 px-3 rounded-full text-white border border-gray-700 transition duration-150"
-    event.srcElement.className = "tag-e bg-white py-1.5 px-3 rounded-full text-black"
-    
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                videosContainer.innerHTML = this.responseText;
-            }
-        }
-    };
-    xhr.open("GET", "/Home/getVideosByTag?meta=" + tagMeta, true);
-    xhr.send();
-}
 //fetch("./Content/JSON/videos.json")
 //.then(response => response.json())
 //.then(videos => {
@@ -83,7 +65,6 @@ let isClick = false;
 let scrollContainer = document.getElementById("tagContainer")
 scrollContainer.addEventListener('mousedown', function (e) {
     isClick = true;
-    console.log("Click !!");
 });
 scrollContainer.addEventListener('mouseup', function (e) {
     isClick = false;
@@ -96,6 +77,4 @@ scrollContainer.addEventListener('mousemove', function (e) {
         e.preventDefault();
         scrollContainer.scrollLeft -= e.movementX;
     }
-        
-    
 });
