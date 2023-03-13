@@ -29,6 +29,7 @@ namespace TdtuTube.Models
         public int role_id { get; set; }
         public string meta { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
+        public bool status { get; set; }
     
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

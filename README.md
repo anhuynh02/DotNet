@@ -14,15 +14,26 @@ placeholder<br>
 ## Trang search:
 placeholder<br>
 ## Trang quản lý video:
-placeholder<br>
+Đã làm: Đã có giao diện
+Các công việc cần: 
++ Thêm, xóa, sửa video
++ Lọc
++ Phân trang 
+<br>
 ## Đăng nhập / Đăng ký:
 placeholder<br>
 ## Chức năng thêm:
 placeholder<br>
 ## Chức năng admin:<br>
-Quản lý user: khóa tài khoản?<br>
-Quản lý video: khóa video, chọn feature video nếu không làm code recommend.<br>
-Quản lý tag<br>
+Quản lý user: khóa tài khoản - Done
+<br>
+Quản lý video:
+Đã làm: Khóa video 
+Công việc cần làm: chọn feature video nếu không làm code recommend.
+<br>
+Quản lý tag:
+Công việc cần làm: Thêm, xóa, sửa tag
+<br>
 Quản lý Menu nếu có.<br>
 
 ## YouTube UI Clone

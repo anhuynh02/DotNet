@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminMenu">
           <Key>
             <PropertyRef Name="id" />
@@ -66,6 +66,7 @@
           <Property Name="role_id" Type="int" Nullable="false" />
           <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="datebegin" Type="datetime" />
+          <Property Name="status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Video">
           <Key>
@@ -84,6 +85,7 @@
           <Property Name="path" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="feature" Type="bit" Nullable="false" />
           <Property Name="datebegin" Type="datetime" />
+          <Property Name="status" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="HomeMenu_Type_FK">
           <End Role="HomeMenuType" Type="Self.HomeMenuType" Multiplicity="1" />
@@ -196,6 +198,7 @@
           <Property Name="datebegin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Role" Relationship="Self.User_Role_FK" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_User_FK" FromRole="User" ToRole="Video" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="User_Role_FK">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -286,6 +289,7 @@
           <Property Name="datebegin" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Tag" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Video" ToRole="Tag" />
           <NavigationProperty Name="User" Relationship="TdtuTubeModel.Video_User_FK" FromRole="Video" ToRole="User" />
+          <Property Name="status" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="HomeMenu_Type_FK">
           <End Type="TdtuTubeModel.HomeMenuType" Role="HomeMenuType" Multiplicity="1" />
@@ -351,6 +355,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="TdtuTubeModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
@@ -400,6 +405,7 @@
           <EntitySetMapping Name="Videos">
             <EntityTypeMapping TypeName="TdtuTubeModel.Video">
               <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="datebegin" ColumnName="datebegin" />
                 <ScalarProperty Name="feature" ColumnName="feature" />
                 <ScalarProperty Name="path" ColumnName="path" />

@@ -27,6 +27,7 @@ namespace TdtuTube.Models
         public string path { get; set; }
         public bool feature { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
+        public bool status { get; set; }
     
         public virtual Tag Tag { get; set; }
         public virtual User User { get; set; }

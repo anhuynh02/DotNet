@@ -1,0 +1,66 @@
+﻿@using TdtuTube.Libs
+@model IEnumerable<TdtuTube.Models.Video>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /><div class="table-display">
+    <div class="title-table-container">
+        <table class="title-table">
+            <thead style="text-align:center;"">
+                <tr>
+                    <th colspan="2">Video</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        
+                        <td colspan="2">
+                            <div style="display:flex;flex-direction:row;align-items:center">
+                                <img src="@i.thumbnail" style="width:100px;height:90px;padding-right:10px"/>
+                                <div>
+                                    <p>@VideoFormat.titleShortening(@i.title)</p>
+                                    <div style="float:left;">
+                                        <i style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i>
+                                        <i style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="content-table-container">
+        <table class="content-table">
+            <thead style="text-align:center;">
+                <tr>
+                    <th>Chế độ hiển thị</th>
+                    <th>Hạn chế</th>
+                    <th>Ngày</th>
+                    <th>Số lượt xem</th>
+                    <th>Số lượt thích</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        @if (@i.privacy)
+                        {
+                            <td>Không công khai</td>
+                        }
+                        else
+                        {
+                            <td>Công khai</td>
+                        }
+                        <td>Không có</td>
+                        <td>@i.datebegin</td>
+                        <td>@i.view</td>
+                        <td>@i.like</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+}

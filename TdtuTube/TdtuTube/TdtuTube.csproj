@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\Controllers\usersController.cs" />
     <Compile Include="Areas\Admin\Controllers\videosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -180,10 +181,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Content\admin.css" />
     <Content Include="Areas\Admin\Content\CSS\admin.css" />
     <Content Include="Areas\Admin\Content\CSS\style.css" />
     <Content Include="Areas\Admin\Content\JS\admin.js" />
     <Content Include="Areas\Admin\Content\JS\script.js" />
+    <Content Include="Areas\Admin\Content\style.css" />
     <Content Include="Areas\Admin\Content\vendor\apexcharts\apexcharts.min.js" />
     <Content Include="Areas\Admin\Content\vendor\bootstrap-icons\bootstrap-icons.css" />
     <Content Include="Areas\Admin\Content\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -611,6 +614,8 @@
     <Content Include="Views\Home\getVideos.cshtml" />
     <Content Include="Views\Video\Index.cshtml" />
     <Content Include="Views\Video\getVideos.cshtml" />
+    <Content Include="Views\Studio\GetInfoVideo.cshtml" />
+    <Content Include="Views\Studio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

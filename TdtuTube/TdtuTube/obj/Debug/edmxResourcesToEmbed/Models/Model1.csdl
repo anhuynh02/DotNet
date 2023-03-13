@@ -34,6 +34,7 @@
     <Property Name="datebegin" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Role" Relationship="Self.User_Role_FK" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_User_FK" FromRole="User" ToRole="Video" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="User_Role_FK">
     <End Role="Role" Type="Self.Role" Multiplicity="1" />
@@ -124,6 +125,7 @@
     <Property Name="datebegin" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Tag" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Video" ToRole="Tag" />
     <NavigationProperty Name="User" Relationship="TdtuTubeModel.Video_User_FK" FromRole="Video" ToRole="User" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
   </EntityType>
   <Association Name="HomeMenu_Type_FK">
     <End Type="TdtuTubeModel.HomeMenuType" Role="HomeMenuType" Multiplicity="1" />

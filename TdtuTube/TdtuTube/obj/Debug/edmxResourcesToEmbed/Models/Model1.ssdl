@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AdminMenu">
     <Key>
       <PropertyRef Name="id" />
@@ -61,6 +61,7 @@
     <Property Name="role_id" Type="int" Nullable="false" />
     <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="datebegin" Type="datetime" />
+    <Property Name="status" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Video">
     <Key>
@@ -79,6 +80,7 @@
     <Property Name="path" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="feature" Type="bit" Nullable="false" />
     <Property Name="datebegin" Type="datetime" />
+    <Property Name="status" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="HomeMenu_Type_FK">
     <End Role="HomeMenuType" Type="Self.HomeMenuType" Multiplicity="1" />
