@@ -1436,3 +1436,73 @@ video {
 
 @media (min-width: 1536px){
 }
+
+.studio-title {
+    color: red;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.studio-container {
+    margin-top: 3.5rem;
+    width: 100%;
+}
+
+.content-table {
+    border-bottom: 1px solid white;
+    color: whitesmoke !important;
+    width: 800px;
+    overflow: scroll;
+    padding: 30px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.title-table {
+    border-bottom: 1px solid white;
+    color: whitesmoke;
+    width: 100%;
+    padding: 20px;
+    font-size: 15px;
+}
+
+.content-table-container {
+    overflow-x: auto;
+    width: 70%;
+}
+
+.title-table-container {
+    width: 30%;
+}
+
+.table-display {
+    display: flex;
+    flex-direction: row;
+}
+
+tbody td {
+    height: 100px;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+.studio-nav {
+    margin-bottom: 15px;
+    color: whitesmoke;
+}
+
+.nav-link.active {
+    border: none !important;
+    color: white !important;
+    background-color: red !important;
+}
+
+.tab {
+    color: red;
+}
