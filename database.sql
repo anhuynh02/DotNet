@@ -226,6 +226,21 @@ INSERT INTO AdminMenu ([name], [meta]) VALUES
 	(N'Quản lý Người dùng', 'users'),
 	(N'Quản lý Tag', 'tags');
 
+CREATE TABLE [Like]
+(
+	[id] INT IDENTITY(1,1),
+	[user_id] INT NOT NULL,
+	[video_id] INT NOT NULL,
+	[like] BIT DEFAULT 0,
+	[meta] VARCHAR(50),
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
+	CONSTRAINT Like_PK PRIMARY KEY([id]),
+	CONSTRAINT Like_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id]),
+	CONSTRAINT Like_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
+)
+
 GO
 SELECT * FROM [Role]
 SELECT * FROM [User]
