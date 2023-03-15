@@ -18,7 +18,7 @@ namespace TdtuTube.Controllers
         public ActionResult getVideos(string meta)
         {
             var v = from i in db.Videos
-                    where i.Tag.meta == meta
+                    where i.Tag.meta == meta && i.privacy == false && i.hide == false && i.status == false
                     orderby i.id ascending
                     select i;
             return PartialView(v.ToList());

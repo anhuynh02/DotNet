@@ -1,0 +1,59 @@
+﻿@model TdtuTube.Models.User
+@using TdtuTube.Libs
+@{
+    ViewBag.Title = "TdtuTube";
+}
+
+<div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="videoMainContainer">
+    <div class="channel-container">
+        @if (Model == null)
+        {
+            <h1 class="text-white">Kênh không tồn tại</h1>
+        }
+        else
+        {
+            ViewBag.Title = Model.name + " - TdtuTube";
+
+            <!-- user info container -->
+            <div class="user-container">
+                <div class="flex flex-col space-y-3">
+                    <div class="flex flex-col flex-auto space-y-1.5 mb-3">
+                        <div class="flex items-center space-x-3">
+                            <img class="rounded-full object-cover" src="@Model.avatar_path" alt="" width="128px">
+                            <div>
+                                <h1 class="text-white" style="font-size: larger;">@Model.name</h1>
+                                <div class="text-gray-400">@Model.meta</div>
+                                <div class="text-gray-400">@VideoFormat.readableNumber((int)Model.subscriber) người đăng ký</div>
+                            </div>
+                            <div style="margin-left: auto;">
+                                <button class="btn-subscribe">Đăng ký</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            if (ViewBag.Meta != "playlists")
+            {
+                <!-- tabs container -->
+                <div class="tab-container">
+                    <!-- tab -->
+                    <a class="tab tab-active" href="/channel/@Model.meta/videos">Videos</a>
+                    <a class="tab" href="/channel/@Model.meta/playlists">Danh sách phát</a>
+                </div>
+                Html.RenderAction("getUserVideos", "Channel", new { userId = Model.id });
+            }
+            else
+            {
+                <!-- tabs container -->
+                <div class="tab-container">
+                    <!-- tab -->
+                    <a class="tab" href="/channel/@Model.meta/videos">Videos</a>
+                    <a class="tab tab-active" href="/channel/@Model.meta/playlists">Danh sách phát</a>
+                </div>
+                <!-- Work in Progress -->
+            }
+        }
+    </div>
+</div>

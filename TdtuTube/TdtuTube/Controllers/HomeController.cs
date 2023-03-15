@@ -49,7 +49,8 @@ namespace TdtuTube.Controllers
         public ActionResult getVideos()
         {
             var v = from i in db.Videos
-                    orderby i.id ascending
+                    where i.privacy == false && i.hide == false && i.status == false
+                    orderby i.order ascending
                     select i;
             return PartialView(v.ToList());
         }

@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\tagsController.cs" />
     <Compile Include="Areas\Admin\Controllers\usersController.cs" />
     <Compile Include="Areas\Admin\Controllers\videosController.cs" />
+    <Compile Include="Controllers\ChannelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
@@ -627,6 +628,8 @@
     <Content Include="Views\Studio\Index.cshtml" />
     <Content Include="Views\Home\getSidebar.cshtml" />
     <Content Include="Views\Home\getCopyrightLogo.cshtml" />
+    <Content Include="Views\Channel\Index.cshtml" />
+    <Content Include="Views\Channel\getUserVideos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

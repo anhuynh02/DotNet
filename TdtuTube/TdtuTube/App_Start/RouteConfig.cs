@@ -22,6 +22,15 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
+            routes.MapRoute("Channel", "{type}/{user}/{meta}",
+                new { controller = "Channel", action = "Index", meta = UrlParameter.Optional },
+                new RouteValueDictionary
+                {
+                    { "type", "channel" }
+                },
+                new[] { "TdtuTube.Controllers" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

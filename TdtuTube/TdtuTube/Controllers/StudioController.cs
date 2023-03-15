@@ -11,7 +11,7 @@ namespace TdtuTube.Controllers
     public class StudioController : Controller
     {
         // GET: Studio
-        TdtuTubeEntities db = new TdtuTubeEntities();
+        private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index()
         {
             return View();

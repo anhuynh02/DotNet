@@ -1311,6 +1311,105 @@ video {
   display: none;
 }
 
+.user-container {
+    padding: 1.5rem;
+}
+
+.btn-subscribe {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 20px;
+}
+
+    .btn-subscribe:hover {
+        background-color: #d9d9d9;
+    }
+
+.btn-unsubscribe {
+    color: white;
+    background-color: #272727;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 20px;
+}
+
+    .btn-unsubscribe:hover {
+        background-color: #3f3f3f;
+    }
+
+.tab {
+    --tw-text-opacity: 1;
+    color: rgba(161, 161, 170, var(--tw-text-opacity));
+    padding: 0.625rem 1.25rem;
+}
+
+.tab:hover {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.tab-active {
+    border-bottom-width: 3px;
+    --tw-bg-opacity: 0.5;
+    background-color: rgba(63, 63, 70, var(--tw-bg-opacity));
+    --tw-text-opacity: 0.9;
+    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    --tw-border-opacity: 0.5;
+    border-color: rgba(255, 255, 255, var(--tw-border-opacity));
+}
+
+.tab-container {
+    position: relative;
+    position: sticky;
+    top: 3.5rem;
+    z-index: 20;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+}
+
+.tab-container > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.tab-container {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-color: rgba(56, 56, 56, var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgba(24, 24, 24, var(--tw-bg-opacity));
+    --tw-bg-opacity: 0.95;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+.scrollbar.tab-container {
+    overflow-y: hidden;
+}
+
+.scrollbar-thin.tab-container {
+    overflow-y: hidden;
+}
+
+.tab-container {
+    scrollbar-width: none;
+}
+
+    .tab-container::-webkit-scrollbar {
+        display: none;
+    }
+
+.channel-container {
+    margin-top: 3.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgba(24, 24, 24, var(--tw-bg-opacity));
+}
+
 .videos-container {
   margin-top: 3.5rem;
   display: grid;
@@ -1501,8 +1600,4 @@ tbody td {
     border: none !important;
     color: white !important;
     background-color: red !important;
-}
-
-.tab {
-    color: red;
 }

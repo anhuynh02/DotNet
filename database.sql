@@ -45,17 +45,17 @@ CREATE TABLE [User]
 
 -- Password = 123456
 INSERT INTO [User] ([name], [email], [password], [avatar_path], [role_id], [meta], [status]) VALUES
-	(N'Thông', 'admin@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/1.png', 1, '1', 0),
-	(N'user1', 'user1@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/2.png', 2, '2', 0),
-	(N'user2', 'user2@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/3.png', 2, '3', 0),
-	(N'user3', 'user3@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/4.png', 2, '4', 0),
-	(N'user4', 'user4@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/5.png', 2, '5', 0),
-	(N'user5', 'user5@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/6.png', 2, '6', 0),
-	(N'user6', 'user6@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/7.png', 2, '7', 0),
-	(N'user7', 'user7@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/8.png', 2, '8', 0),
-	(N'user8', 'user8@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/9.png', 2, '9', 0),
-	(N'user10', 'user10@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/10.png', 2, '10', 0),
-	(N'default', 'Test@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/default.PNG', 2, '11', 0);
+	(N'Thông', 'admin@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/1.png', 1, '@1', 0),
+	(N'user1', 'user1@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/2.png', 2, '@2', 0),
+	(N'user2', 'user2@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/3.png', 2, '@3', 0),
+	(N'user3', 'user3@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/4.png', 2, '@4', 0),
+	(N'user4', 'user4@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/5.png', 2, '@5', 0),
+	(N'user5', 'user5@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/6.png', 2, '@6', 0),
+	(N'user6', 'user6@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/7.png', 2, '@7', 0),
+	(N'user7', 'user7@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/8.png', 2, '@8', 0),
+	(N'user8', 'user8@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/9.png', 2, '@9', 0),
+	(N'user10', 'user10@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/10.png', 2, '@10', 0),
+	(N'default', 'Test@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/default.PNG', 2, '@11', 0);
 
 CREATE TABLE [Tag]
 (
