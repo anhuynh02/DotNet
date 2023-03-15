@@ -1,18 +1,21 @@
 # To Do List:
-## Trang chủ:
-Add href cho footer.<br>
-Add href cho video, user.<br>
-Add href cho sidebar.<br>
-Hiện video theo tag.<br>
 ## Nếu kịp
 Hiện nút đăng nhập<br>
 Chuyển trang cho search<br>
+## Database:
+Trigger update like, comment, subcribe count<br>
 ## Trang video:
-placeholder<br>
+Load được trước đã =))))<br>
+Hiện video <br>
+Hiện Comment <br>
+Hiện thông tin kênh <br>
+Hiện list video <br>
+Phát playlist <br>
 ## Trang người dùng:
-placeholder<br>
+Hiện Videos (Done)<br>
+Hiện Playlists<br>
 ## Trang search:
-placeholder<br>
+Search theo video và người dùng (playlist nếu có thể)<br>
 ## Trang quản lý video:
 Đã làm: Đã có giao diện
 Các công việc cần: 
