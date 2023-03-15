@@ -29,7 +29,7 @@ CREATE TABLE [User]
 	[name] NVARCHAR(30) NOT NULL,
 	[email] VARCHAR(254) NOT NULL,
 	[password] VARCHAR(80) NOT NULL,
-	[subscribers] INT DEFAULT 0,
+	[subscriber] INT DEFAULT 0,
 	[avatar_path] VARCHAR(100) DEFAULT '/Uploads/Avatars/default.png',
 	[role_id] INT NOT NULL,
 	[meta] VARCHAR(30) NOT NULL,
@@ -94,6 +94,7 @@ CREATE TABLE [Video]
 	[description] NVARCHAR(500) NOT NULL,
 	[like] INT DEFAULT 0,
 	[view] INT DEFAULT 0,
+	[comment] INT DEFAULT 0,
 	[privacy] BIT NOT NULL, -- Chế độ công khai, riêng tư,...
 	[length] VARCHAR(10) NOT NULL, -- Độ dài video.
 	[thumbnail] VARCHAR(200) NOT NULL, -- Đường dẫn tới thumbnail video.
@@ -172,16 +173,18 @@ CREATE TABLE [HomeMenuType]
 	CONSTRAINT HomeMenuType_PK PRIMARY KEY([id])
 )
 INSERT INTO [HomeMenuType] ([name], [meta]) VALUES
-	(N'Footer 1', 'footer-1'),
-	(N'Footer 2', 'footer-2'),
+	(N'Sidebar', 'sidebar'),
+	(N'Primary', 'primary'),
+	(N'Secondary', 'secondary'),
 	(N'Copyright', 'copyright'),
-	(N'Logo', 'logo');
+	(N'Channel', 'channel');
 
 CREATE TABLE [HomeMenu]
 (
 	[id] INT IDENTITY(1,1),
 	[name] NVARCHAR(30) NOT NULL,
 	[link] VARCHAR(MAX),
+	[icon] VARCHAR(50),
 	[meta] VARCHAR(50) NOT NULL,
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
@@ -192,22 +195,25 @@ CREATE TABLE [HomeMenu]
 	CONSTRAINT HomeMenu_Type_FK FOREIGN KEY([type_id]) REFERENCES [HomeMenuType]([id])
 )
 
--- Dữ liệu tạm để test.
-INSERT INTO [HomeMenu] ([name], [link], [meta], [type_id]) VALUES
-	(N'Giới thiệu', 'link', 'about', 1),
-	(N'Báo chí', 'link', 'press', 1),
-	(N'Bản quyền', 'link', 'copyright', 1),
-	(N'Liên hệ với chúng tôi', 'link', 'contactus', 1),
-	(N'Người sáng tạo', 'link', 'creator', 1),
-	(N'Quảng cáo', 'link', 'ads', 1),
-	(N'Nhà phát triển', 'link', 'dev?', 1),
-	(N'Điều khoản', 'link', 'terms', 2),
-	(N'Quyền riêng tư', 'link', 'privacy', 2),
-	(N'Chính sách và an toàn', 'link', 'policies', 2),
-	(N'Cách YouTube hoạt động', 'link', 'howyoutubework', 2),
-	(N'Thử các tính năng mới', 'link', 'new', 2),
-	(N'© 2023 Google LLC', 'link', 'tempcopyright', 3),
-	(N'LogoLinkHere?', 'link', 'templogo', 4);
+INSERT INTO [HomeMenu] ([name], [link], [icon], [meta], [type_id]) VALUES
+	(N'Kênh đăng ký', 'link', 'subscriptions', 'subscriptions', 1),
+	(N'Video đã thích', 'link', 'thumb_up', 'likes', 1),
+	(N'Video của bạn', 'link', 'slideshow', 'studio', 1),
+	(N'Giới thiệu', 'link', 'icon', 'about', 2),
+	(N'Báo chí', 'link', 'icon', 'press', 2),
+	(N'Bản quyền', 'link', 'icon', 'copyright', 2),
+	(N'Liên hệ với chúng tôi', 'link', 'icon', 'contactus', 2),
+	(N'Người sáng tạo', 'link', 'icon', 'creator', 2),
+	(N'Quảng cáo', 'link', 'icon', 'ads', 2),
+	(N'Nhà phát triển', 'link', 'icon', 'dev?', 2),
+	(N'Điều khoản', 'link', 'icon', 'terms', 3),
+	(N'Quyền riêng tư', 'link', 'icon', 'privacy', 3),
+	(N'Chính sách và an toàn', 'link', 'icon', 'policies', 3),
+	(N'Cách YouTube hoạt động', 'link', 'icon', 'how-youtube-work', 3),
+	(N'Thử các tính năng mới', 'link', 'icon', 'new', 3),
+	(N'Copyright © 2023 TDTU', 'link', 'icon', 'copyright-logo', 4),
+	(N'Videos', 'link', 'icon', 'videos', 5),
+	(N'Danh sách phát', 'link', 'icon', 'playlists', 5);
 
 CREATE TABLE [AdminMenu]
 (
@@ -236,10 +242,43 @@ CREATE TABLE [Like]
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
 	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
-	CONSTRAINT Like_PK PRIMARY KEY([id]),
+	CONSTRAINT Like_PK PRIMARY KEY([user_id], [video_id]),
 	CONSTRAINT Like_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id]),
 	CONSTRAINT Like_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
 )
+
+CREATE TABLE [Comment]
+(
+	[id] INT IDENTITY(1,1),
+	[user_id] INT NOT NULL,
+	[video_id] INT NOT NULL,
+	[comment] NVARCHAR(500) NOT NULL,
+	[meta] VARCHAR(50),
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
+	CONSTRAINT Comment_PK PRIMARY KEY([id]),
+	CONSTRAINT Comment_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id]),
+	CONSTRAINT Comment_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
+)
+
+CREATE TABLE [Subscribe]
+(
+	[id] INT IDENTITY(1,1),
+	[user_id] INT NOT NULL,
+	[subscribe_user_id] INT NOT NULL,
+	[subscribe] BIT DEFAULT 0,
+	[meta] VARCHAR(50),
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
+	CONSTRAINT Subscribe_PK PRIMARY KEY([user_id], [subscribe_user_id]),
+	CONSTRAINT Subscribe_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id]),
+	CONSTRAINT Subscribe_SubUser_FK FOREIGN KEY([subscribe_user_id]) REFERENCES [User]([id])
+)
+
+-- Trigger
+
 
 GO
 SELECT * FROM [Role]
@@ -249,3 +288,6 @@ SELECT * FROM [Video]
 SELECT * FROM [HomeMenuType]
 SELECT * FROM [HomeMenu]
 SELECT * FROM [AdminMenu]
+SELECT * FROM [Like]
+SELECT * FROM [Comment]
+SELECT * FROM [Subscribe]
