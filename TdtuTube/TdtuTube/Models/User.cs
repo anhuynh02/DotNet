@@ -17,6 +17,10 @@ namespace TdtuTube.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            this.Comments = new HashSet<Comment>();
+            this.Likes = new HashSet<Like>();
+            this.Subscribes = new HashSet<Subscribe>();
+            this.Subscribes1 = new HashSet<Subscribe>();
             this.Videos = new HashSet<Video>();
         }
     
@@ -24,14 +28,24 @@ namespace TdtuTube.Models
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public Nullable<int> subscribers { get; set; }
+        public Nullable<int> subscriber { get; set; }
         public string avatar_path { get; set; }
         public int role_id { get; set; }
         public string meta { get; set; }
+        public Nullable<bool> hide { get; set; }
+        public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
         public bool status { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Like> Likes { get; set; }
         public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subscribe> Subscribes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Subscribe> Subscribes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Video> Videos { get; set; }
     }

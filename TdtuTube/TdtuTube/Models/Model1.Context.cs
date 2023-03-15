@@ -25,12 +25,15 @@ namespace TdtuTube.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AdminMenu> AdminMenus { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<HomeMenu> HomeMenus { get; set; }
         public virtual DbSet<HomeMenuType> HomeMenuTypes { get; set; }
+        public virtual DbSet<Like> Likes { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Subscribe> Subscribes { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
     }
 }

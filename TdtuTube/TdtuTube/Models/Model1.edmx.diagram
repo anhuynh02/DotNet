@@ -4,16 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b042aad4a7774039978fee84c03c6e7d" Name="Diagram1">
-        <EntityTypeShape EntityType="TdtuTubeModel.Role" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TdtuTubeModel.Tag" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TdtuTubeModel.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="TdtuTubeModel.User_Role_FK" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TdtuTubeModel.AdminMenu" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="TdtuTubeModel.HomeMenu" Width="1.5" PointX="5.625" PointY="7" />
-        <EntityTypeShape EntityType="TdtuTubeModel.HomeMenuType" Width="1.5" PointX="3.375" PointY="7.5" />
-        <EntityTypeShape EntityType="TdtuTubeModel.Video" Width="1.5" PointX="5.25" PointY="1.75" />
+      <Diagram DiagramId="b042aad4a7774039978fee84c03c6e7d" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="TdtuTubeModel.AdminMenu" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Comment" Width="1.5" PointX="7.5" PointY="8.375" />
+        <EntityTypeShape EntityType="TdtuTubeModel.HomeMenu" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="TdtuTubeModel.HomeMenuType" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Like" Width="1.5" PointX="10.5" PointY="8.375" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Role" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Subscribe" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Tag" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="TdtuTubeModel.User" Width="1.5" PointX="3" PointY="7.625" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Video" Width="1.5" PointX="5.25" PointY="7.125" />
+        <AssociationConnector Association="TdtuTubeModel.Comment_User_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Comment_Video_FK" />
         <AssociationConnector Association="TdtuTubeModel.HomeMenu_Type_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Like_User_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Like_Video_FK" />
+        <AssociationConnector Association="TdtuTubeModel.User_Role_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Subscribe_SubUser_FK" />
+        <AssociationConnector Association="TdtuTubeModel.Subscribe_User_FK" />
         <AssociationConnector Association="TdtuTubeModel.Video_Tag_FK" />
         <AssociationConnector Association="TdtuTubeModel.Video_User_FK" />
       </Diagram>

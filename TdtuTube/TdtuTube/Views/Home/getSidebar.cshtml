@@ -1,0 +1,11 @@
+﻿@model IEnumerable<TdtuTube.Models.HomeMenu>
+
+@foreach (var i in Model)
+{
+    <a href="/@i.meta">
+        <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+            <i class="material-icons text-gray-400 md-21">@i.icon</i>
+            <h2 class="text-sm text-white">@i.name</h2>
+        </div>
+    </a>
+}

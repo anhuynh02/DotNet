@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AdminMenu">
     <Key>
       <PropertyRef Name="id" />
@@ -11,6 +11,19 @@
     <Property Name="order" Type="int" />
     <Property Name="datebegin" Type="smalldatetime" />
   </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="video_id" Type="int" Nullable="false" />
+    <Property Name="comment" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="meta" Type="varchar" MaxLength="50" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
+  </EntityType>
   <EntityType Name="HomeMenu">
     <Key>
       <PropertyRef Name="id" />
@@ -18,6 +31,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="link" Type="varchar(max)" />
+    <Property Name="icon" Type="varchar" MaxLength="50" />
     <Property Name="meta" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="hide" Type="bit" />
     <Property Name="order" Type="int" />
@@ -30,6 +44,24 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Like">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="video_id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="video_id" Type="int" Nullable="false" />
+    <Property Name="like" Type="bit" />
+    <Property Name="meta" Type="varchar" MaxLength="50" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
@@ -37,6 +69,24 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Subscribe">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="subscribe_user_id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="subscribe_user_id" Type="int" Nullable="false" />
+    <Property Name="subscribe" Type="bit" />
+    <Property Name="meta" Type="varchar" MaxLength="50" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
+    <Property Name="datebegin" Type="smalldatetime" />
   </EntityType>
   <EntityType Name="Tag">
     <Key>
@@ -56,10 +106,12 @@
     <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="254" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="80" Nullable="false" />
-    <Property Name="subscribers" Type="int" />
+    <Property Name="subscriber" Type="int" />
     <Property Name="avatar_path" Type="varchar" MaxLength="100" />
     <Property Name="role_id" Type="int" Nullable="false" />
     <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
     <Property Name="datebegin" Type="datetime" />
     <Property Name="status" Type="bit" Nullable="false" />
   </EntityType>
@@ -74,14 +126,42 @@
     <Property Name="description" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="like" Type="int" />
     <Property Name="view" Type="int" />
+    <Property Name="comment" Type="int" />
     <Property Name="privacy" Type="bit" Nullable="false" />
     <Property Name="length" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="thumbnail" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="path" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="feature" Type="bit" Nullable="false" />
+    <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="hide" Type="bit" />
+    <Property Name="order" Type="int" />
     <Property Name="datebegin" Type="datetime" />
     <Property Name="status" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="Comment_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Comment_Video_FK">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="video_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="HomeMenu_Type_FK">
     <End Role="HomeMenuType" Type="Self.HomeMenuType" Multiplicity="1" />
     <End Role="HomeMenu" Type="Self.HomeMenu" Multiplicity="*" />
@@ -91,6 +171,54 @@
       </Principal>
       <Dependent Role="HomeMenu">
         <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Like_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Like" Type="Self.Like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Like_Video_FK">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="Like" Type="Self.Like" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Like">
+        <PropertyRef Name="video_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Subscribe_SubUser_FK">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Subscribe" Type="Self.Subscribe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Subscribe">
+        <PropertyRef Name="subscribe_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Subscribe_User_FK">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Subscribe" Type="Self.Subscribe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Subscribe">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -132,15 +260,42 @@
   </Association>
   <EntityContainer Name="TdtuTubeModelStoreContainer">
     <EntitySet Name="AdminMenu" EntityType="Self.AdminMenu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeMenu" EntityType="Self.HomeMenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HomeMenuType" EntityType="Self.HomeMenuType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Like" EntityType="Self.Like" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subscribe" EntityType="Self.Subscribe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="Comment_User_FK" Association="Self.Comment_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="Comment_Video_FK" Association="Self.Comment_Video_FK">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
     <AssociationSet Name="HomeMenu_Type_FK" Association="Self.HomeMenu_Type_FK">
       <End Role="HomeMenuType" EntitySet="HomeMenuType" />
       <End Role="HomeMenu" EntitySet="HomeMenu" />
+    </AssociationSet>
+    <AssociationSet Name="Like_User_FK" Association="Self.Like_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="Like" EntitySet="Like" />
+    </AssociationSet>
+    <AssociationSet Name="Like_Video_FK" Association="Self.Like_Video_FK">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="Like" EntitySet="Like" />
+    </AssociationSet>
+    <AssociationSet Name="Subscribe_SubUser_FK" Association="Self.Subscribe_SubUser_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="Subscribe" EntitySet="Subscribe" />
+    </AssociationSet>
+    <AssociationSet Name="Subscribe_User_FK" Association="Self.Subscribe_User_FK">
+      <End Role="User" EntitySet="User" />
+      <End Role="Subscribe" EntitySet="Subscribe" />
     </AssociationSet>
     <AssociationSet Name="User_Role_FK" Association="Self.User_Role_FK">
       <End Role="Role" EntitySet="Role" />

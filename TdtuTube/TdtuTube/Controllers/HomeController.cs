@@ -14,13 +14,28 @@ namespace TdtuTube.Controllers
         {
             return View();
         }
-        public ActionResult getFooter()
+        public ActionResult getSidebar()
+        {
+            var v = from s in db.HomeMenus
+                    where s.type_id == 1 && s.hide == false
+                    orderby s.order ascending
+                    select s;
+            return PartialView(v.ToList());
+        }
+        public ActionResult getFooter(int id)
         {
             var v = from f in db.HomeMenus
-                    where f.type_id != 4 && f.hide == false
-                    orderby f.type_id, f.order ascending
+                    where f.type_id == id && f.hide == false
+                    orderby f.order ascending
                     select f;
             return PartialView(v.ToList());
+        }
+        public ActionResult getCopyrightLogo()
+        {
+            var v = from c in db.HomeMenus
+                    where c.type_id == 4 && c.hide == false
+                    select c;
+            return PartialView(v.FirstOrDefault());
         }
         public ActionResult getTags()
         {

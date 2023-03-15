@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,9 +42,9 @@
 
             <!-- right icons container  -->
             <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
-                <a href="/studio"><i class="material-icons text-white cursor-pointer">video_call</i></a>
+                <i class="material-icons text-white cursor-pointer">video_call</i>
                 <!--<i class="material-icons text-white cursor-pointer">apps</i>
-    <i class="material-icons text-white cursor-pointer">notifications</i>-->
+                <i class="material-icons text-white cursor-pointer">notifications</i>-->
 
                 <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="~/Uploads/images/profile.jpg" alt="" draggable="false">
             </div>
@@ -52,55 +52,141 @@
         </div>
     </nav>
     <!-- navbar ends here -->
+                <!-- main container -->
+                <div class="flex flex-row">
+                    <!-- left sidebar fixed -->
+                    <div class="sidebar" id="sideBar">
+                        <!-- main home explore btns -->
+                        <div class="flex flex-col w-full mb-2">
+                            <div class="flex items-center space-x-5 bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-white md-21">home</i>
+                                <h2 class="text-sm font-semibold text-white">Home</h2>
+                            </div>
 
-    <!-- main container -->
-    <div class="flex flex-row">
-        <!-- left sidebar fixed -->
-        <div class="sidebar" id="sideBar">
-            <!-- main home explore btns -->
-            <div class="flex flex-col w-full mb-2">
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">explore</i>
+                                <h2 class="text-sm text-white">Explore</h2>
+                            </div>
 
-                <a href="/">
-                    <div class="flex items-center space-x-5 bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
-                        <i class="material-icons text-white md-21">home</i>
-                        <h2 class="text-sm font-semibold text-white">Trang chủ</h2>
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">subscriptions</i>
+                                <h2 class="text-sm text-white">Subscriptions</h2>
+                            </div>
+
+                        </div>
+
+                        <div class="border border-searchIconBg"></div>
+
+                        <!-- library history btns -->
+                        <div class="flex flex-col w-full mb-2 mt-3">
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">video_library</i>
+                                <h2 class="text-sm text-white">Library</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">history</i>
+                                <h2 class="text-sm text-white">History</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">slideshow</i>
+                                <h2 class="text-sm text-white">Your videos</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">watch_later</i>
+                                <h2 class="text-sm text-white">Watch later</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">thumb_up</i>
+                                <h2 class="text-sm text-white">Liked videos</h2>
+                            </div>
+
+                        </div>
+
+                        <div class="border border-searchIconBg"></div>
+
+                        <!-- library history btns -->
+                        <div class="flex flex-col w-full mb-2 mt-3">
+                            <h2 class="uppercase text-sm px-7 py-1.5 text-gray-400">more from youtube</h2>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">smart_display</i>
+                                <h2 class="text-sm text-white">YouTube Premium</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">theaters</i>
+                                <h2 class="text-sm text-white">Films</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">sports_esports</i>
+                                <h2 class="text-sm text-white">Gaming</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">stream</i>
+                                <h2 class="text-sm text-white">Live</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">dry_cleaning</i>
+                                <h2 class="text-sm text-white">Fashion & beauty</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">lightbulb</i>
+                                <h2 class="text-sm text-white">Learning</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">emoji_events</i>
+                                <h2 class="text-sm text-white">Sport</h2>
+                            </div>
+
+                        </div>
+
+                        <div class="border border-searchIconBg"></div>
+
+                        <!-- settings support btns -->
+                        <div class="flex flex-col w-full mb-2 mt-3">
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">settings</i>
+                                <h2 class="text-sm text-white">Settings</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">flag</i>
+                                <h2 class="text-sm text-white">Report history</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">help</i>
+                                <h2 class="text-sm text-white">Help</h2>
+                            </div>
+
+                            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                <i class="material-icons text-gray-400 md-21">feedback</i>
+                                <h2 class="text-sm text-white">Send feedback</h2>
+                            </div>
+                        </div>
+
+                        <div class="border border-searchIconBg"></div>
+
+                        @{Html.RenderAction("getFooter", "Home");}
+
                     </div>
-                </a>
 
-                @{Html.RenderAction("getSidebar", "Home");}
+                    @RenderBody();
 
-            </div>
-
-            <div class="border border-searchIconBg"></div>
-
-            <!-- Work in progress -->
-            <div class="flex flex-col w-full mb-2 mt-3">
-
-                <h1 class="text-white">Các kênh đăng ký</h1>
-
-                <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
-                    <i class="material-icons text-gray-400 md-21">video_library</i>
-                    <h2 class="text-sm text-white">Library</h2>
                 </div>
 
-            </div>
-
-            <div class="border border-searchIconBg"></div>
-
-            @{Html.RenderAction("getFooter", "Home", new { id = 2 });}
-
-            @{Html.RenderAction("getFooter", "Home", new { id = 3 });}
-
-            @{Html.RenderAction("getCopyrightLogo", "Home");}
-
-        </div>
-
-        @RenderBody();
-
-    </div>
-
-    <script src="~/Scripts/script.js"></script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
+                <script src="~/Scripts/script.js"></script>
+                <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 </body>
 </html>

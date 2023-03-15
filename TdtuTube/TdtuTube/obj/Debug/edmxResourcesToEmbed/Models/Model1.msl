@@ -1,41 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TdtuTubeModelStoreContainer" CdmEntityContainer="TdtuTubeEntities">
-    <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="TdtuTubeModel.Role">
-        <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tags">
-      <EntityTypeMapping TypeName="TdtuTubeModel.Tag">
-        <MappingFragment StoreEntitySet="Tag">
-          <ScalarProperty Name="order" ColumnName="order" />
-          <ScalarProperty Name="hide" ColumnName="hide" />
-          <ScalarProperty Name="meta" ColumnName="meta" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="TdtuTubeModel.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="subscribers" ColumnName="subscribers" />
-          <ScalarProperty Name="avatar_path" ColumnName="avatar_path" />
-          <ScalarProperty Name="role_id" ColumnName="role_id" />
-          <ScalarProperty Name="meta" ColumnName="meta" />
-          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AdminMenus">
       <EntityTypeMapping TypeName="TdtuTubeModel.AdminMenu">
         <MappingFragment StoreEntitySet="AdminMenu">
@@ -48,6 +13,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="TdtuTubeModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="comment1" ColumnName="comment" />
+          <ScalarProperty Name="video_id" ColumnName="video_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="HomeMenus">
       <EntityTypeMapping TypeName="TdtuTubeModel.HomeMenu">
         <MappingFragment StoreEntitySet="HomeMenu">
@@ -56,6 +35,7 @@
           <ScalarProperty Name="order" ColumnName="order" />
           <ScalarProperty Name="hide" ColumnName="hide" />
           <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
           <ScalarProperty Name="link" ColumnName="link" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -65,6 +45,79 @@
     <EntitySetMapping Name="HomeMenuTypes">
       <EntityTypeMapping TypeName="TdtuTubeModel.HomeMenuType">
         <MappingFragment StoreEntitySet="HomeMenuType">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Likes">
+      <EntityTypeMapping TypeName="TdtuTubeModel.Like">
+        <MappingFragment StoreEntitySet="Like">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="like1" ColumnName="like" />
+          <ScalarProperty Name="video_id" ColumnName="video_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="TdtuTubeModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscribes">
+      <EntityTypeMapping TypeName="TdtuTubeModel.Subscribe">
+        <MappingFragment StoreEntitySet="Subscribe">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="subscribe1" ColumnName="subscribe" />
+          <ScalarProperty Name="subscribe_user_id" ColumnName="subscribe_user_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="TdtuTubeModel.Tag">
+        <MappingFragment StoreEntitySet="Tag">
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TdtuTubeModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="avatar_path" ColumnName="avatar_path" />
+          <ScalarProperty Name="subscriber" ColumnName="subscriber" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
@@ -75,11 +128,15 @@
         <MappingFragment StoreEntitySet="Video">
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
           <ScalarProperty Name="feature" ColumnName="feature" />
           <ScalarProperty Name="path" ColumnName="path" />
           <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
           <ScalarProperty Name="length" ColumnName="length" />
           <ScalarProperty Name="privacy" ColumnName="privacy" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
           <ScalarProperty Name="view" ColumnName="view" />
           <ScalarProperty Name="like" ColumnName="like" />
           <ScalarProperty Name="description" ColumnName="description" />
