@@ -634,6 +634,7 @@
     <Content Include="Views\Channel\getUserVideos.cshtml" />
     <Content Include="Views\Watch\Index.cshtml" />
     <Content Include="Views\Watch\getVideos.cshtml" />
+    <Content Include="Views\Studio\uploadVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,65 @@
+﻿@model TdtuTube.Models.Video
+
+@{
+    ViewBag.Title = "Create Video";
+    Layout = "~/Views/Shared/Header.cshtml";
+}
+<div class="studio-container lg:ml-60 w-full lg:w-4/5 xl:w-5/6">
+    <div class="title-container">
+        <h3 class="create-form-title">Upload video lên kênh</h3>
+    </div>
+    <div class="create-container">
+        @using (Html.BeginForm("createVideos", "Studio", FormMethod.Post, new { enctype = "multipart/form-data", @class = "create-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <div class="form-group">
+                    <label for="title" class="create-form-label">Tiêu đề</label><br />
+                    @Html.EditorFor(model => model.title, "", new { htmlAttributes = new { @class = "create-form-input", @name = "title" } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "warning-box" })
+                </div>
+                <div class="form-group">
+                    <label for="video" class="create-form-label">Chọn video</label><br />
+                    <input type="file" class="create-form-file" name="video" id="video" accept=".mp4, .mpg, .mov" />
+                    @Html.ValidationMessageFor(model => model.path, "", new { @class = "warning-box" })
+                </div>
+                <div class="form-group">
+                    <label for="description" class="create-form-label">Mô tả</label><br />
+                    @Html.TextAreaFor(model => model.description, new { @class = "create-form-textarea" })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "warning-box" })
+                </div>
+                <div class="form-group">
+                    <label for="thumbnail" class="create-form-label">Chọn hình ảnh làm Thumbail</label><br />
+                    <input type="file" class="create-form-file" name="thumbnail" id="thumbnail" accept=".jpg, .png, .gif, .jpeg, .bmp" />
+                    @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "warning-box" })
+                </div>
+                <div class="form-group">
+                    <label for="hide" class="create-form-label">Không công khai</label><br />
+                    <div>
+                        @{
+                            bool hide = false;
+                        }
+                        @Html.CheckBoxFor(model => hide, new { @name = "hide", @class = "create-checkbox" })
+                        @Html.ValidationMessageFor(model => model.hide, "", new { @class = "warning-box" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Upload" class="create-form-btn" />
+                </div>
+            </div>
+        }
+        <div class="create-result">
+            <p class="result-title">Preview</p>
+            <div class="result-content-vid">
+                <video class="result-video"></video>
+                <img class="result-img" src="~/Uploads/Thumbnails/1.png" />
+            </div>
+            <h3 class="result-words">Title goes here</h3>
+            <p class="result-words">Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+        </div>
+    </div>
+    <div>
+        <p class="back-link">@Html.ActionLink("--> Trở lại kênh <--", "Index")</p>
+    </div>
+</div>
+

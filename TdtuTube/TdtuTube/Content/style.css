@@ -1537,12 +1537,6 @@ video {
 @media (min-width: 1536px){
 }
 
-.studio-title {
-    color: red;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
 .studio-container {
     margin-top: 3.5rem;
     width: 100%;
@@ -1592,13 +1586,195 @@ tbody td {
     background: black;
 }
 
-.studio-nav {
-    margin-bottom: 15px;
-    color: whitesmoke;
+.create-vid-link {
+    color: white;
+    text-decoration: none;
 }
 
-.nav-link.active {
-    border: none !important;
-    color: white !important;
-    background-color: red !important;
+    .create-vid-link:hover {
+        color: white;
+    }
+
+.tab-opacity:hover {
+    opacity: 0.7;
+}
+
+.studio-tab-container {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0;
+}
+
+.studio-tab {
+    width: max-content;
+    height: max-content;
+    padding: 5px 10px 5px 10px;
+    margin: 0px 5px 5px 5px;
+    border-radius: 10px;
+}
+
+.studio-tab-active {
+    background-color: red;
+    --tw-bg-opacity: 0.2;
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
+    --tw-text-opacity: 0.5;
+}
+
+.studio-title {
+    color: red;
+    text-overflow: initial;
+    font-size: 2rem;
+}
+
+.studio-tab-title {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.studio-upload-btn {
+    margin: 15px 0 15px 0;
+    height: max-content;
+    width: max-content;
+    background-color: red;
+    --tw-bg-opacity: 0.7;
+    padding: 5px;
+    border-radius: 5px;
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.create-form {
+    width: 45%;
+    margin: 5px 0px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 550px;
+    padding: 10px;
+}
+
+.create-form-label {
+    color: #f8f9fa;
+    font-size: 1.3rem;
+}
+
+.create-form-input {
+    border-radius: 5px;
+    width: 95%;
+    height: 30px;
+    align-items: center;
+    background-color: #000000;
+    border: 1.5px solid white;
+    color: #f8f9fa;
+    padding-left: 5px;
+}
+
+.create-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-form-title {
+    font-size: 2rem;
+    color: #e5e5e5;
+    width: max-content;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 50px 10px 0;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.create-form-textarea {
+    width: 95%;
+    resize: none;
+    height: 150px;
+    background-color: #000000;
+    border: 1.5px solid white;
+    color: #f8f9fa;
+    padding-left: 5px;
+}
+
+.create-form-file {
+    color: #f8f9fa;
+}
+
+.create-form-btn {
+    width: 100px;
+    background-color: #202020;
+    border: 1.5px solid white;
+    color: #f8f9fa;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.back-link {
+    display: flex;
+    height: 50px;
+    margin: 5px;
+    color: white;
+    font-size: 1.2rem;
+    align-items: center;
+}
+
+    .back-link:hover {
+        opacity: 0.8;
+    }
+
+.create-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.create-result {
+    width: 50%;
+    margin: 5px 0px 5px 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    height: 550px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-img {
+    width: 300px;
+    height: 200px;
+}
+
+.result-words {
+    font-size: 1.5rem;
+    color: #f8f9fa;
+    margin: 5px 0;
+}
+
+.result-title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #f8f9fa;
+    margin: 5px 0;
+}
+
+.result-video {
+    width: 300px;
+    height: 200px;
+    margin-left: 10px;
+}
+
+.result-content-vid {
+    display: flex;
+    flex-direction: row;
 }
