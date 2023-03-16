@@ -7,10 +7,10 @@ namespace TdtuTube.Libs
 {
     public class VideoFormat
     {
-        public static string titleShortening(string title)
+        public static string titleShortening(string title, int length)
         {
-            if (title.Length > 35)
-                title = title.Remove(35, title.Length - 35).Insert(35, "...");
+            if (title.Length > length)
+                title = title.Remove(length, title.Length - length).Insert(length, "...");
             return title;
         }
         public static string readableNumber(int view)
