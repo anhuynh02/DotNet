@@ -29,7 +29,7 @@
                 <div class="flex flex-col pl-1 sm:pl-0 ml-14">
                     <a title="@i.User.name" href="/channel/@i.User.meta" class="text-gray-400 text-sm hover:text-white">@i.User.name</a>
                     <div class="flex space-x-1">
-                        <span class="text-xs text-gray-400">@VideoFormat.readableNumber((int)i.view) views</span>
+                        <span class="text-xs text-gray-400">@VideoFormat.readableNumber((int)i.view_count) views</span>
                         <span class="text-xs text-gray-400 sql-date">• @VideoFormat.dateAgo((DateTime)i.datebegin)</span>
                     </div>
                 </div>

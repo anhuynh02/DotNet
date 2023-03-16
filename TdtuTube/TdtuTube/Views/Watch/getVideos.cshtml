@@ -4,7 +4,7 @@
 <div class="watch-video_grid-right">
     <div class="video-offer">
         @foreach (var i in Model)
-         {
+        {
             <div class="video-offer__ist">
                 <div class="video-offer__item">
                     <div class="video-offer__img relative">
@@ -12,23 +12,16 @@
                             <img class="img-offer" src="@i.thumbnail" alt="thumbnail">
                             <span class="absolute right-1 bottom-1 p-0.5 px-1 rounded-sm bg-black text-white text-xs bg-opacity-70">@i.length</span>
                         </a>
-                        
+
                     </div>
                     <div class="video-offer__content">
-                        <h3 style="font-size: 16px"><a href="/watch/@i.meta" title="@i.title">@VideoFormat.titleShortening(i.title,28)<a></h3>
+                        <h3 style="font-size: 16px"><a href="/watch/@i.meta" title="@i.title">@VideoFormat.titleShortening(i.title, 28)</a></h3>
                         <span><a href="/channel/@i.User.meta">@i.User.name</a></span>
-                        <span style="font-size: 16px">@VideoFormat.readableNumber((int)i.view) lượt xem • @VideoFormat.dateAgo((DateTime)i.datebegin)</span>
+                        <span style="font-size: 16px">@VideoFormat.readableNumber((int)i.view_count) lượt xem • @VideoFormat.dateAgo((DateTime)i.datebegin)</span>
                     </div>
                 </div>
             </div>
-         }
+        }
     </div>
-    
+
 </div>
-<script>  
-    document.getElementById("sideBar").style.display = "none"
-    document.getElementById("videoMainContainer").classList.remove("lg:ml-60");
-    document.getElementById("videoMainContainer").classList.remove("lg:w-4/5");
-    document.getElementById("videoMainContainer").classList.remove("xl:w-5/6");
-    document.getElementById("videoMainContainer").classList.add("lg:w-5/5")
-</script>

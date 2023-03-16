@@ -17,7 +17,7 @@ namespace TdtuTube.Models
         public int id { get; set; }
         public int user_id { get; set; }
         public int video_id { get; set; }
-        public string comment1 { get; set; }
+        public string content { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }

@@ -28,7 +28,7 @@ namespace TdtuTube.Models
         public string name { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-        public Nullable<int> subscriber { get; set; }
+        public Nullable<int> subscriber_count { get; set; }
         public string avatar_path { get; set; }
         public int role_id { get; set; }
         public string meta { get; set; }

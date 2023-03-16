@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminMenu">
           <Key>
             <PropertyRef Name="id" />
@@ -23,7 +23,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="video_id" Type="int" Nullable="false" />
-          <Property Name="comment" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="content" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="meta" Type="varchar" MaxLength="50" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
@@ -62,7 +62,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="video_id" Type="int" Nullable="false" />
-          <Property Name="like" Type="bit" />
+          <Property Name="like_state" Type="bit" />
           <Property Name="meta" Type="varchar" MaxLength="50" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
@@ -87,7 +87,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="subscribe_user_id" Type="int" Nullable="false" />
-          <Property Name="subscribe" Type="bit" />
+          <Property Name="subscribe_state" Type="bit" />
           <Property Name="meta" Type="varchar" MaxLength="50" />
           <Property Name="hide" Type="bit" />
           <Property Name="order" Type="int" />
@@ -111,7 +111,7 @@
           <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="254" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="subscriber" Type="int" />
+          <Property Name="subscriber_count" Type="int" />
           <Property Name="avatar_path" Type="varchar" MaxLength="100" />
           <Property Name="role_id" Type="int" Nullable="false" />
           <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
@@ -129,9 +129,9 @@
           <Property Name="tag_id" Type="int" Nullable="false" />
           <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="description" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="like" Type="int" />
-          <Property Name="view" Type="int" />
-          <Property Name="comment" Type="int" />
+          <Property Name="like_count" Type="int" />
+          <Property Name="view_count" Type="int" />
+          <Property Name="comment_count" Type="int" />
           <Property Name="privacy" Type="bit" Nullable="false" />
           <Property Name="length" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="thumbnail" Type="varchar" MaxLength="200" Nullable="false" />
@@ -389,7 +389,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="video_id" Type="Int32" Nullable="false" />
-          <Property Name="comment1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
@@ -432,7 +432,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="video_id" Type="Int32" Nullable="false" />
-          <Property Name="like1" Type="Boolean" />
+          <Property Name="like_state" Type="Boolean" />
           <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
@@ -460,7 +460,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="subscribe_user_id" Type="Int32" Nullable="false" />
-          <Property Name="subscribe1" Type="Boolean" />
+          <Property Name="subscribe_state" Type="Boolean" />
           <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="hide" Type="Boolean" />
           <Property Name="order" Type="Int32" />
@@ -487,7 +487,7 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="subscriber" Type="Int32" />
+          <Property Name="subscriber_count" Type="Int32" />
           <Property Name="avatar_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="role_id" Type="Int32" Nullable="false" />
           <Property Name="meta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -511,9 +511,9 @@
           <Property Name="tag_id" Type="Int32" Nullable="false" />
           <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="like" Type="Int32" />
-          <Property Name="view" Type="Int32" />
-          <Property Name="comment" Type="Int32" />
+          <Property Name="like_count" Type="Int32" />
+          <Property Name="view_count" Type="Int32" />
+          <Property Name="comment_count" Type="Int32" />
           <Property Name="privacy" Type="Boolean" Nullable="false" />
           <Property Name="length" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="thumbnail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -674,7 +674,7 @@
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="content" ColumnName="content" />
                 <ScalarProperty Name="video_id" ColumnName="video_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -715,7 +715,7 @@
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="like1" ColumnName="like" />
+                <ScalarProperty Name="like_state" ColumnName="like_state" />
                 <ScalarProperty Name="video_id" ColumnName="video_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -741,7 +741,7 @@
                 <ScalarProperty Name="order" ColumnName="order" />
                 <ScalarProperty Name="hide" ColumnName="hide" />
                 <ScalarProperty Name="meta" ColumnName="meta" />
-                <ScalarProperty Name="subscribe1" ColumnName="subscribe" />
+                <ScalarProperty Name="subscribe_state" ColumnName="subscribe_state" />
                 <ScalarProperty Name="subscribe_user_id" ColumnName="subscribe_user_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -769,7 +769,7 @@
                 <ScalarProperty Name="meta" ColumnName="meta" />
                 <ScalarProperty Name="role_id" ColumnName="role_id" />
                 <ScalarProperty Name="avatar_path" ColumnName="avatar_path" />
-                <ScalarProperty Name="subscriber" ColumnName="subscriber" />
+                <ScalarProperty Name="subscriber_count" ColumnName="subscriber_count" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -790,9 +790,9 @@
                 <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
                 <ScalarProperty Name="length" ColumnName="length" />
                 <ScalarProperty Name="privacy" ColumnName="privacy" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="view" ColumnName="view" />
-                <ScalarProperty Name="like" ColumnName="like" />
+                <ScalarProperty Name="comment_count" ColumnName="comment_count" />
+                <ScalarProperty Name="view_count" ColumnName="view_count" />
+                <ScalarProperty Name="like_count" ColumnName="like_count" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="tag_id" ColumnName="tag_id" />

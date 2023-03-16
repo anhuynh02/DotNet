@@ -26,9 +26,9 @@ namespace TdtuTube.Models
         public int tag_id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-        public Nullable<int> like { get; set; }
-        public Nullable<int> view { get; set; }
-        public Nullable<int> comment { get; set; }
+        public Nullable<int> like_count { get; set; }
+        public Nullable<int> view_count { get; set; }
+        public Nullable<int> comment_count { get; set; }
         public bool privacy { get; set; }
         public string length { get; set; }
         public string thumbnail { get; set; }

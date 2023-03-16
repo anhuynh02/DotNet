@@ -4,7 +4,7 @@
     ViewBag.Title = "TdtuTube";
 }
 
-<div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="videoMainContainer">
+<div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="mainContainer">
     <div class="channel-container">
         @if (Model == null)
         {
@@ -23,7 +23,7 @@
                             <div>
                                 <h1 class="text-white" style="font-size: larger;">@Model.name</h1>
                                 <div class="text-gray-400">@Model.meta</div>
-                                <div class="text-gray-400">@VideoFormat.readableNumber((int)Model.subscriber) người đăng ký</div>
+                                <div class="text-gray-400">@VideoFormat.readableNumber((int)Model.subscriber_count) người đăng ký</div>
                             </div>
                             <div style="margin-left: auto;">
                                 <button class="btn-subscribe">Đăng ký</button>
@@ -39,8 +39,8 @@
                 <!-- tabs container -->
                 <div class="tab-container">
                     <!-- tab -->
-                    <a class="tab tab-active" href="/channel/@Model.meta/videos">Videos</a>
-                    <a class="tab" href="/channel/@Model.meta/playlists">Danh sách phát</a>
+                    <a class="tab tab-active" href="/@ViewBag.Controller/@Model.meta/videos">Videos</a>
+                    <a class="tab" href="/@ViewBag.Controller/@Model.meta/playlists">Danh sách phát</a>
                 </div>
                 Html.RenderAction("getUserVideos", "Channel", new { userId = Model.id });
             }
@@ -49,8 +49,8 @@
                 <!-- tabs container -->
                 <div class="tab-container">
                     <!-- tab -->
-                    <a class="tab" href="/channel/@Model.meta/videos">Videos</a>
-                    <a class="tab tab-active" href="/channel/@Model.meta/playlists">Danh sách phát</a>
+                    <a class="tab" href="/@ViewBag.Controller/@Model.meta/videos">Videos</a>
+                    <a class="tab tab-active" href="/@ViewBag.Controller/@Model.meta/playlists">Danh sách phát</a>
                 </div>
                 <!-- Work in Progress -->
             }

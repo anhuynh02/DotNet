@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b042aad4a7774039978fee84c03c6e7d" Name="Diagram1" ZoomLevel="77">
+      <Diagram DiagramId="b042aad4a7774039978fee84c03c6e7d" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="TdtuTubeModel.AdminMenu" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="TdtuTubeModel.Comment" Width="1.5" PointX="7.5" PointY="8.375" />
         <EntityTypeShape EntityType="TdtuTubeModel.HomeMenu" Width="1.5" PointX="8" PointY="1" />

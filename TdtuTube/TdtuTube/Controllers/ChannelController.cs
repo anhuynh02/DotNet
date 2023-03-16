@@ -13,6 +13,7 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index(string user, string meta)
         {
+            ViewBag.Controller = "channel";
             ViewBag.Meta = meta;
             var v = from i in db.Users
                     where i.meta == user

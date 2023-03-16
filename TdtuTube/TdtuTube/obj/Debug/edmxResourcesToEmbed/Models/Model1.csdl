@@ -70,7 +70,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="video_id" Type="Int32" Nullable="false" />
-    <Property Name="comment1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="content" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
@@ -113,7 +113,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="video_id" Type="Int32" Nullable="false" />
-    <Property Name="like1" Type="Boolean" />
+    <Property Name="like_state" Type="Boolean" />
     <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
@@ -141,7 +141,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="user_id" Type="Int32" Nullable="false" />
     <Property Name="subscribe_user_id" Type="Int32" Nullable="false" />
-    <Property Name="subscribe1" Type="Boolean" />
+    <Property Name="subscribe_state" Type="Boolean" />
     <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
@@ -168,7 +168,7 @@
     <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="email" Type="String" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-    <Property Name="subscriber" Type="Int32" />
+    <Property Name="subscriber_count" Type="Int32" />
     <Property Name="avatar_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="role_id" Type="Int32" Nullable="false" />
     <Property Name="meta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -192,9 +192,9 @@
     <Property Name="tag_id" Type="Int32" Nullable="false" />
     <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="like" Type="Int32" />
-    <Property Name="view" Type="Int32" />
-    <Property Name="comment" Type="Int32" />
+    <Property Name="like_count" Type="Int32" />
+    <Property Name="view_count" Type="Int32" />
+    <Property Name="comment_count" Type="Int32" />
     <Property Name="privacy" Type="Boolean" Nullable="false" />
     <Property Name="length" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="thumbnail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />

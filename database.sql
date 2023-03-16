@@ -8,6 +8,7 @@ CREATE DATABASE [TdtuTube]
 GO
 USE [TdtuTube]
 
+GO
 CREATE TABLE [Role]
 (
 	[id] INT IDENTITY(1,1),
@@ -23,13 +24,14 @@ INSERT INTO [Role] ([name], [meta]) VALUES
 	('admin', 'admin'),
 	('user', 'user');
 
+GO
 CREATE TABLE [User]
 (
 	[id] INT IDENTITY(1,1),
 	[name] NVARCHAR(30) NOT NULL,
 	[email] VARCHAR(254) NOT NULL,
 	[password] VARCHAR(80) NOT NULL,
-	[subscriber] INT DEFAULT 0,
+	[subscriber_count] INT DEFAULT 0,
 	[avatar_path] VARCHAR(100) DEFAULT '/Uploads/Avatars/default.png',
 	[role_id] INT NOT NULL,
 	[meta] VARCHAR(30) NOT NULL,
@@ -57,6 +59,7 @@ INSERT INTO [User] ([name], [email], [password], [avatar_path], [role_id], [meta
 	(N'user10', 'user10@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/10.png', 2, '@10', 0),
 	(N'default', 'Test@gmail.com', '$2y$10$0P8Y8D0BDFeWnUfhW3r4Fu6fuLlCMxlYh7Aq8nNVID/XzyDD1Kq9i', '/Uploads/Avatars/default.PNG', 2, '@11', 0);
 
+GO
 CREATE TABLE [Tag]
 (
 	[id] INT IDENTITY(1,1),
@@ -85,6 +88,7 @@ INSERT INTO [Tag] ([name], [meta]) VALUES
 	(N'Diễn thuyết', 'dien-thuyet'),
 	(N'Hướng dẫn', 'huong-dan');
 
+GO
 CREATE TABLE [Video]
 (
 	[id] INT IDENTITY(1,1),
@@ -92,9 +96,9 @@ CREATE TABLE [Video]
 	[tag_id] INT NOT NULL,
 	[title] NVARCHAR(100) NOT NULL,
 	[description] NVARCHAR(500) NOT NULL,
-	[like] INT DEFAULT 0,
-	[view] INT DEFAULT 0,
-	[comment] INT DEFAULT 0,
+	[like_count] INT DEFAULT 0,
+	[view_count] INT DEFAULT 0,
+	[comment_count] INT DEFAULT 0,
 	[privacy] BIT NOT NULL, -- Chế độ công khai, riêng tư,...
 	[length] VARCHAR(10) NOT NULL, -- Độ dài video.
 	[thumbnail] VARCHAR(200) NOT NULL, -- Đường dẫn tới thumbnail video.
@@ -110,7 +114,7 @@ CREATE TABLE [Video]
 	CONSTRAINT Video_Tag_FK FOREIGN KEY([tag_id]) REFERENCES [Tag]([id])
 )
 
-INSERT INTO [video] ([user_id], [tag_id], [title], [description], [datebegin], [like], [view], [privacy], [length], [thumbnail], [path], [feature],[status], [meta]) VALUES
+INSERT INTO [video] ([user_id], [tag_id], [title], [description], [datebegin], [like_count], [view_count], [privacy], [length], [thumbnail], [path], [feature],[status], [meta]) VALUES
 	(1, 3, N'Video 1', N'Video để test.', '2022-12-08 12:10:12', 0, 71, 0, '0:06', '/Uploads/Thumbnails/1.PNG', '/Uploads/Videos/1.mp4', 1, 0, '1'),
 	(3, 3, N'Video 2', N'Video hai để test.', '2022-12-07 23:10:12', 0, 51, 0, '0:11', '/Uploads/Thumbnails/2.PNG', '/Uploads/Videos/2.mp4', 1, 0, '2'),
 	(11, 1, N'Đây là video', N'Đây là mô tả', '2022-02-10 13:10:12', 0, 1235, 0, '0:06', '/Uploads/Thumbnails/3.PNG', '/Uploads/Videos/3.mp4', 1, 0, '3'),
@@ -162,6 +166,7 @@ INSERT INTO [video] ([user_id], [tag_id], [title], [description], [datebegin], [
 	(4, 2, N'Xin con đừng đi', N'Cô gái biết ơn bà lão đã cứu mạng mình lại cảm thương số phận của bà nên đã đồng ý ở lại cùng bà', '2022-11-03 12:35:14', 0, 62670, 0, '0:06', '/Uploads/Thumbnails/1.PNG', '/Uploads/Videos/49.mp4', 1, 0, '49'),
 	(4, 2, N'Hội Của Người Lạc Việt Thời Hùng Vương', N'Viết Một Đoạn Văn Ngắn Nói Về Cuộc Sống Ăn Ở Sinh Hoạt Lễ Hội Của Người Lạc Việt Thời Hùng Vương, đón đọc mẫu văn sau để trau dồi thêm cho mình kiến thức hay.', '2022-12-11 01:20:30', 0, 101929, 0, '0:06', '/Uploads/Thumbnails/5.PNG', '/Uploads/Videos/50.mp4', 1, 0, '50');
 
+GO
 CREATE TABLE [HomeMenuType]
 (
 	[id] INT IDENTITY(1,1),
@@ -179,6 +184,7 @@ INSERT INTO [HomeMenuType] ([name], [meta]) VALUES
 	(N'Copyright', 'copyright'),
 	(N'Channel', 'channel');
 
+GO
 CREATE TABLE [HomeMenu]
 (
 	[id] INT IDENTITY(1,1),
@@ -215,6 +221,7 @@ INSERT INTO [HomeMenu] ([name], [link], [icon], [meta], [type_id]) VALUES
 	(N'Videos', 'link', 'icon', 'videos', 5),
 	(N'Danh sách phát', 'link', 'icon', 'playlists', 5);
 
+GO
 CREATE TABLE [AdminMenu]
 (
 	[id] INT IDENTITY(1,1),
@@ -232,12 +239,13 @@ INSERT INTO AdminMenu ([name], [meta]) VALUES
 	(N'Quản lý Người dùng', 'users'),
 	(N'Quản lý Tag', 'tags');
 
+GO
 CREATE TABLE [Like]
 (
 	[id] INT IDENTITY(1,1),
 	[user_id] INT NOT NULL,
 	[video_id] INT NOT NULL,
-	[like] BIT DEFAULT 0,
+	[like_state] BIT DEFAULT 0,
 	[meta] VARCHAR(50),
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
@@ -247,12 +255,41 @@ CREATE TABLE [Like]
 	CONSTRAINT Like_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
 )
 
+GO
+IF EXISTS(SELECT * FROM sysobjects WHERE name = 'TR_UPDATELIKE')
+	DROP TRIGGER TR_UPDATELIKE
+GO
+CREATE TRIGGER TR_UPDATELIKE ON [Like]
+FOR INSERT, UPDATE, DELETE
+AS
+BEGIN
+	DECLARE @update_video_id AS INT = (SELECT TOP 1 video_id FROM inserted)
+	DECLARE @delete_video_id AS INT = (SELECT TOP 1 video_id FROM deleted)
+	IF (@update_video_id IS NULL)
+		SET @update_video_id = @delete_video_id
+	UPDATE [Video]
+	SET [like_count] = (SELECT SUM(CASE WHEN [like_state] = 1 THEN 1 ELSE 0 END) FROM [Like] WHERE [video_id] = @update_video_id)
+	WHERE [id] = @update_video_id
+END
+
+GO
+INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
+	('1', '1', 1),
+	('2', '1', 0),
+	('3', '1', 1);
+
+INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
+	('3', '2', 0),
+	('6', '2', 0),
+	('7', '2', 1);
+
+GO
 CREATE TABLE [Comment]
 (
 	[id] INT IDENTITY(1,1),
 	[user_id] INT NOT NULL,
 	[video_id] INT NOT NULL,
-	[comment] NVARCHAR(500) NOT NULL,
+	[content] NVARCHAR(500) NOT NULL,
 	[meta] VARCHAR(50),
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
@@ -262,12 +299,35 @@ CREATE TABLE [Comment]
 	CONSTRAINT Comment_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
 )
 
+GO
+IF EXISTS(SELECT * FROM sysobjects WHERE name = 'TR_UPDATECOMMENT')
+	DROP TRIGGER TR_UPDATECOMMENT
+GO
+CREATE TRIGGER TR_UPDATECOMMENT ON [Comment]
+FOR INSERT, UPDATE, DELETE
+AS
+BEGIN
+	DECLARE @update_video_id AS INT = (SELECT TOP 1 video_id FROM inserted)
+	DECLARE @delete_video_id AS INT = (SELECT TOP 1 video_id FROM deleted)
+	IF (@update_video_id IS NULL)
+		SET @update_video_id = @delete_video_id
+	UPDATE [Video]
+	SET [comment_count] = (SELECT COUNT(video_id) FROM [Comment] WHERE [video_id] = @update_video_id)
+	WHERE [id] = @update_video_id
+END
+
+GO
+INSERT INTO [Comment] ([user_id], [video_id], [content], [datebegin]) VALUES
+	('1', '1', N'Test Comment', '2023-03-16 22:25:00'),
+	('1', '1', N'More Test Comment', '2023-03-16 22:30:00');
+
+GO
 CREATE TABLE [Subscribe]
 (
 	[id] INT IDENTITY(1,1),
 	[user_id] INT NOT NULL,
 	[subscribe_user_id] INT NOT NULL,
-	[subscribe] BIT DEFAULT 0,
+	[subscribe_state] BIT DEFAULT 0,
 	[meta] VARCHAR(50),
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
@@ -277,8 +337,28 @@ CREATE TABLE [Subscribe]
 	CONSTRAINT Subscribe_SubUser_FK FOREIGN KEY([subscribe_user_id]) REFERENCES [User]([id])
 )
 
--- Trigger
+GO
+IF EXISTS(SELECT * FROM sysobjects WHERE name = 'TR_UPDATESUBSCRIBE')
+	DROP TRIGGER TR_UPDATESUBSCRIBE
+GO
+CREATE TRIGGER TR_UPDATESUBSCRIBE ON [Subscribe]
+FOR INSERT, UPDATE, DELETE
+AS
+BEGIN
+	DECLARE @update_user_id AS INT = (SELECT TOP 1 subscribe_user_id FROM inserted)
+	DECLARE @delete_user_id AS INT = (SELECT TOP 1 subscribe_user_id FROM deleted)
+	IF (@update_user_id IS NULL)
+		SET @update_user_id = @delete_user_id
+	UPDATE [User]
+	SET [subscriber_count] = (SELECT SUM(CASE WHEN [subscribe_state] = 1 THEN 1 ELSE 0 END) FROM [Subscribe] WHERE [subscribe_user_id] = @update_user_id)
+	WHERE [id] = @update_user_id
+END
 
+GO
+INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALUES
+	('1', '1', 1),
+	('2', '1', 0),
+	('3', '1', 1);
 
 GO
 SELECT * FROM [Role]

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TdtuTubeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="AdminMenu">
     <Key>
       <PropertyRef Name="id" />
@@ -18,7 +18,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="video_id" Type="int" Nullable="false" />
-    <Property Name="comment" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="content" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="meta" Type="varchar" MaxLength="50" />
     <Property Name="hide" Type="bit" />
     <Property Name="order" Type="int" />
@@ -57,7 +57,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="video_id" Type="int" Nullable="false" />
-    <Property Name="like" Type="bit" />
+    <Property Name="like_state" Type="bit" />
     <Property Name="meta" Type="varchar" MaxLength="50" />
     <Property Name="hide" Type="bit" />
     <Property Name="order" Type="int" />
@@ -82,7 +82,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="user_id" Type="int" Nullable="false" />
     <Property Name="subscribe_user_id" Type="int" Nullable="false" />
-    <Property Name="subscribe" Type="bit" />
+    <Property Name="subscribe_state" Type="bit" />
     <Property Name="meta" Type="varchar" MaxLength="50" />
     <Property Name="hide" Type="bit" />
     <Property Name="order" Type="int" />
@@ -106,7 +106,7 @@
     <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="254" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="80" Nullable="false" />
-    <Property Name="subscriber" Type="int" />
+    <Property Name="subscriber_count" Type="int" />
     <Property Name="avatar_path" Type="varchar" MaxLength="100" />
     <Property Name="role_id" Type="int" Nullable="false" />
     <Property Name="meta" Type="varchar" MaxLength="30" Nullable="false" />
@@ -124,9 +124,9 @@
     <Property Name="tag_id" Type="int" Nullable="false" />
     <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="description" Type="nvarchar" MaxLength="500" Nullable="false" />
-    <Property Name="like" Type="int" />
-    <Property Name="view" Type="int" />
-    <Property Name="comment" Type="int" />
+    <Property Name="like_count" Type="int" />
+    <Property Name="view_count" Type="int" />
+    <Property Name="comment_count" Type="int" />
     <Property Name="privacy" Type="bit" Nullable="false" />
     <Property Name="length" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="thumbnail" Type="varchar" MaxLength="200" Nullable="false" />

@@ -17,7 +17,7 @@ namespace TdtuTube.Models
         public int id { get; set; }
         public int user_id { get; set; }
         public int subscribe_user_id { get; set; }
-        public Nullable<bool> subscribe1 { get; set; }
+        public Nullable<bool> subscribe_state { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }

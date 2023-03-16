@@ -401,6 +401,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style2.css" />
+    <Content Include="Scripts\home.js" />
     <Content Include="Scripts\script.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -31,9 +31,9 @@
             <div class="hidden md:flex items-center space-x-2 w-1/2">
                 <!-- input box -->
                 <div class="flex items-center flex-auto justify-between rounded border border-sideBarHoverBg">
-                    <input class="bg-searchBarBg w-full rounded-l outline-none border-none p-0.5 pl-3 text-white placeholder-gray-500" type="text" placeholder="Search">
+                    <input class="bg-searchBarBg w-full rounded-l outline-none border-none p-0.5 pl-3 text-white placeholder-gray-500" type="text" placeholder="Search" id="search">
 
-                    <i class="material-icons md-21 text-center rounded-r text-gray-300 hover:text-white p-1 w-20 bg-searchIconBg cursor-pointer">search</i>
+                    <i class="material-icons md-21 text-center rounded-r text-gray-300 hover:text-white p-1 w-20 bg-searchIconBg cursor-pointer" id="searchBtn">search</i>
                 </div>
                 <!--<div class="flex items-center justify-center w-9 h-9 rounded-full bg-mainBg cursor-pointer">
                     <i class="material-icons text-white">mic</i>
@@ -76,12 +76,14 @@
             <!-- Work in progress -->
             <div class="flex flex-col w-full mb-2 mt-3">
 
-                <h1 class="text-white">Các kênh đăng ký</h1>
+                <h1 class="text-white" style="margin-left: 1.7rem;">Kênh đăng ký</h1>
 
-                <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
-                    <i class="material-icons text-gray-400 md-21">video_library</i>
-                    <h2 class="text-sm text-white">Library</h2>
-                </div>
+                <a href="/">
+                    <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                        <img class="rounded-full object-cover" src="~/Uploads/Avatars/default.PNG" alt="" width="21px">
+                        <h2 class="text-sm text-white">Test User</h2>
+                    </div>
+                </a>
 
             </div>
 

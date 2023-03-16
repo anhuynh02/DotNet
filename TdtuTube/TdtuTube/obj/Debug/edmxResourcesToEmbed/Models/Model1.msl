@@ -20,7 +20,7 @@
           <ScalarProperty Name="order" ColumnName="order" />
           <ScalarProperty Name="hide" ColumnName="hide" />
           <ScalarProperty Name="meta" ColumnName="meta" />
-          <ScalarProperty Name="comment1" ColumnName="comment" />
+          <ScalarProperty Name="content" ColumnName="content" />
           <ScalarProperty Name="video_id" ColumnName="video_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -61,7 +61,7 @@
           <ScalarProperty Name="order" ColumnName="order" />
           <ScalarProperty Name="hide" ColumnName="hide" />
           <ScalarProperty Name="meta" ColumnName="meta" />
-          <ScalarProperty Name="like1" ColumnName="like" />
+          <ScalarProperty Name="like_state" ColumnName="like_state" />
           <ScalarProperty Name="video_id" ColumnName="video_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -87,7 +87,7 @@
           <ScalarProperty Name="order" ColumnName="order" />
           <ScalarProperty Name="hide" ColumnName="hide" />
           <ScalarProperty Name="meta" ColumnName="meta" />
-          <ScalarProperty Name="subscribe1" ColumnName="subscribe" />
+          <ScalarProperty Name="subscribe_state" ColumnName="subscribe_state" />
           <ScalarProperty Name="subscribe_user_id" ColumnName="subscribe_user_id" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="id" ColumnName="id" />
@@ -115,7 +115,7 @@
           <ScalarProperty Name="meta" ColumnName="meta" />
           <ScalarProperty Name="role_id" ColumnName="role_id" />
           <ScalarProperty Name="avatar_path" ColumnName="avatar_path" />
-          <ScalarProperty Name="subscriber" ColumnName="subscriber" />
+          <ScalarProperty Name="subscriber_count" ColumnName="subscriber_count" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -136,9 +136,9 @@
           <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
           <ScalarProperty Name="length" ColumnName="length" />
           <ScalarProperty Name="privacy" ColumnName="privacy" />
-          <ScalarProperty Name="comment" ColumnName="comment" />
-          <ScalarProperty Name="view" ColumnName="view" />
-          <ScalarProperty Name="like" ColumnName="like" />
+          <ScalarProperty Name="comment_count" ColumnName="comment_count" />
+          <ScalarProperty Name="view_count" ColumnName="view_count" />
+          <ScalarProperty Name="like_count" ColumnName="like_count" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="tag_id" ColumnName="tag_id" />

@@ -2,102 +2,104 @@
 @using TdtuTube.Libs
 @{
     ViewBag.Title = "TdtuTude";
-
 }
 
-<div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="videoMainContainer">
+<div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="mainContainer">
 
     <div id="container-video" style="margin-left: 4rem; margin-top: 4.5rem">
         @if (Model == null)
         {
-
-
             <h1>Video không tồn tại</h1>
         }
         else if (Model.privacy == true)
-        {<h1>
-    Đây là Video riêng tư
-</h1>
+        {
+            <h1>Đây là Video riêng tư</h1>
         }
         else
         {
-    <div id="watch-video" onload="display_sidebar()">
-        <div id="notification-wrapper"></div>
-        <div class="watch-video_grid">
-            <div class="watch-video_grid-left" style="padding-top: 13px">
-                <div class="video-play">
-                    <video controls autoplay>
-                        <source src="@Model.path" type="video/mp4">
+            <div id="watch-video" onload="display_sidebar()">
+                <div id="notification-wrapper"></div>
+                <div class="watch-video_grid">
+                    <div class="watch-video_grid-left" style="padding-top: 13px">
 
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                        <div class="video-play">
+                            <video controls autoplay>
+                                <source src="@Model.path" type="video/mp4">
 
-                <div class="video-content">
-                    <div class="video-content-heading">
-                        <h1 style="font-size: 2rem;">@Model.title</h1>
-                        <div class="video-content-infor">
-                            <a href="/channel/@Model.User.meta">
-                                <img class="image-profile" src="@Model.User.avatar_path" alt="IMAGE">
-                            </a>
-                            <div class="video-content-infor_name_sub">
-                                <span><a href="/channel/@Model.User.meta">@Model.User.name</a></span>
-                                <span>@VideoFormat.readableNumber((int)Model.User.subscriber) người đăng ký</span>
-                            </div>
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
-                        <div class="video-content-description">
-                            <div class="video-content-description-view">
-                                <span>@VideoFormat.readableNumber((int)Model.view) lượt xem</span>
-                                <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
-                            </div>
-                            <p>@Model.description</p>
-                        </div>
-                    </div>
 
-                    <div class="reload-comment">
-
-                    </div>
-                    <div class="video-comment">
-                        <div class="video-content-comment">
-                            <div class="video-content-comment__number">@Model.comment bình luận</div>
-                            <div class="video-content-comment__post">
-                                <!-- Check session image. -->
-                                <img class="image-profile" src="~/Uploads/images/hero.png" alt="IMAGE">
-                                <div class="video-content-comment__form">
-                                    <input class="video-content-comment__video" type="hidden" name="video-id">
-                                    <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận...">
-                                    <div class="video-content-comment__line"></div>
-                                    <button class="btn-comment" type="submit" disabled>Bình luận</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-content-comment__list">
-                            @foreach (var i in Model.Comments)
-                            {
-                                <div class="video-content-comment__item">
-                                    <img class="image-profile" src="@i.User.avatar_path" alt="IMAGE">
-                                    <div class="video-content-comment__item-heading">
-                                        <div>
-                                            <span>@i.User.name</span>
-                                            <span>@VideoFormat.dateAgo((DateTime)i.datebegin)</span>
-                                        </div>
-                                        <p>@i.comment1</p>
+                        <div class="video-content">
+                            <div class="video-content-heading">
+                                <h1 style="font-size: 2rem;">@Model.title</h1>
+                                <div class="video-content-infor">
+                                    <a href="/channel/@Model.User.meta">
+                                        <img class="image-profile" src="@Model.User.avatar_path" alt="IMAGE">
+                                    </a>
+                                    <div class="video-content-infor_name_sub">
+                                        <span><a href="/channel/@Model.User.meta">@Model.User.name</a></span>
+                                        <span>@VideoFormat.readableNumber((int)Model.User.subscriber_count) người đăng ký</span>
                                     </div>
                                 </div>
-                            }
+                                <div class="video-content-description">
+                                    <div class="video-content-description-view">
+                                        <span>@VideoFormat.readableNumber((int)Model.view_count) lượt xem</span>
+                                        <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
+                                    </div>
+                                    <p>@Model.description</p>
+                                </div>
+                            </div>
 
+                            <div class="reload-comment">
+
+                            </div>
+                            <div class="video-comment">
+                                <div class="video-content-comment">
+                                    <div class="video-content-comment__number">@Model.comment_count bình luận</div>
+                                    <div class="video-content-comment__post">
+                                        <!-- Check session image. -->
+                                        <img class="image-profile" src="~/Uploads/images/hero.png" alt="IMAGE">
+                                        <div class="video-content-comment__form">
+                                            <input class="video-content-comment__video" type="hidden" name="video-id">
+                                            <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận...">
+                                            <div class="video-content-comment__line"></div>
+                                            <button class="btn-comment" type="submit" disabled>Bình luận</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-content-comment__list">
+                                    @foreach (var i in Model.Comments)
+                                    {
+                                        <div class="video-content-comment__item">
+                                            <img class="image-profile" src="@i.User.avatar_path" alt="IMAGE">
+                                            <div class="video-content-comment__item-heading">
+                                                <div>
+                                                    <span>@i.User.name</span>
+                                                    <span>@VideoFormat.dateAgo((DateTime)i.datebegin)</span>
+                                                </div>
+                                                <p>@i.content</p>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
+                    </div>
+                    @{Html.RenderAction("getVideos", "Watch", new { videoId = Model.id, tagId = Model.tag_id });}
+                </div>
             </div>
-            @{Html.RenderAction("getVideos", "Watch", new {videoId = Model.id, tagId = Model.tag_id });}
-        </div>
+        }
     </div>
-            }
-    </div>
+
 </div>
 
-
+<script>
+    document.getElementById("sideBar").style.display = "none"
+    document.getElementById("mainContainer").classList.remove("lg:ml-60");
+    document.getElementById("mainContainer").classList.remove("lg:w-4/5");
+    document.getElementById("mainContainer").classList.remove("xl:w-5/6");
+    document.getElementById("mainContainer").classList.add("lg:w-5/5")
 </script>
-
