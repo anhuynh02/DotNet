@@ -1320,6 +1320,7 @@ video {
     padding: 0.5rem 1rem;
     text-align: center;
     border-radius: 20px;
+    color: black !important;
 }
 
     .btn-subscribe:hover {
