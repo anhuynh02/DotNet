@@ -138,6 +138,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Controllers\WatchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -634,6 +635,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\Watch\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
