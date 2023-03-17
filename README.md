@@ -2,20 +2,25 @@
 ## Nếu kịp
 Hiện nút đăng nhập<br>
 Chuyển trang cho search<br>
+
 ## Database:
-Trigger update like, comment, subcribe count<br>
+Trigger update like, comment, subcribe count (Done)<br>
+Vấn đề người dùng tự sub kênh bản thân =))<br>
+
 ## Trang video:
-Load được trước đã =))))<br>
-Hiện video <br>
-Hiện Comment <br>
-Hiện thông tin kênh <br>
-Hiện list video <br>
+Hiện video (Done)<br>
+Hiện Comment (Done) <br>
+Hiện thông tin kênh (Done) <br>
+Hiện list video (Done - May need improvement) <br>
 Phát playlist <br>
+
 ## Trang người dùng:
 Hiện Videos (Done)<br>
 Hiện Playlists<br>
+
 ## Trang search:
 Search theo video và người dùng (playlist nếu có thể)<br>
+
 ## Trang quản lý video:
 Đã làm: Đã có giao diện
 Các công việc cần: 
@@ -23,10 +28,13 @@ Các công việc cần:
 + Lọc
 + Phân trang 
 <br>
+
 ## Đăng nhập / Đăng ký:
-placeholder<br>
+Giao diện<br>
+
 ## Chức năng thêm:
 placeholder<br>
+
 ## Chức năng admin:<br>
 Quản lý user: khóa tài khoản - Done
 <br>
