@@ -279,9 +279,21 @@ INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
 	('3', '1', 1);
 
 INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
+	('1', '2', 1),
 	('3', '2', 0),
 	('6', '2', 0),
 	('7', '2', 1);
+
+INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
+	('1', '3', 1),
+	('2', '3', 1),
+	('4', '3', 0),
+	('5', '3', 1),
+	('6', '3', 0),
+	('7', '3', 1),;
+
+INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
+	('1', '4', 1);
 
 GO
 CREATE TABLE [Comment]
@@ -319,7 +331,8 @@ END
 GO
 INSERT INTO [Comment] ([user_id], [video_id], [content], [datebegin]) VALUES
 	('1', '1', N'Test Comment', '2023-03-16 22:25:00'),
-	('1', '1', N'More Test Comment', '2023-03-16 22:30:00');
+	('1', '1', N'More Test Comment', '2023-03-16 22:30:00')
+	('2', '1', N'Xin chào', '2023-03-17 22:25:00');
 
 GO
 CREATE TABLE [Subscribe]
@@ -356,9 +369,24 @@ END
 
 GO
 INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALUES
-	('1', '1', 1),
 	('2', '1', 0),
-	('3', '1', 1);
+	('3', '1', 1),
+	('5', '1', 1),
+	('7', '1', 0),
+	('6', '1', 1),
+	('4', '1', 1);
+
+INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALUES
+	('1', '2', 1);
+
+INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALUES
+	('1', '3', 1);
+
+INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALUES
+	('1', '4', 1);
+
+INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALUES
+	('1', '5', 1);
 
 GO
 SELECT * FROM [Role]
