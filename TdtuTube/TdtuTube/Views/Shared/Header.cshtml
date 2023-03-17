@@ -60,10 +60,10 @@
             <!-- main home explore btns -->
             <div class="flex flex-col w-full mb-2">
 
-                <a href="/">
-                    <div class="flex items-center space-x-5 bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
-                        <i class="material-icons text-white md-21">home</i>
-                        <h2 class="text-sm font-semibold text-white">Trang chủ</h2>
+                <a data-sidebar-id="trang-chu" href="/">
+                    <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                        <i class="material-icons text-gray-400 md-21">home</i>
+                        <h2 class="text-sm text-white">Trang chủ</h2>
                     </div>
                 </a>
 
@@ -73,19 +73,8 @@
 
             <div class="border border-searchIconBg"></div>
 
-            <!-- Work in progress -->
-            <div class="flex flex-col w-full mb-2 mt-3">
-
-                <h1 class="text-white" style="margin-left: 1.7rem;">Kênh đăng ký</h1>
-
-                <a href="/">
-                    <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
-                        <img class="rounded-full object-cover" src="~/Uploads/Avatars/default.PNG" alt="" width="21px">
-                        <h2 class="text-sm text-white">Test User</h2>
-                    </div>
-                </a>
-
-            </div>
+            <!-- Need to implement Session user id   -->
+            @{Html.RenderAction("getSubscribeChannel", "Home", new { id = 1 });}
 
             <div class="border border-searchIconBg"></div>
 

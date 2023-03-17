@@ -12,12 +12,21 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index()
         {
+            ViewBag.Type = "trang-chu";
             return View();
         }
         public ActionResult getSidebar()
         {
             var v = from s in db.HomeMenus
                     where s.type_id == 1 && s.hide == false
+                    orderby s.order ascending
+                    select s;
+            return PartialView(v.ToList());
+        }
+        public ActionResult getSubscribeChannel(int id)
+        {
+            var v = from s in db.Subscribes
+                    where s.user_id == id && s.subscribe_state == true && s.hide == false
                     orderby s.order ascending
                     select s;
             return PartialView(v.ToList());

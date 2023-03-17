@@ -202,16 +202,16 @@ CREATE TABLE [HomeMenu]
 )
 
 INSERT INTO [HomeMenu] ([name], [link], [icon], [meta], [type_id]) VALUES
-	(N'Kênh đăng ký', 'link', 'subscriptions', 'subscriptions', 1),
-	(N'Video đã thích', 'link', 'thumb_up', 'likes', 1),
+	(N'Kênh đăng ký', 'link', 'subscriptions', 'feed/subscriptions', 1),
+	(N'Video đã thích', 'link', 'thumb_up', 'feed/likes', 1),
 	(N'Video của bạn', 'link', 'slideshow', 'studio', 1),
 	(N'Giới thiệu', 'link', 'icon', 'about', 2),
 	(N'Báo chí', 'link', 'icon', 'press', 2),
 	(N'Bản quyền', 'link', 'icon', 'copyright', 2),
-	(N'Liên hệ với chúng tôi', 'link', 'icon', 'contactus', 2),
+	(N'Liên hệ với chúng tôi', 'link', 'icon', 'contact-us', 2),
 	(N'Người sáng tạo', 'link', 'icon', 'creator', 2),
 	(N'Quảng cáo', 'link', 'icon', 'ads', 2),
-	(N'Nhà phát triển', 'link', 'icon', 'dev?', 2),
+	(N'Nhà phát triển', 'link', 'icon', 'developer', 2),
 	(N'Điều khoản', 'link', 'icon', 'terms', 3),
 	(N'Quyền riêng tư', 'link', 'icon', 'privacy', 3),
 	(N'Chính sách và an toàn', 'link', 'icon', 'policies', 3),
@@ -290,7 +290,7 @@ INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
 	('4', '3', 0),
 	('5', '3', 1),
 	('6', '3', 0),
-	('7', '3', 1),;
+	('7', '3', 1);
 
 INSERT INTO [Like] ([user_id], [video_id], [like_state]) VALUES
 	('1', '4', 1);
@@ -331,7 +331,7 @@ END
 GO
 INSERT INTO [Comment] ([user_id], [video_id], [content], [datebegin]) VALUES
 	('1', '1', N'Test Comment', '2023-03-16 22:25:00'),
-	('1', '1', N'More Test Comment', '2023-03-16 22:30:00')
+	('1', '1', N'More Test Comment', '2023-03-16 22:30:00'),
 	('2', '1', N'Xin chào', '2023-03-17 22:25:00');
 
 GO

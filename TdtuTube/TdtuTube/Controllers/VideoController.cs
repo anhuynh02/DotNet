@@ -12,6 +12,7 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index(string meta)
         {
+            ViewBag.Type = "trang-chu";
             ViewBag.tag = meta;
             return View();
         }

@@ -22,6 +22,15 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
+            routes.MapRoute("Feed", "{type}/{meta}",
+                new { controller = "Feed", action = "Index", meta = UrlParameter.Optional },
+                new RouteValueDictionary
+                {
+                    { "type", "feed" }
+                },
+                new[] { "TdtuTube.Controllers" }
+            );
+
             routes.MapRoute("Channel", "{type}/{user}/{meta}",
                 new { controller = "Channel", action = "Index", meta = UrlParameter.Optional },
                 new RouteValueDictionary
@@ -30,7 +39,7 @@ namespace TdtuTube
                 },
                 new[] { "TdtuTube.Controllers" }
             );
-            //Route for watch controller
+
             routes.MapRoute("Watch", "{type}/{meta}",
                 new { controller = "Watch", action = "Index", meta = UrlParameter.Optional },
                 new RouteValueDictionary
@@ -49,10 +58,8 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            routes.MapRoute("Home", "{controller}/{action}/{meta}",
+                new { controller = "Home", action = "Index", meta = UrlParameter.Optional }
             );
         }
     }
