@@ -137,6 +137,7 @@
     <Compile Include="Controllers\ChannelController.cs" />
     <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WatchController.cs" />
@@ -639,6 +640,7 @@
     <Content Include="Views\Studio\uploadVideo.cshtml" />
     <Content Include="Views\Feed\Index.cshtml" />
     <Content Include="Views\Home\getSubscribeChannel.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
