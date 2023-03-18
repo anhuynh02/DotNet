@@ -641,6 +641,7 @@
     <Content Include="Views\Feed\Index.cshtml" />
     <Content Include="Views\Home\getSubscribeChannel.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Search\searchVideos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

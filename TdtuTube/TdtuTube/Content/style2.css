@@ -650,53 +650,97 @@ body{
 
 .video-search-description {
     color: #c3c3c3;
+    margin-bottom: 8px;
+    line-height: 1.8rem;
+    max-height: 3.6rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .video-search-tittle {
     font-weight: 600 !important;
+    display: flex;
+    justify-content: space-between;
+}
+.datenview{
+    display: flex;
+    flex-direction:column;
 }
 
-.img-search {
+.channel-name{
+    line-height:1.8rem;
+    align-self: center;
+    overflow: hidden;
+    max-height: 1.8rem;
+    display:flex;
+    flex-direction: row;
+    
+}
+
+.channel-info{
+    padding:12px 0;
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+}
+
+.video-search__ist{
+    margin-top: 16px;
+    display:block;
+    position:relative;
+}
+
+.video-search__item{
+    position:relative;
+    display: flex;
+    flex-direction:row;
+    align-content: flex-start;
+}
+
+.video-search__img{
+    margin-right: 16px;
+    max-width: 360px;
+    min-width: 240px;
+    flex: 1;
+    flex-basis: 1e- 9px;
+    display:block;
+    position:relative;
+}
+.video-search__img a{
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    display:block;
+}
+
+.img-search{
+    object-fit: cover;
     width: 100%;
     height: 100%;
-    /* object-fit: cover; */
-    border-radius: 16px;
-    transition: .2s;
-    filter: brightness(1);
-    font-family: Calibri;
+    visibility: inherit;
+    display: inline-block;
+    min-height:1px;
+    min-width: 1px;
+    border-radius: 8px;
 }
-
-.video-search__img {
-    max-width: 360.8px;
-    max-height: 201.99px;
-    margin-right: 8px;
-}
-
-    .video-search__img a {
-        max-width: 360.8px;
-        max-height: 201.99px;
-    }
-
-.video-search__item {
-    display: flex;
+.video-search__content{
+    max-width: none;
+    min-width: 0px;
     cursor: pointer;
-    padding: 10px 0;
-    height: 201.99px;
-    font-size: 14.66667px;
+    text-decoration: none;
+    flex: 1;
+    flex-basis: 1e- 9px;
+    display: flex;
+    flex-direction: column;
+
 }
 
-    .video-search__item:hover img {
-        filter: brightness(0.7);
-        transition: .2s;
-    }
-
-
-.video-search__content div {
-    line-height: 2.3rem;
-    margin-bottom: 2px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    word-break: break-all;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-}
