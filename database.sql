@@ -9,15 +9,91 @@ GO
 USE [TdtuTube]
 
 GO
+CREATE TABLE [HomeMenuType]
+(
+	[id] INT IDENTITY(1,1),
+	[name] NVARCHAR(30) NOT NULL,
+	[meta] VARCHAR(50) NOT NULL,
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[datebegin] DATETIME DEFAULT GETDATE(),
+	CONSTRAINT HomeMenuType_PK PRIMARY KEY([id]),
+	CONSTRAINT HomeMenuType_Meta_U UNIQUE([meta])
+)
+
+INSERT INTO [HomeMenuType] ([name], [meta]) VALUES
+	(N'Sidebar', 'sidebar'),
+	(N'Primary', 'primary'),
+	(N'Secondary', 'secondary'),
+	(N'Copyright', 'copyright'),
+	(N'Channel', 'channel');
+
+GO
+CREATE TABLE [HomeMenu]
+(
+	[id] INT IDENTITY(1,1),
+	[name] NVARCHAR(30) NOT NULL,
+	[link] VARCHAR(MAX),
+	[icon] VARCHAR(50),
+	[meta] VARCHAR(50) NOT NULL,
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[type_id] INT NOT NULL,
+	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
+	CONSTRAINT HomeMenu_PK PRIMARY KEY([id]),
+	CONSTRAINT HomeMenu_Meta_U UNIQUE([meta]),
+	CONSTRAINT HomeMenu_Type_FK FOREIGN KEY([type_id]) REFERENCES [HomeMenuType]([id])
+)
+
+INSERT INTO [HomeMenu] ([name], [link], [icon], [meta], [type_id]) VALUES
+	(N'Kênh đăng ký', 'link', 'subscriptions', 'feed/subscriptions', 1),
+	(N'Video đã thích', 'link', 'thumb_up', 'feed/likes', 1),
+	(N'Video của bạn', 'link', 'slideshow', 'studio', 1),
+	(N'Giới thiệu', 'link', 'icon', 'about', 2),
+	(N'Báo chí', 'link', 'icon', 'press', 2),
+	(N'Bản quyền', 'link', 'icon', 'copyright', 2),
+	(N'Liên hệ với chúng tôi', 'link', 'icon', 'contact-us', 2),
+	(N'Người sáng tạo', 'link', 'icon', 'creator', 2),
+	(N'Quảng cáo', 'link', 'icon', 'ads', 2),
+	(N'Nhà phát triển', 'link', 'icon', 'developer', 2),
+	(N'Điều khoản', 'link', 'icon', 'terms', 3),
+	(N'Quyền riêng tư', 'link', 'icon', 'privacy', 3),
+	(N'Chính sách và an toàn', 'link', 'icon', 'policies', 3),
+	(N'Cách YouTube hoạt động', 'link', 'icon', 'how-youtube-work', 3),
+	(N'Thử các tính năng mới', 'link', 'icon', 'new', 3),
+	(N'Copyright © 2023 TDTU', 'link', 'icon', 'copyright-logo', 4),
+	(N'Videos', 'link', 'icon', 'videos', 5),
+	(N'Danh sách phát', 'link', 'icon', 'playlists', 5);
+
+GO
+CREATE TABLE [AdminMenu]
+(
+	[id] INT IDENTITY(1,1),
+	[name] NVARCHAR(40) NOT NULL,
+	[meta] VARCHAR(50) NOT NULL,
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
+	CONSTRAINT AdminMenu_PK PRIMARY KEY([id]),
+	CONSTRAINT AdminMenu_Meta_U UNIQUE([meta])
+)
+
+INSERT INTO AdminMenu ([name], [meta]) VALUES 
+	(N'Quản lý Video','videos'),
+	(N'Quản lý Người dùng', 'users'),
+	(N'Quản lý Tag', 'tags');
+
+GO
 CREATE TABLE [Role]
 (
 	[id] INT IDENTITY(1,1),
 	[name] VARCHAR(30) NOT NULL,
-	[meta] VARCHAR(30) NOT NULL,
+	[meta] VARCHAR(50) NOT NULL,
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
 	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
-	CONSTRAINT Role_PK PRIMARY KEY([id])
+	CONSTRAINT Role_PK PRIMARY KEY([id]),
+	CONSTRAINT Role_Meta_U UNIQUE([meta])
 )
 
 INSERT INTO [Role] ([name], [meta]) VALUES
@@ -34,11 +110,11 @@ CREATE TABLE [User]
 	[subscriber_count] INT DEFAULT 0,
 	[avatar_path] VARCHAR(100) DEFAULT '/Uploads/Avatars/default.png',
 	[role_id] INT NOT NULL,
-	[meta] VARCHAR(30) NOT NULL,
+	[meta] VARCHAR(50) NOT NULL,
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
 	[datebegin] DATETIME DEFAULT GETDATE(),
-	[status] BIT NOT NULL,
+	[status] BIT DEFAULT 0,
 	CONSTRAINT User_PK PRIMARY KEY([id]),
 	CONSTRAINT User_Email_U UNIQUE([email]),
 	CONSTRAINT User_Meta_U UNIQUE([meta]),
@@ -104,17 +180,18 @@ CREATE TABLE [Video]
 	[thumbnail] VARCHAR(200) NOT NULL, -- Đường dẫn tới thumbnail video.
 	[path] VARCHAR(200) NOT NULL, -- Đường dẫn tới video.
 	[feature] BIT NOT NULL, -- Chọn video có feature trên trang chính hay không (Phương án tạm).
-	[meta] VARCHAR(30) NOT NULL,
+	[meta] VARCHAR(50) NOT NULL,
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
 	[datebegin] DATETIME DEFAULT GETDATE(),
-	[status] BIT NOT NUll,
+	[status] BIT DEFAULT 0,
 	CONSTRAINT Video_PK PRIMARY KEY([id]),
+	CONSTRAINT Video_Meta_U UNIQUE([meta]),
 	CONSTRAINT Video_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id]),
 	CONSTRAINT Video_Tag_FK FOREIGN KEY([tag_id]) REFERENCES [Tag]([id])
 )
 
-INSERT INTO [video] ([user_id], [tag_id], [title], [description], [datebegin], [like_count], [view_count], [privacy], [length], [thumbnail], [path], [feature],[status], [meta]) VALUES
+INSERT INTO [video] ([user_id], [tag_id], [title], [description], [datebegin], [like_count], [view_count], [privacy], [length], [thumbnail], [path], [feature], [status], [meta]) VALUES
 	(1, 3, N'Video 1', N'Video để test.', '2022-12-08 12:10:12', 0, 71, 0, '0:06', '/Uploads/Thumbnails/1.PNG', '/Uploads/Videos/1.mp4', 1, 0, '1'),
 	(3, 3, N'Video 2', N'Video hai để test.', '2022-12-07 23:10:12', 0, 51, 0, '0:11', '/Uploads/Thumbnails/2.PNG', '/Uploads/Videos/2.mp4', 1, 0, '2'),
 	(11, 1, N'Đây là video', N'Đây là mô tả', '2022-02-10 13:10:12', 0, 1235, 0, '0:06', '/Uploads/Thumbnails/3.PNG', '/Uploads/Videos/3.mp4', 1, 0, '3'),
@@ -165,79 +242,6 @@ INSERT INTO [video] ([user_id], [tag_id], [title], [description], [datebegin], [
 	(11, 11, N'Đại dịch COVID-19 đã và đang tiếp tục', N'Đại dịch COVID-19 đã và đang đe dọa nghiêm trọng an toàn và sức khỏe', '2022-05-26 04:53:39', 0, 121, 0, '0:06', '/Uploads/Thumbnails/2.PNG', '/Uploads/Videos/48.mp4', 1, 0, '48'),
 	(4, 2, N'Xin con đừng đi', N'Cô gái biết ơn bà lão đã cứu mạng mình lại cảm thương số phận của bà nên đã đồng ý ở lại cùng bà', '2022-11-03 12:35:14', 0, 62670, 0, '0:06', '/Uploads/Thumbnails/1.PNG', '/Uploads/Videos/49.mp4', 1, 0, '49'),
 	(4, 2, N'Hội Của Người Lạc Việt Thời Hùng Vương', N'Viết Một Đoạn Văn Ngắn Nói Về Cuộc Sống Ăn Ở Sinh Hoạt Lễ Hội Của Người Lạc Việt Thời Hùng Vương, đón đọc mẫu văn sau để trau dồi thêm cho mình kiến thức hay.', '2022-12-11 01:20:30', 0, 101929, 0, '0:06', '/Uploads/Thumbnails/5.PNG', '/Uploads/Videos/50.mp4', 1, 0, '50');
-
-GO
-CREATE TABLE [HomeMenuType]
-(
-	[id] INT IDENTITY(1,1),
-	[name] NVARCHAR(30) NOT NULL,
-	[meta] VARCHAR(30) NOT NULL,
-	[hide] BIT DEFAULT 0,
-	[order] INT DEFAULT 0,
-	[datebegin] DATETIME DEFAULT GETDATE(),
-	CONSTRAINT HomeMenuType_PK PRIMARY KEY([id])
-)
-INSERT INTO [HomeMenuType] ([name], [meta]) VALUES
-	(N'Sidebar', 'sidebar'),
-	(N'Primary', 'primary'),
-	(N'Secondary', 'secondary'),
-	(N'Copyright', 'copyright'),
-	(N'Channel', 'channel');
-
-GO
-CREATE TABLE [HomeMenu]
-(
-	[id] INT IDENTITY(1,1),
-	[name] NVARCHAR(30) NOT NULL,
-	[link] VARCHAR(MAX),
-	[icon] VARCHAR(50),
-	[meta] VARCHAR(50) NOT NULL,
-	[hide] BIT DEFAULT 0,
-	[order] INT DEFAULT 0,
-	[type_id] INT NOT NULL,
-	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
-	CONSTRAINT HomeMenu_PK PRIMARY KEY([id]),
-	CONSTRAINT HomeMenu_Meta_U UNIQUE([meta]),
-	CONSTRAINT HomeMenu_Type_FK FOREIGN KEY([type_id]) REFERENCES [HomeMenuType]([id])
-)
-
-INSERT INTO [HomeMenu] ([name], [link], [icon], [meta], [type_id]) VALUES
-	(N'Kênh đăng ký', 'link', 'subscriptions', 'feed/subscriptions', 1),
-	(N'Video đã thích', 'link', 'thumb_up', 'feed/likes', 1),
-	(N'Video của bạn', 'link', 'slideshow', 'studio', 1),
-	(N'Giới thiệu', 'link', 'icon', 'about', 2),
-	(N'Báo chí', 'link', 'icon', 'press', 2),
-	(N'Bản quyền', 'link', 'icon', 'copyright', 2),
-	(N'Liên hệ với chúng tôi', 'link', 'icon', 'contact-us', 2),
-	(N'Người sáng tạo', 'link', 'icon', 'creator', 2),
-	(N'Quảng cáo', 'link', 'icon', 'ads', 2),
-	(N'Nhà phát triển', 'link', 'icon', 'developer', 2),
-	(N'Điều khoản', 'link', 'icon', 'terms', 3),
-	(N'Quyền riêng tư', 'link', 'icon', 'privacy', 3),
-	(N'Chính sách và an toàn', 'link', 'icon', 'policies', 3),
-	(N'Cách YouTube hoạt động', 'link', 'icon', 'how-youtube-work', 3),
-	(N'Thử các tính năng mới', 'link', 'icon', 'new', 3),
-	(N'Copyright © 2023 TDTU', 'link', 'icon', 'copyright-logo', 4),
-	(N'Videos', 'link', 'icon', 'videos', 5),
-	(N'Danh sách phát', 'link', 'icon', 'playlists', 5);
-
-GO
-CREATE TABLE [AdminMenu]
-(
-	[id] INT IDENTITY(1,1),
-	[name] NVARCHAR(40) NOT NULL,
-	[meta] VARCHAR(50) NOT NULL,
-	[hide] BIT DEFAULT 0,
-	[order] INT DEFAULT 0,
-	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
-	CONSTRAINT AdminMenu_PK PRIMARY KEY([id]),
-	CONSTRAINT AdminMenu_Meta_U UNIQUE([meta])
-)
-
-INSERT INTO AdminMenu ([name], [meta]) VALUES 
-	(N'Quản lý Video','videos'),
-	(N'Quản lý Người dùng', 'users'),
-	(N'Quản lý Tag', 'tags');
 
 GO
 CREATE TABLE [Like]
@@ -305,7 +309,7 @@ CREATE TABLE [Comment]
 	[meta] VARCHAR(50),
 	[hide] BIT DEFAULT 0,
 	[order] INT DEFAULT 0,
-	[datebegin] SMALLDATETIME DEFAULT GETDATE(),
+	[datebegin] DATETIME DEFAULT GETDATE(),
 	CONSTRAINT Comment_PK PRIMARY KEY([id]),
 	CONSTRAINT Comment_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id]),
 	CONSTRAINT Comment_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
@@ -389,13 +393,75 @@ INSERT INTO [Subscribe] ([user_id], [subscribe_user_id], [subscribe_state]) VALU
 	('1', '5', 1);
 
 GO
+CREATE TABLE [Playlist]
+(
+	[id] INT IDENTITY(1,1),
+	[user_id] INT NOT NULL,
+	[name] NVARCHAR(100) NOT NULL,
+	[video_count] INT DEFAULT 0,
+	[privacy] BIT NOT NULL, -- Chế độ công khai, riêng tư,...
+	[meta] VARCHAR(50) NOT NULL,
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[dateedit] DATETIME DEFAULT GETDATE(),
+	[datebegin] DATETIME DEFAULT GETDATE(),
+	CONSTRAINT Playlist_PK PRIMARY KEY([id]),
+	CONSTRAINT Playlist_Meta_U UNIQUE([meta]),
+	CONSTRAINT Playlist_User_FK FOREIGN KEY([user_id]) REFERENCES [User]([id])
+)
+
+GO
+INSERT INTO [Playlist] ([user_id], [name], [privacy], [meta], [datebegin]) VALUES
+	(1, 'Test Playlist', 0, '1', '2023-03-21 18:51:00');
+
+GO
+CREATE TABLE [PlaylistContent]
+(
+	[id] INT IDENTITY(1,1),
+	[playlist_id] INT NOT NULL,
+	[video_id] INT NOT NULL,
+	[meta] VARCHAR(50),
+	[hide] BIT DEFAULT 0,
+	[order] INT DEFAULT 0,
+	[datebegin] DATETIME DEFAULT GETDATE(),
+	CONSTRAINT PlaylistContent_PK PRIMARY KEY([id]),
+	CONSTRAINT PlaylistContent_Playlist_FK FOREIGN KEY([playlist_id]) REFERENCES [Playlist]([id]),
+	CONSTRAINT PlaylistContent_Video_FK FOREIGN KEY([video_id]) REFERENCES [Video]([id])
+)
+
+GO
+IF EXISTS(SELECT * FROM sysobjects WHERE name = 'TR_UPDATEPLAYLIST')
+	DROP TRIGGER TR_UPDATEPLAYLIST
+GO
+CREATE TRIGGER TR_UPDATEPLAYLIST ON [PlaylistContent]
+FOR INSERT, UPDATE, DELETE
+AS
+BEGIN
+	DECLARE @update_playlist_id AS INT = (SELECT TOP 1 playlist_id FROM inserted)
+	DECLARE @delete_playlist_id AS INT = (SELECT TOP 1 playlist_id FROM deleted)
+	IF (@update_playlist_id IS NULL)
+		SET @update_playlist_id = @delete_playlist_id
+	UPDATE [Playlist]
+	SET [video_count] = (SELECT COUNT(playlist_id) FROM [PlaylistContent] WHERE [playlist_id] = @update_playlist_id),
+		[dateedit] = GETDATE()
+	WHERE [id] = @update_playlist_id
+END
+
+GO
+INSERT INTO [PlaylistContent] ([playlist_id], [video_id]) VALUES
+	(1, 1),
+	(1, 2);
+
+GO
+SELECT * FROM [HomeMenuType]
+SELECT * FROM [HomeMenu]
+SELECT * FROM [AdminMenu]
 SELECT * FROM [Role]
 SELECT * FROM [User]
 SELECT * FROM [Tag]
 SELECT * FROM [Video]
-SELECT * FROM [HomeMenuType]
-SELECT * FROM [HomeMenu]
-SELECT * FROM [AdminMenu]
 SELECT * FROM [Like]
 SELECT * FROM [Comment]
 SELECT * FROM [Subscribe]
+SELECT * FROM [Playlist]
+SELECT * FROM [PlaylistContent]
