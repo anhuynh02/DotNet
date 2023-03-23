@@ -58,6 +58,15 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
+            routes.MapRoute("Login", "{type}",
+                new { controller = "Login", action = "Index"},
+                new RouteValueDictionary
+                {
+                    { "type", "login" }
+                },
+                new[] { "TdtuTube.Controllers" }
+            );
+
             routes.MapRoute("Studio", "{type}/{action}/{meta}",
                 new { controller = "Studio", action = "Index", meta = UrlParameter.Optional },
                 new RouteValueDictionary

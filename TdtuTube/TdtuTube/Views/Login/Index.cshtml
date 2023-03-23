@@ -1,0 +1,53 @@
+﻿@model TdtuTube.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login - TdtuTude</title>
+    <link rel="stylesheet" href="~/Content/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="center">
+        @{
+            Session.Clear();
+         }
+        <a href="/"><i class="material-icons text-white cursor-pointer back-home-page">keyboard_arrow_left</i></a>
+        <h1 style="position: relative">Login</h1>
+        @using (Html.BeginForm("PostLogin", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="txt_field">
+                @Html.TextBoxFor(u => u.email, new { @required = "required", @type = "email", @placeholder = " " })
+                <span></span>
+                @Html.Label("Email")
+
+
+            </div>
+
+            <div class="txt_field">
+                @Html.PasswordFor(u => u.password, new { @required = "required", @placeholder = " " })
+                <span></span>
+                @Html.Label("Password")
+            </div>
+            <div class="error-login-massage">
+                @Html.ValidationMessageFor(u => u.email)
+                @Html.ValidationMessageFor(u => u.password)
+            </div>
+            <input type="submit" value="Login">
+            <div class="signup_link">
+                Not a member? <a href="#">Signup</a>
+            </div>
+        }
+
+
+
+    </div>
+</body>
+</html>

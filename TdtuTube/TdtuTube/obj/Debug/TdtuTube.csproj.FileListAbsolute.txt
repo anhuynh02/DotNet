@@ -330,3 +330,13 @@ D:\HocTap\Công Nghệ .Net\TestProject\TdtuTube\TdtuTube\obj\Debug\TdtuTube.csp
 D:\HocTap\Công Nghệ .Net\TestProject\TdtuTube\TdtuTube\obj\Debug\TdtuTube.csproj.CopyComplete
 D:\HocTap\Công Nghệ .Net\TestProject\TdtuTube\TdtuTube\obj\Debug\TdtuTube.dll
 D:\HocTap\Công Nghệ .Net\TestProject\TdtuTube\TdtuTube\obj\Debug\TdtuTube.pdb
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\BCrypt.Net-Next.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Buffers.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Memory.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Numerics.Vectors.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\BCrypt.Net-Next.xml
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Buffers.xml
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Memory.xml
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Numerics.Vectors.xml
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Runtime.CompilerServices.Unsafe.xml

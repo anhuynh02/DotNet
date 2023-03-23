@@ -42,18 +42,38 @@
 
             <!-- right icons container  -->
             <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
-                <a href="/studio"><i class="material-icons text-white cursor-pointer">video_call</i></a>
+
                 <!--<i class="material-icons text-white cursor-pointer">apps</i>
     <i class="material-icons text-white cursor-pointer">notifications</i>-->
+                @{
+                    var avtPath = "";
+                    if (ViewBag.UserAvatarPath != null)
+                    {
+                        avtPath = Session["UserAvatarPath"].ToString();
+                    }
+                    else
+                    {
+                        avtPath = "";
+                    }
+                }
+                @if (@avtPath != "")
+                {
+                    <a href="/login class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">logout</i></a>
+    <a href="/studio"><i class="material-icons text-white cursor-pointer">video_call</i></a>
+                    <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="@avtPath" alt="" draggable="false">
+                }
+                else
+                {
+                    <a href="/login" class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">login</i></a>
+                }
 
-                <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="~/Uploads/images/profile.jpg" alt="" draggable="false">
             </div>
 
         </div>
     </nav>
     <!-- navbar ends here -->
 
-    <!-- main container -->
+    <!-- main container -->``
     <div class="flex flex-row">
         <!-- left sidebar fixed -->
         <div class="sidebar" id="sideBar">
@@ -74,7 +94,13 @@
             <div class="border border-searchIconBg"></div>
 
             <!-- Need to implement Session user id   -->
-            @{Html.RenderAction("getSubscribeChannel", "Home", new { id = 1 });}
+            @{
+                if(ViewBag.UserID != null)
+                {
+                    Html.RenderAction("getSubscribeChannel", "Home", new { id = ViewBag.UserID });
+                }
+
+             }
 
             <div class="border border-searchIconBg"></div>
 

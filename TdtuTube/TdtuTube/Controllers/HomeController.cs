@@ -13,6 +13,10 @@ namespace TdtuTube.Controllers
         public ActionResult Index()
         {
             ViewBag.Type = "trang-chu";
+            ViewBag.UserID = Session["UserID"];
+            ViewBag.UserRoleID = Session["UserRoleID"];
+            ViewBag.UserName = Session["UserName"];
+            ViewBag.UserAvatarPath = Session["UserAvatarPath"];
             return View();
         }
         public ActionResult getSidebar()
@@ -62,6 +66,15 @@ namespace TdtuTube.Controllers
                     orderby i.order ascending
                     select i;
             return PartialView(v.ToList());
+        }
+
+
+        public ActionResult logOut()
+        {
+            //Delete the Session object.
+            Session.Clear();
+
+            return Redirect("/");
         }
     }
 }
