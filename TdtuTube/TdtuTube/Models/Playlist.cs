@@ -12,40 +12,25 @@ namespace TdtuTube.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Video
+    public partial class Playlist
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Video()
+        public Playlist()
         {
-            this.Comments = new HashSet<Comment>();
-            this.Likes = new HashSet<Like>();
             this.PlaylistContents = new HashSet<PlaylistContent>();
         }
     
         public int id { get; set; }
         public int user_id { get; set; }
-        public int tag_id { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public Nullable<int> like_count { get; set; }
-        public Nullable<int> view_count { get; set; }
-        public Nullable<int> comment_count { get; set; }
+        public string name { get; set; }
+        public Nullable<int> video_count { get; set; }
         public bool privacy { get; set; }
-        public string length { get; set; }
-        public string thumbnail { get; set; }
-        public string path { get; set; }
-        public bool feature { get; set; }
         public string meta { get; set; }
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
+        public Nullable<System.DateTime> dateedit { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public Nullable<bool> status { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Like> Likes { get; set; }
-        public virtual Tag Tag { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlaylistContent> PlaylistContents { get; set; }

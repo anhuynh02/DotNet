@@ -147,5 +147,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Playlists">
+      <EntityTypeMapping TypeName="TdtuTubeModel.Playlist">
+        <MappingFragment StoreEntitySet="Playlist">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="dateedit" ColumnName="dateedit" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="privacy" ColumnName="privacy" />
+          <ScalarProperty Name="video_count" ColumnName="video_count" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlaylistContents">
+      <EntityTypeMapping TypeName="TdtuTubeModel.PlaylistContent">
+        <MappingFragment StoreEntitySet="PlaylistContent">
+          <ScalarProperty Name="datebegin" ColumnName="datebegin" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="hide" ColumnName="hide" />
+          <ScalarProperty Name="meta" ColumnName="meta" />
+          <ScalarProperty Name="video_id" ColumnName="video_id" />
+          <ScalarProperty Name="playlist_id" ColumnName="playlist_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

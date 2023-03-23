@@ -35,5 +35,7 @@ namespace TdtuTube.Models
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
+        public virtual DbSet<Playlist> Playlists { get; set; }
+        public virtual DbSet<PlaylistContent> PlaylistContents { get; set; }
     }
 }

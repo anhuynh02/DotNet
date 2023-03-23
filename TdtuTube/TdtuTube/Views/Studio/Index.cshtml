@@ -6,42 +6,35 @@
 }
 
 <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6 studio-container" id="mainContainer">
-    @if (Model == null)
+    <h2 class="studio-title">Nội dung của kênh</h2>
+    @if (ViewBag.Meta != "playlists")
     {
-        <h1>Tài khoản không tồn tại</h1>
+        <div class="studio-tab-container">
+            <div class="studio-tab studio-tab-active">
+                <a class="studio-tab-title" href="/studio/index/videos">Video</a>
+            </div>
+            <div class="studio-tab">
+                <a class="studio-tab-title" href="/studio/index/playlists">Danh sách phát</a>
+            </div>
+        </div>
+        <div>
+            <button class="studio-upload-btn">
+                <i class="fa-solid fa-video"></i>
+                <a class="create-vid-link" href='@Url.Action("uploadVideo", "Studio")'>Thêm một video mới</a>
+            </button>
+            @{Html.RenderAction("GetInfoVideo", "Studio", new { userId = Session["UserId"] });}
+        </div>
     }
     else
     {
-        <h2 class="studio-title">Nội dung của kênh</h2>
-        if (ViewBag.Meta != "playlists")
-        {
-            <div class="studio-tab-container">
-                <div class="studio-tab studio-tab-active">
-                    <a class="studio-tab-title" href="/studio/index/videos">Video</a>
-                </div>
-                <div class="studio-tab">
-                    <a class="studio-tab-title" href="/studio/index/playlists">Danh sách phát</a>
-                </div>
+        <div class="studio-tab-container">
+            <div class="studio-tab">
+                <a class="studio-tab-title" href="/studio/index/videos">Video</a>
             </div>
-            <div>
-                <button class="studio-upload-btn">
-                    <i class="fa-solid fa-video"></i>
-                    <a class="create-vid-link" href='@Url.Action("uploadVideo", "Studio")'>Thêm một video mới</a>
-                </button>
-                @{Html.RenderAction("GetInfoVideo", "Studio", new { userId = Model.id });}
+            <div class="studio-tab studio-tab-active">
+                <a class="studio-tab-title " href="/studio/index/playlists">Danh sách phát</a>
             </div>
-        }
-        else
-        {
-            <div class="studio-tab-container">
-                <div class="studio-tab">
-                    <a class="studio-tab-title" href="/studio/index/videos">Video</a>
-                </div>
-                <div class="studio-tab studio-tab-active">
-                    <a class="studio-tab-title " href="/studio/index/playlists">Danh sách phát</a>
-                </div>
-            </div>
-        }
+        </div>
     }
 </div>
 

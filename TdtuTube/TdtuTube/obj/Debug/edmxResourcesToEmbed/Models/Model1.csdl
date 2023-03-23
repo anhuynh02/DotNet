@@ -51,6 +51,20 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Video" EntitySet="Videos" />
     </AssociationSet>
+    <EntitySet Name="Playlists" EntityType="TdtuTubeModel.Playlist" />
+    <EntitySet Name="PlaylistContents" EntityType="TdtuTubeModel.PlaylistContent" />
+    <AssociationSet Name="Playlist_User_FK" Association="TdtuTubeModel.Playlist_User_FK">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Playlist" EntitySet="Playlists" />
+    </AssociationSet>
+    <AssociationSet Name="PlaylistContent_Playlist_FK" Association="TdtuTubeModel.PlaylistContent_Playlist_FK">
+      <End Role="Playlist" EntitySet="Playlists" />
+      <End Role="PlaylistContent" EntitySet="PlaylistContents" />
+    </AssociationSet>
+    <AssociationSet Name="PlaylistContent_Video_FK" Association="TdtuTubeModel.PlaylistContent_Video_FK">
+      <End Role="Video" EntitySet="Videos" />
+      <End Role="PlaylistContent" EntitySet="PlaylistContents" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AdminMenu">
     <Key>
@@ -74,7 +88,7 @@
     <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
-    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <Property Name="datebegin" Type="DateTime" Precision="3" />
     <NavigationProperty Name="User" Relationship="TdtuTubeModel.Comment_User_FK" FromRole="Comment" ToRole="User" />
     <NavigationProperty Name="Video" Relationship="TdtuTubeModel.Comment_Video_FK" FromRole="Comment" ToRole="Video" />
   </EntityType>
@@ -99,7 +113,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="meta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="3" />
@@ -127,7 +141,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="meta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="0" />
@@ -171,17 +185,18 @@
     <Property Name="subscriber_count" Type="Int32" />
     <Property Name="avatar_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="role_id" Type="Int32" Nullable="false" />
-    <Property Name="meta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="3" />
-    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="status" Type="Boolean" />
     <NavigationProperty Name="Comments" Relationship="TdtuTubeModel.Comment_User_FK" FromRole="User" ToRole="Comment" />
     <NavigationProperty Name="Likes" Relationship="TdtuTubeModel.Like_User_FK" FromRole="User" ToRole="Like" />
     <NavigationProperty Name="Role" Relationship="TdtuTubeModel.User_Role_FK" FromRole="User" ToRole="Role" />
     <NavigationProperty Name="Subscribes" Relationship="TdtuTubeModel.Subscribe_SubUser_FK" FromRole="User" ToRole="Subscribe" />
     <NavigationProperty Name="Subscribes1" Relationship="TdtuTubeModel.Subscribe_User_FK" FromRole="User" ToRole="Subscribe" />
     <NavigationProperty Name="Videos" Relationship="TdtuTubeModel.Video_User_FK" FromRole="User" ToRole="Video" />
+    <NavigationProperty Name="Playlists" Relationship="TdtuTubeModel.Playlist_User_FK" FromRole="User" ToRole="Playlist" />
   </EntityType>
   <EntityType Name="Video">
     <Key>
@@ -200,15 +215,16 @@
     <Property Name="thumbnail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="path" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="feature" Type="Boolean" Nullable="false" />
-    <Property Name="meta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="hide" Type="Boolean" />
     <Property Name="order" Type="Int32" />
     <Property Name="datebegin" Type="DateTime" Precision="3" />
-    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="status" Type="Boolean" />
     <NavigationProperty Name="Comments" Relationship="TdtuTubeModel.Comment_Video_FK" FromRole="Video" ToRole="Comment" />
     <NavigationProperty Name="Likes" Relationship="TdtuTubeModel.Like_Video_FK" FromRole="Video" ToRole="Like" />
     <NavigationProperty Name="Tag" Relationship="TdtuTubeModel.Video_Tag_FK" FromRole="Video" ToRole="Tag" />
     <NavigationProperty Name="User" Relationship="TdtuTubeModel.Video_User_FK" FromRole="Video" ToRole="User" />
+    <NavigationProperty Name="PlaylistContents" Relationship="TdtuTubeModel.PlaylistContent_Video_FK" FromRole="Video" ToRole="PlaylistContent" />
   </EntityType>
   <Association Name="Comment_User_FK">
     <End Type="TdtuTubeModel.User" Role="User" Multiplicity="1" />
@@ -327,6 +343,73 @@
       </Principal>
       <Dependent Role="Video">
         <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Playlist">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="video_count" Type="Int32" />
+    <Property Name="privacy" Type="Boolean" Nullable="false" />
+    <Property Name="meta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="dateedit" Type="DateTime" Precision="3" />
+    <Property Name="datebegin" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="TdtuTubeModel.Playlist_User_FK" FromRole="Playlist" ToRole="User" />
+    <NavigationProperty Name="PlaylistContents" Relationship="TdtuTubeModel.PlaylistContent_Playlist_FK" FromRole="Playlist" ToRole="PlaylistContent" />
+  </EntityType>
+  <EntityType Name="PlaylistContent">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="playlist_id" Type="Int32" Nullable="false" />
+    <Property Name="video_id" Type="Int32" Nullable="false" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Playlist" Relationship="TdtuTubeModel.PlaylistContent_Playlist_FK" FromRole="PlaylistContent" ToRole="Playlist" />
+    <NavigationProperty Name="Video" Relationship="TdtuTubeModel.PlaylistContent_Video_FK" FromRole="PlaylistContent" ToRole="Video" />
+  </EntityType>
+  <Association Name="Playlist_User_FK">
+    <End Type="TdtuTubeModel.User" Role="User" Multiplicity="1" />
+    <End Type="TdtuTubeModel.Playlist" Role="Playlist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Playlist">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlaylistContent_Playlist_FK">
+    <End Type="TdtuTubeModel.Playlist" Role="Playlist" Multiplicity="1" />
+    <End Type="TdtuTubeModel.PlaylistContent" Role="PlaylistContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Playlist">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PlaylistContent">
+        <PropertyRef Name="playlist_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlaylistContent_Video_FK">
+    <End Type="TdtuTubeModel.Video" Role="Video" Multiplicity="1" />
+    <End Type="TdtuTubeModel.PlaylistContent" Role="PlaylistContent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="PlaylistContent">
+        <PropertyRef Name="video_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -14,9 +14,6 @@
 </head>
 <body>
     <div class="center">
-        @{
-            Session.Clear();
-         }
         <a href="/"><i class="material-icons text-white cursor-pointer back-home-page">keyboard_arrow_left</i></a>
         <h1 style="position: relative">Login</h1>
         @using (Html.BeginForm("PostLogin", "Login", FormMethod.Post))
@@ -45,9 +42,6 @@
                 Not a member? <a href="#">Signup</a>
             </div>
         }
-
-
-
     </div>
 </body>
 </html>

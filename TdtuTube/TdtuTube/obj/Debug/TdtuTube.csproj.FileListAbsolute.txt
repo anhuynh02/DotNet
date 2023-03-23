@@ -340,3 +340,13 @@ C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Buf
 C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Memory.xml
 C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Numerics.Vectors.xml
 C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\System.Runtime.CompilerServices.Unsafe.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\BCrypt.Net-Next.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Buffers.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Memory.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Numerics.Vectors.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Runtime.CompilerServices.Unsafe.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\BCrypt.Net-Next.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Buffers.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Memory.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Numerics.Vectors.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Runtime.CompilerServices.Unsafe.xml

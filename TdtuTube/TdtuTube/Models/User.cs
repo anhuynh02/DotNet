@@ -22,6 +22,7 @@ namespace TdtuTube.Models
             this.Subscribes = new HashSet<Subscribe>();
             this.Subscribes1 = new HashSet<Subscribe>();
             this.Videos = new HashSet<Video>();
+            this.Playlists = new HashSet<Playlist>();
         }
     
         public int id { get; set; }
@@ -35,7 +36,7 @@ namespace TdtuTube.Models
         public Nullable<bool> hide { get; set; }
         public Nullable<int> order { get; set; }
         public Nullable<System.DateTime> datebegin { get; set; }
-        public bool status { get; set; }
+        public Nullable<bool> status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
@@ -48,5 +49,7 @@ namespace TdtuTube.Models
         public virtual ICollection<Subscribe> Subscribes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Video> Videos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Playlist> Playlists { get; set; }
     }
 }

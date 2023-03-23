@@ -12,6 +12,10 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index(string meta)
         {
+            if (Session["UserId"] == null)
+            {
+                return Redirect("/login");
+            }
             ViewBag.Type = "feed/" + meta;
             ViewBag.Meta = meta;
             return View();

@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<TdtuTube.Models.Subscribe>
 
-<div class="flex flex-col w-full mb-2 mt-3">
-
-    <h1 class="text-white" style="margin-left: 1.7rem;">Kênh đăng ký</h1>
-
-    @foreach (var i in Model)
-    {
-        <a href="/channel/@i.User.meta">
-            <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
-                <img class="rounded-full object-cover" src="@i.User.avatar_path" alt="" width="21px">
-                <h2 class="text-sm text-white">@i.User.name</h2>
-            </div>
-        </a>
-    }
-
-</div>
+@foreach (var i in Model)
+{
+    <a href="/channel/@i.User.meta">
+        <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+            <img class="rounded-full object-cover" src="@i.User.avatar_path" alt="" width="21px">
+            <h2 class="text-sm text-white">@i.User.name</h2>
+        </div>
+    </a>
+}

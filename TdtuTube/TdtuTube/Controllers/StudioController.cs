@@ -14,12 +14,13 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index(string meta)
         {
+            if (Session["UserId"] == null)
+            {
+                return Redirect("/login");
+            }
             ViewBag.Type = "studio";
             ViewBag.Meta = meta;
-            var v = from i in db.Users
-                    where i.meta == "@1" //Tạm thời set cứng id
-                    select i;
-            return View(v.FirstOrDefault());
+            return View();
         }
         public ActionResult uploadVideo()
         {

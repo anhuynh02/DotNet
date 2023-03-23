@@ -44,27 +44,16 @@
             <div class="flex items-center space-x-3 sm:space-x-6 pr-4">
 
                 <!--<i class="material-icons text-white cursor-pointer">apps</i>
-    <i class="material-icons text-white cursor-pointer">notifications</i>-->
-                @{
-                    var avtPath = "";
-                    if (ViewBag.UserAvatarPath != null)
-                    {
-                        avtPath = Session["UserAvatarPath"].ToString();
-                    }
-                    else
-                    {
-                        avtPath = "";
-                    }
-                }
-                @if (@avtPath != "")
+                <i class="material-icons text-white cursor-pointer">notifications</i>-->
+                @if (Session["UserId"] == null)
                 {
-                    <a href="/login class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">logout</i></a>
-    <a href="/studio"><i class="material-icons text-white cursor-pointer">video_call</i></a>
-                    <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="@avtPath" alt="" draggable="false">
+                    <a href="/login" class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">login</i></a>
                 }
                 else
                 {
-                    <a href="/login" class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">login</i></a>
+                    <a href="/Login/logout" class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">logout</i></a>
+                    <a href="/studio"><i class="material-icons text-white cursor-pointer">video_call</i></a>
+                    <img class="w-9 h-9 rounded-full object-cover cursor-pointer" src="@Session["UserAvatarPath"]" alt="" draggable="false">
                 }
 
             </div>
@@ -73,7 +62,7 @@
     </nav>
     <!-- navbar ends here -->
 
-    <!-- main container -->``
+    <!-- main container -->
     <div class="flex flex-row">
         <!-- left sidebar fixed -->
         <div class="sidebar" id="sideBar">
@@ -93,14 +82,20 @@
 
             <div class="border border-searchIconBg"></div>
 
-            <!-- Need to implement Session user id   -->
-            @{
-                if(ViewBag.UserID != null)
+            <div class="flex flex-col w-full mb-2 mt-3">
+
+                <h1 class="text-white" style="margin-left: 1.7rem;">Kênh đăng ký</h1>
+
+                @if (Session["UserId"] == null)
                 {
-                    Html.RenderAction("getSubscribeChannel", "Home", new { id = ViewBag.UserID });
+                    <a href="/login" class="glyphicon-log-in"><i class="material-icons text-white cursor-pointer">login</i></a>
+                }
+                else
+                {
+                    Html.RenderAction("getSubscribeChannel", "Home", new { id = Session["UserId"] });
                 }
 
-             }
+            </div>
 
             <div class="border border-searchIconBg"></div>
 

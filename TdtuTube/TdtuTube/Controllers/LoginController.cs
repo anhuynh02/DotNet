@@ -13,7 +13,6 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index()
         {
-           
             return View();
         }
         [HttpPost]
@@ -33,25 +32,19 @@ namespace TdtuTube.Controllers
                         Session["UserRoleID"] = user.role_id;
                         Session["UserName"] = user.name;
                         Session["UserAvatarPath"] = user.avatar_path;
-                        Session["Meta"] = user.meta;
+                        Session["UserMeta"] = user.meta;
                         return Redirect("/");
                     }
-                    
                 }
             }
             return Redirect("/login");
         }
-
-        public ActionResult UserDashBoard()
+        public ActionResult logout()
         {
-            if (Session["UserID"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            //Delete the Session object.
+            Session.Clear();
+
+            return Redirect("/");
         }
     }
 }

@@ -5,11 +5,11 @@
 <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="mainContainer">
     @if (ViewBag.Meta == "subscriptions")
     {
-        Html.RenderAction("getSubscribeChannelVideos", "Feed", new { id = 1 }); // Tạm thời set cứng id.
+        Html.RenderAction("getSubscribeChannelVideos", "Feed", new { id = Session["UserId"] });
     }
     else if (ViewBag.Meta == "likes")
     {
-        Html.RenderAction("getLikeVideos", "Feed", new { id = 1 }); // Tạm thời set cứng id.
+        Html.RenderAction("getLikeVideos", "Feed", new { id = Session["UserId"] });
     }
 </div>
 

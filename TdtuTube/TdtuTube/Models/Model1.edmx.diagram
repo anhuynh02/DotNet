@@ -25,6 +25,11 @@
         <AssociationConnector Association="TdtuTubeModel.Subscribe_User_FK" />
         <AssociationConnector Association="TdtuTubeModel.Video_Tag_FK" />
         <AssociationConnector Association="TdtuTubeModel.Video_User_FK" />
+        <EntityTypeShape EntityType="TdtuTubeModel.Playlist" Width="1.5" PointX="5.25" PointY="14.25" />
+        <EntityTypeShape EntityType="TdtuTubeModel.PlaylistContent" Width="1.5" PointX="7.5" PointY="13" />
+        <AssociationConnector Association="TdtuTubeModel.Playlist_User_FK" />
+        <AssociationConnector Association="TdtuTubeModel.PlaylistContent_Playlist_FK" />
+        <AssociationConnector Association="TdtuTubeModel.PlaylistContent_Video_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
