@@ -33,14 +33,21 @@ namespace TdtuTube.Controllers
                         Session["UserName"] = user.name;
                         Session["UserAvatarPath"] = user.avatar_path;
                         Session["UserMeta"] = user.meta;
-                        return Redirect("/");
+                        
+                        if(Session["ReturnURL"] != null)
+                        {
+                            string URL = (string)Session["ReturnURL"];
+                            Session["ReturnURL"] = null;
+                            return Redirect(URL);
+                        }
+                        
                     }
                 }
             }
             return Redirect("/login");
         }
         public ActionResult logout()
-        {
+        {   
             //Delete the Session object.
             Session.Clear();
 

@@ -49,8 +49,8 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
-            routes.MapRoute("Search", "{type}/{meta}",
-                new { controller = "Search", action = "Index", meta = UrlParameter.Optional },
+            routes.MapRoute("Search", "{type}",
+                new { controller = "Search", action = "Index" },
                 new RouteValueDictionary
                 {
                     { "type", "search" }

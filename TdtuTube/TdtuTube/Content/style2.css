@@ -698,6 +698,7 @@ body{
     display: flex;
     flex-direction:row;
     align-content: flex-start;
+    height: 200px;
 }
 
 .video-search__img{
@@ -744,3 +745,21 @@ body{
 
 }
 
+.btn-login {
+    border: 1px solid grey;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    height: 36px;
+    width: fit-content;
+    padding: 5px 15px;
+}
+.btn-login span {
+    color: white;
+    margin-left: 5px
+}
+
+    .btn-login:hover {
+        background: rgba(109, 109, 109, 0.5);
+        border: 0px solid ;
+    }

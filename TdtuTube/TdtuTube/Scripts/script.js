@@ -22,5 +22,16 @@ const search = document.getElementById("search");
 const searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", function (e) {
     if (search.value != "")
-        window.location.href = "/search/" + search.value;
+        window.location.href = "/search?searchQuery=" + search.value;
+
+
+
+})
+
+search.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        if (search.value != "")
+            window.location.href = "/search?searchQuery=" + search.value;
+
+    }
 })

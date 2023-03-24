@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TdtuTube.Models;
-
+using TdtuTube.Libs;
 namespace TdtuTube.Controllers
 {
 
@@ -17,13 +17,19 @@ namespace TdtuTube.Controllers
             return View();
         }
 
-        public ActionResult searchVideos(string meta)
+        public ActionResult searchVideos(string searchQuery)
         {
-            var v = from i in db.Videos
-                    where i.title.Contains(meta) && i.privacy == false && i.hide == false && i.status == false
+            if (searchQuery == null)
+            {
+                return PartialView(new List<Video>());
+            }
+            var t = from i in db.Videos
+                    where i.privacy == false && i.hide == false && i.status == false
                     orderby i.order ascending
                     select i;
-            return PartialView(v.ToList());
+            ".".Contains(".");
+            var v = t.ToList().Where(i => VideoFormat.normalize(i.title).Contains(searchQuery.ToLower()));
+            return PartialView(v);
         }
     }
 }

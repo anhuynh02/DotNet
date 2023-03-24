@@ -19,10 +19,10 @@ namespace TdtuTube.Models
         {
             this.Comments = new HashSet<Comment>();
             this.Likes = new HashSet<Like>();
+            this.Playlists = new HashSet<Playlist>();
             this.Subscribes = new HashSet<Subscribe>();
             this.Subscribes1 = new HashSet<Subscribe>();
             this.Videos = new HashSet<Video>();
-            this.Playlists = new HashSet<Playlist>();
         }
     
         public int id { get; set; }
@@ -42,6 +42,8 @@ namespace TdtuTube.Models
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Like> Likes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Playlist> Playlists { get; set; }
         public virtual Role Role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Subscribe> Subscribes { get; set; }
@@ -49,7 +51,5 @@ namespace TdtuTube.Models
         public virtual ICollection<Subscribe> Subscribes1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Video> Videos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Playlist> Playlists { get; set; }
     }
 }

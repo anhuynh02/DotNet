@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Text;
 using System.Web;
 
 namespace TdtuTube.Libs
@@ -43,6 +45,13 @@ namespace TdtuTube.Libs
             else
                 dateAgo = string.Format("{0} năm trước", timeSpan.Days / 365);
             return dateAgo;
+        }
+
+        public static string normalize(string str)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = str.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').ToLower();
         }
     }
 }

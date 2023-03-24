@@ -41,6 +41,11 @@
                                         <span><a href="/channel/@Model.User.meta">@Model.User.name</a></span>
                                         <span>@VideoFormat.readableNumber((int)Model.User.subscriber_count) người đăng ký</span>
                                     </div>
+                                    <div>
+                                        <button>
+                                            Dang ki
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="video-content-description">
                                     <div class="video-content-description-view">
@@ -59,13 +64,31 @@
                                     <div class="video-content-comment__number">@Model.comment_count bình luận</div>
                                     <div class="video-content-comment__post">
                                         <!-- Check session image. -->
-                                        <img class="image-profile" src="~/Uploads/images/hero.png" alt="IMAGE">
-                                        <div class="video-content-comment__form">
-                                            <input class="video-content-comment__video" type="hidden" name="video-id">
-                                            <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận...">
-                                            <div class="video-content-comment__line"></div>
-                                            <button class="btn-comment" type="submit" disabled>Bình luận</button>
-                                        </div>
+                                        @{
+                                            if (Session["UserID"] != null)
+                                            {
+                                                <img class="image-profile" src="@Session["UserAvatarPath"]" alt="IMAGE">
+
+
+                                                <div class="video-content-comment__form">
+                                                    <input class="video-content-comment__video" type="hidden" name="video-id">
+                                                    <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận...">
+                                                    <div class="video-content-comment__line"></div>
+                                                    <button class="btn-comment" type="submit" disabled>Bình luận</button>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <img class="image-profile" src="~/Uploads/Avatars/Default.png" alt="IMAGE">
+                                                <div class="video-content-comment__form">
+                                                    <input class="video-content-comment__video" type="hidden" name="video-id">                                                    
+                                                    <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận..." onclick="location.href='/login'">
+                                                    <div class="video-content-comment__line"></div>
+                                                    <button class="btn-comment" type="submit" disabled>Bình luận</button>
+                                                </div>
+                                            }
+                                        }
+
                                     </div>
                                 </div>
                                 <div class="video-content-comment__list">

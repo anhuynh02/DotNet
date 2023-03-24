@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="center">
-        <a href="/"><i class="material-icons text-white cursor-pointer back-home-page">keyboard_arrow_left</i></a>
+        <a href="@Session["ReturnURL"]"><i class="material-icons text-white cursor-pointer back-home-page">keyboard_arrow_left</i></a>
         <h1 style="position: relative">Login</h1>
         @using (Html.BeginForm("PostLogin", "Login", FormMethod.Post))
         {
@@ -41,6 +41,7 @@
             <div class="signup_link">
                 Not a member? <a href="#">Signup</a>
             </div>
+
         }
     </div>
 </body>
