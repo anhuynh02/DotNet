@@ -44,14 +44,26 @@
                                                     <a href="/channel/@Model.User.meta" title="@Model.User.name">@Model.User.name</a>
                                                 </div>
                                                 <div class="owner-follow">
-                                                    @VideoFormat.readableNumber((int)Model.User.subscriber_count) người đăng kí 
+                                                    @VideoFormat.readableNumber((int)Model.User.subscriber_count) người đăng ký
                                                 </div>
                                             </div>
                                             <div class="sub-btn">
                                                 <div class="font-btn">
-                                                    <button>Đăng kí</button>
-                                                </div>
+                                                    @if (Session["UserID"] == null)
+                                                    {
+                                                        <button><a href="/login">Đăng kí</a></button>
+                                                    }
+                                                    else
+                                                    {
 
+                                                        if ((int)Session["UserID"] != Model.User.id)
+                                                        {
+                                                           
+                                                                { Html.RenderAction("subscribeChannel", "Watch", new { userId = Session["UserID"], ownerId = Model.User.id }); }
+                                                            
+                                                        }
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                         
@@ -135,5 +147,12 @@
     document.getElementById("mainContainer").classList.remove("lg:ml-60");
     document.getElementById("mainContainer").classList.remove("lg:w-4/5");
     document.getElementById("mainContainer").classList.remove("xl:w-5/6");
-    document.getElementById("mainContainer").classList.add("lg:w-5/5")
+    document.getElementById("mainContainer").classList.add("lg:w-5/5");
+    function subscribeAction(e) {
+        if (e.innerHTML === "Đăng ký") {
+            e.innerHTML = "Đã đăng ký";
+        } else {
+            e.innerHTML = "Đăng ký"
+        }
+    }
 </script>

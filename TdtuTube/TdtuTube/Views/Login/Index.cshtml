@@ -34,6 +34,7 @@
                 @Html.Label("Password")
             </div>
             <div class="error-login-massage">
+           
                 @Html.ValidationMessageFor(u => u.email)
                 @Html.ValidationMessageFor(u => u.password)
             </div>
@@ -41,6 +42,7 @@
             <div class="signup_link">
                 Not a member? <a onclick="toggleLogin()">Signup</a>
             </div>
+            <div><a href="@Session["Error"]"> @ViewBag.Error</a></div>
 
         }
     </div>

@@ -669,6 +669,7 @@
     <Content Include="Views\Feed\getSubscribeChannelVideos.cshtml" />
     <Content Include="Views\Feed\getLikeVideos.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Watch\subcribeChannel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

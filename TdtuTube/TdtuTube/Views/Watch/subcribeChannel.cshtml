@@ -1,0 +1,13 @@
+﻿@model IEnumerable<TdtuTube.Models.Subscribe>
+
+@foreach (var i in Model)
+{
+    if (i.subscribe_state == true)
+    {
+        <a href="@Url.Action("getSub","Watch",new {userId = i.user_id, ownerId = i.subscribe_user_id})"><button onclick="subscribeAction(this)">Đã đăng ký</button></a>
+    }
+    else
+    {
+        <a href="@Url.Action("getSub","Watch",new {userId = i.user_id, ownerId = i.subscribe_user_id})"><button onclick="subscribeAction(this)">Đăng ký</button></a>
+    }
+}

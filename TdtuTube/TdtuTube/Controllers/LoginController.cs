@@ -27,23 +27,25 @@ namespace TdtuTube.Controllers
                 var user = v.FirstOrDefault();
                 if (user != null)
                 {
-                    if (BC.Verify(password, user.password)) {
+                    if (BC.Verify(password, user.password))
+                    {
                         Session["UserID"] = user.id;
                         Session["UserRoleID"] = user.role_id;
                         Session["UserName"] = user.name;
                         Session["UserAvatarPath"] = user.avatar_path;
                         Session["UserMeta"] = user.meta;
-                        
-                        if(Session["ReturnURL"] != null)
+                        Session["Error"] = null;
+                        if (Session["ReturnURL"] != null)
                         {
                             string URL = (string)Session["ReturnURL"];
                             Session["ReturnURL"] = null;
                             return Redirect(URL);
                         }
-                        
+
                     }
                 }
             }
+            
             return Redirect("/login");
         }
         public ActionResult logout()
