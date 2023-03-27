@@ -41,10 +41,10 @@
                                             </a>
                                             <div class="owner-name-follow">
                                                 <div class="owner-name">
-                                                    @Model.User.name
+                                                    <a href="/channel/@Model.User.meta" title="@Model.User.name">@Model.User.name</a>
                                                 </div>
                                                 <div class="owner-follow">
-                                                    @Model.User.subscriber_count
+                                                    @VideoFormat.readableNumber((int)Model.User.subscriber_count) người đăng kí 
                                                 </div>
                                             </div>
                                             <div class="sub-btn">
@@ -54,7 +54,7 @@
 
                                             </div>
                                         </div>
-
+                                        
 
                                     </div>
                                     <div class="video-content-description">
