@@ -17,6 +17,7 @@ namespace TdtuTube.Controllers
             //ViewBag.UserRoleID = Session["UserRoleID"];
             //ViewBag.UserName = Session["UserName"];
             //ViewBag.UserAvatarPath = Session["UserAvatarPath"];
+            //ViewBag.UserMeta = Session["UserMeta"];
             return View();
         }
         public ActionResult getSidebar()

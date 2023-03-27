@@ -35,3 +35,13 @@ search.addEventListener("keypress", function (e) {
 
     }
 })
+
+const userAvatar = document.getElementById("userAvatar");
+const userInfoDropdown = document.getElementById("userInfoDropdown");
+userAvatar.addEventListener("click", function (e) {
+    if (userInfoDropdown.style.visibility == "visible") {
+        userInfoDropdown.style.visibility = "hidden";
+    } else {
+        userInfoDropdown.style.visibility = "visible";
+    }
+})

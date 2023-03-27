@@ -892,6 +892,11 @@ video {
     border-color: rgba(63, 63, 70, var(--tw-border-opacity));
 }
 
+.border-light-gray {
+    --tw-border-opacity: 1;
+    border-color: rgba(142, 142, 142, var(--tw-border-opacity));
+}
+
 .border-searchIconBg {
     --tw-border-opacity: 1;
     border-color: rgba(49, 49, 49, var(--tw-border-opacity));
@@ -1350,7 +1355,7 @@ video {
     position: relative;
     position: sticky;
     top: 3.5rem;
-    z-index: 20;
+    z-index: 10;
     display: flex;
     flex: 1 1 auto;
     align-items: center;
@@ -1763,4 +1768,14 @@ tbody td {
 .result-content-vid {
     display: flex;
     flex-direction: row;
+}
+
+.user-info-dropdown {
+    visibility: hidden;
+    background-color: #353535;
+    top: 0px;
+    right: 45px;
+    width: 240px;
+    z-index: 20;
+    border-radius: 10px
 }
