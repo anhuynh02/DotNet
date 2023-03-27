@@ -33,26 +33,37 @@
                         <div class="video-content">
                             <div class="video-content-heading">
                                 <h1 style="font-size: 2rem;">@Model.title</h1>
-                                <div class="video-content-infor">
-                                    <a href="/channel/@Model.User.meta">
-                                        <img class="image-profile" src="@Model.User.avatar_path" alt="IMAGE">
-                                    </a>
-                                    <div class="video-content-infor_name_sub">
-                                        <span><a href="/channel/@Model.User.meta">@Model.User.name</a></span>
-                                        <span>@VideoFormat.readableNumber((int)Model.User.subscriber_count) người đăng ký</span>
+                                <div id="channel-row">
+                                    <div id="owner">
+                                        <div class="owner-info">
+                                            <a href="/channel/@Model.User.meta" class="owner-img">
+                                                <img src="@Model.User.avatar_path" alt="">
+                                            </a>
+                                            <div class="owner-name-follow">
+                                                <div class="owner-name">
+                                                    @Model.User.name
+                                                </div>
+                                                <div class="owner-follow">
+                                                    @Model.User.subscriber_count
+                                                </div>
+                                            </div>
+                                            <div class="sub-btn">
+                                                <div class="font-btn">
+                                                    <button>Đăng kí</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
                                     </div>
-                                    <div>
-                                        <button>
-                                            Dang ki
-                                        </button>
+                                    <div class="video-content-description">
+                                        <div class="video-content-description-view">
+                                            <span>@VideoFormat.readableNumber((int)Model.view_count) lượt xem</span>
+                                            <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
+                                        </div>
+                                        <p>@Model.description</p>
                                     </div>
-                                </div>
-                                <div class="video-content-description">
-                                    <div class="video-content-description-view">
-                                        <span>@VideoFormat.readableNumber((int)Model.view_count) lượt xem</span>
-                                        <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
-                                    </div>
-                                    <p>@Model.description</p>
                                 </div>
                             </div>
 
