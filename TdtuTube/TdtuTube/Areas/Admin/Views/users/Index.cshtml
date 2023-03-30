@@ -1,7 +1,7 @@
 ﻿@model  IEnumerable<TdtuTube.Models.User>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý user";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 <div class="search-bar">
@@ -27,8 +27,8 @@
                     <td>@user.id</td>
                     <td>@user.name</td>
                     <td>@user.email</td>
-                    <td>@user.subscribers</td>
-                    @if (!user.status)
+                    <td>@user.subscriber_count</td>
+                    @if ((bool) !user.status)
                     {
                         <td>
                             <a href="@Url.Action("lockOrUnlock","videos",new {id = user.id})">

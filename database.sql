@@ -81,7 +81,8 @@ CREATE TABLE [AdminMenu]
 INSERT INTO AdminMenu ([name], [meta]) VALUES 
 	(N'Quản lý Video','videos'),
 	(N'Quản lý Người dùng', 'users'),
-	(N'Quản lý Tag', 'tags');
+	(N'Quản lý Tag', 'tags'),
+	(N'Quản lý Home Menu', 'homemenus');
 
 GO
 CREATE TABLE [Role]

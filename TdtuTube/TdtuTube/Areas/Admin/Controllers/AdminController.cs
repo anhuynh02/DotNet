@@ -13,19 +13,12 @@ namespace TdtuTube.Areas.Admin.Controllers
         TdtuTubeEntities __db = new TdtuTubeEntities();
         public ActionResult Index()
         {
-            return View();
+            return Redirect("/Admin/users");
         }
 
         public ActionResult getFunction()
         {
             var v = from t in __db.AdminMenus
-                    select t;
-            return PartialView(v.ToList());
-        }
-
-        public ActionResult manageUser()
-        {
-            var v = from t in __db.Users
                     select t;
             return PartialView(v.ToList());
         }

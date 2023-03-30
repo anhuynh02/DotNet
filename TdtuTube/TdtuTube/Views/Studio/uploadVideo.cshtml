@@ -1,5 +1,4 @@
 ﻿@model TdtuTube.Models.Video
-
 @{
     ViewBag.Title = "Create Video";
     Layout = "~/Views/Shared/Header.cshtml";
@@ -9,64 +8,112 @@
         <h3 class="create-form-title">Upload video lên kênh</h3>
     </div>
     <div class="create-container">
-        @using (Html.BeginForm("createVideos", "Studio", FormMethod.Post, new { enctype = "multipart/form-data", @class = "create-form" }))
+        @using (Html.BeginForm("uploadVideo", "Studio", FormMethod.Post, new { enctype = "multipart/form-data", @class = "create-form" }))
         {
-            @Html.AntiForgeryToken()
-            <div>
-                <div class="form-group">
-                    <label for="title" class="create-form-label">Tiêu đề</label><br />
-                    @Html.EditorFor(model => model.title, "", new { htmlAttributes = new { @class = "create-form-input", @name = "title" } })
-                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "warning-box" })
+            @Html.AntiForgeryToken();
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.path, "Chọn video upload", htmlAttributes: new { @class = "create-form-label" })
+                <div class="col-md-10">
+                    <input type="file" class="create-form-file" name="vid" id="inputVid" accept=".mov,.MPEG-1,.MP4" />
+                    @Html.ValidationMessageFor(model => model.path, "", new { @class = "text-danger" })
                 </div>
+            </div>
+
+            <div id="part" style="display:none;">
                 <div class="form-group">
-                    <label for="video" class="create-form-label">Chọn video</label><br />
-                    <input type="file" class="create-form-file" name="video" id="video" accept=".mp4, .mpg, .mov" />
-                    @Html.ValidationMessageFor(model => model.path, "", new { @class = "warning-box" })
-                </div>
-                <div class="form-group">
-                    <label for="description" class="create-form-label">Mô tả</label><br />
-                    @Html.TextAreaFor(model => model.description, new { @class = "create-form-textarea" })
-                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "warning-box" })
-                </div>
-                <div class="form-group">
-                    <label for="thumbnail" class="create-form-label">Chọn hình ảnh làm Thumbail</label><br />
-                    <input type="file" class="create-form-file" name="thumbnail" id="thumbnail" accept=".jpg, .png, .gif, .jpeg, .bmp" />
-                    @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "warning-box" })
-                </div>
-                <div class="form-group">
-                    <label for="hide" class="create-form-label">Không công khai</label><br />
-                    <div>
-                        @{
-                            bool hide = false;
-                        }
-                        @Html.CheckBoxFor(model => hide, new { @name = "hide", @class = "create-checkbox" })
-                        @Html.ValidationMessageFor(model => model.hide, "", new { @class = "warning-box" })
+                    @Html.LabelFor(model => model.title, "Tiêu đề", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "create-form-input", @id = "inputTitle" } })
+                        @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.description, "Mô tả", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.description, new { @class = "create-form-textarea", @id = "inputDes" })
+                        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tag_id, "Chọn thẻ video", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("tag_id", (SelectList)ViewBag.tag_id, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.tag_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.user_id, new { Value = 1 })
+                @Html.HiddenFor(model => model.like_count, new { Value = 0 })
+                @Html.HiddenFor(model => model.view_count, new { Value = 0 })
+                @Html.HiddenFor(model => model.comment_count, new { Value = 0 })
+                @Html.HiddenFor(model => model.feature, new { Value = false })
+                @Html.HiddenFor(model => model.hide, new { Value = false })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.privacy, "Quyền riêng tư", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.DropDownListFor(model => model.privacy, new List<SelectListItem>()
+                       {
+                           new SelectListItem(){ Text= "Công khai", Value = "false"},
+                           new SelectListItem(){ Text= "Không công khai", Value = "true"}
+                       }, "Chọn quyền riêng tư")
+                            @Html.ValidationMessageFor(model => model.privacy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.length)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.thumbnail, "Chọn ảnh thumbnail", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        <input type="file" class="create-form-file" name="img" id="inputImg" accept=".jpg,.png,.gif,.jpeg,.bmp" />
+                        @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.meta, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.meta, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.meta, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @Html.HiddenFor(model => model.datebegin)
+                @Html.HiddenFor(model => model.status, new { Value = true })
+                @Html.HiddenFor(model => model.order, new { Value = 0 })
+
+
                 <div class="form-group">
                     <input type="submit" value="Upload" class="create-form-btn" />
                 </div>
             </div>
         }
-        <div class="create-result">
+        <div class="create-result" id="review" style="display:none;">
             <p class="result-title">Preview</p>
             <div class="result-content-vid">
-                <video class="result-video"></video>
+                <video class="result-video" controls autoplay>
+                    <source src="/Uploads/Videos/1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 <img class="result-img" src="~/Uploads/Thumbnails/1.png" />
             </div>
-            <h3 class="result-words">Title goes here</h3>
-            <p class="result-words">Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+            <h3 class="result-words" id="result-title-video">Title goes here</h3>
+            <p class="result-words" id="result-des-video">Your video description goes here.</p>
         </div>
     </div>
     <div>
         <p class="back-link">@Html.ActionLink("--> Trở lại kênh <--", "Index")</p>
     </div>
 </div>
+@if(ViewBag.result != null){ 
+    <h1>ViewBag.result</h1>
+}
 
-<script>
-    let side = document.querySelector('[data-sidebar-id="@ViewBag.Type"]')
-    let div = side.children[0]
-    div.classList = "flex items-center space-x-5 bg-sideBarHoverBg px-7 py-2.5 cursor-pointer"
-    div.children[0].classList = "material-icons text-white md-21"
-    div.children[1].classList = "text-sm font-semibold text-white"
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="~/Scripts/uploadVideo.js"></script>

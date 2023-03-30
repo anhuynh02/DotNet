@@ -1,7 +1,7 @@
 ﻿@model  IEnumerable<TdtuTube.Models.Video>
 
 @{
-    ViewBag.Title = "Manage Video";
+    ViewBag.Title = "Quản lý video";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /><div class="table-display">
@@ -30,10 +30,10 @@
                     <td>@v.id</td>
                     <td style="width:200px;">@v.title</td>
                     <td style="width:500px;">@v.description</td>
-                    <td>@v.like</td>
-                    <td>@v.view</td>
+                    <td>@v.like_count</td>
+                    <td>@v.view_count</td>
                     <td>@v.length</td>
-                    @if (!v.status)
+                    @if ((bool)!v.status)
                     {
                         <td>
                             <a href="@Url.Action("lockOrUnlock","videos",new {id = v.id})">

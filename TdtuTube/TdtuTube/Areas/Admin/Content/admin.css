@@ -1258,3 +1258,15 @@ h6 {
         font-size: 13px;
         color: #012970;
     }
+
+.create-admin-form{
+
+}
+
+.container-admin-form{
+    width: 100%;
+}
+
+a{
+    text-decoration: none!important;
+}
