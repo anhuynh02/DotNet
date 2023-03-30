@@ -847,17 +847,3 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
     justify-content: center;
 }
 
-.font-btn button {
-    line-height: 36px;
-    background-color: white;
-    padding: 0px 16px;
-    color: black;
-
-    font-size: 14px;
-    font-weight: 500;
-    border-radius: 18px;
-}
-.font-btn button:hover{
-    background-color: #AAAAAA;
-    color: rgba(0, 0, 0, 0.9)
-}

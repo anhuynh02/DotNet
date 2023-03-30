@@ -45,3 +45,12 @@ userAvatar.addEventListener("click", function (e) {
         userInfoDropdown.style.visibility = "visible";
     }
 })
+if (userAvatar != null) {
+    userAvatar.addEventListener("click", function (e) {
+        if (userInfoDropdown.style.visibility == "visible") {
+            userInfoDropdown.style.visibility = "hidden"
+        } else {
+            userInfoDropdown.style.visibility = "visible"
+        }
+    })
+}

@@ -7,6 +7,7 @@
 <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="mainContainer">
 
     <div id="container-video" style="margin-left: 4rem; margin-top: 4.5rem">
+
         @if (Model == null)
         {
             <h1>Video không tồn tại</h1>
@@ -51,7 +52,7 @@
                                                 <div class="font-btn">
                                                     @if (Session["UserID"] == null)
                                                     {
-                                                        <button><a href="/login">Đăng kí</a></button>
+                                                        <button class="btn-subscribe"><a href="/login">Đăng kí</a></button>
                                                     }
                                                     else
                                                     {
@@ -59,7 +60,7 @@
                                                         if ((int)Session["UserID"] != Model.User.id)
                                                         {
                                                            
-                                                                { Html.RenderAction("subscribeChannel", "Watch", new { userId = Session["UserID"], ownerId = Model.User.id }); }
+                                                                {   Html.RenderAction("subscribeChannel", "Button", new { ownerId = Model.User.id }); }
                                                             
                                                         }
                                                     }
@@ -141,7 +142,7 @@
     </div>
 
 </div>
-
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
     document.getElementById("sideBar").style.display = "none"
     document.getElementById("mainContainer").classList.remove("lg:ml-60");

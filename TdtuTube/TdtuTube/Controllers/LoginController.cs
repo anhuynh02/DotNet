@@ -38,7 +38,6 @@ namespace TdtuTube.Controllers
                         if (Session["ReturnURL"] != null)
                         {
                             string URL = (string)Session["ReturnURL"];
-                            Session["ReturnURL"] = null;
                             return Redirect(URL);
                         }
 

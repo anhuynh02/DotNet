@@ -29,35 +29,6 @@ namespace TdtuTube.Controllers
                     select i;
             return PartialView(v.ToList());
         }
-        public ActionResult subscribeChannel(int userId, int ownerId)
-        {
-            var v = from i in db.Subscribes
-                    where i.user_id == userId && i.subscribe_user_id == ownerId
-                    select i;
-            Subscribe sub = v.FirstOrDefault();
-            if (sub == null)
-            {
-                Subscribe subscribe = new Subscribe();
-                subscribe.user_id = userId;
-                subscribe.subscribe_user_id = ownerId;
-                subscribe.subscribe_state = false;
-                db.Entry(subscribe).State = System.Data.Entity.EntityState.Added; db.SaveChanges();
-                List<Subscribe> list = new List<Subscribe>();
-                list.Add(subscribe);
-                return PartialView(list);
-            }
-            return PartialView(v.ToList());
-        }
-        public ActionResult getSub(int userId, int ownerId)
-        {
-            var v = from i in db.Subscribes
-                    where i.user_id == userId && i.subscribe_user_id == ownerId
-                    select i;
-            Subscribe subscribe = v.FirstOrDefault();
-            subscribe.subscribe_state = (!subscribe.subscribe_state);
-            db.Entry(subscribe).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChanges();   
-            return RedirectToAction("/a");
-        }
+        
     }
 }

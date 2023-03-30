@@ -150,6 +150,7 @@
     <Compile Include="Areas\Admin\Controllers\tagsController.cs" />
     <Compile Include="Areas\Admin\Controllers\usersController.cs" />
     <Compile Include="Areas\Admin\Controllers\videosController.cs" />
+    <Compile Include="Controllers\ButtonController.cs" />
     <Compile Include="Controllers\ChannelController.cs" />
     <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -669,7 +670,7 @@
     <Content Include="Views\Feed\getSubscribeChannelVideos.cshtml" />
     <Content Include="Views\Feed\getLikeVideos.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Watch\subcribeChannel.cshtml" />
+    <Content Include="Views\Button\subscribeChannel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
