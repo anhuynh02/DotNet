@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="~/Uploads/images/favicon1.ico" type="image/x-icon">
     <title>@ViewBag.Title</title>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/style.css">
     <link rel="stylesheet" href="~/Content/style2.css" />
     @Scripts.Render("~/bundles/jquery")
@@ -172,6 +172,6 @@
 </body>
 </html>
 
-    @if (HttpContext.Current.Request.Url.AbsolutePath != "https://localhost:44387/login") {
-        Session["ReturnURL"] = HttpContext.Current.Request.Url.AbsolutePath;
-    }
+@if (HttpContext.Current.Request.Url.AbsolutePath != "https://localhost:44387/login") {
+    Session["ReturnURL"] = HttpContext.Current.Request.Url.AbsolutePath;
+}

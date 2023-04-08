@@ -157,7 +157,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
-    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WatchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -652,8 +651,6 @@
     <Content Include="Views\Home\getTags.cshtml" />
     <Content Include="Views\Home\getFooter.cshtml" />
     <Content Include="Views\Home\getVideos.cshtml" />
-    <Content Include="Views\Video\Index.cshtml" />
-    <Content Include="Views\Video\getVideos.cshtml" />
     <Content Include="Views\Studio\GetInfoVideo.cshtml" />
     <Content Include="Views\Studio\Index.cshtml" />
     <Content Include="Views\Home\getSidebar.cshtml" />
@@ -670,7 +667,8 @@
     <Content Include="Views\Feed\getSubscribeChannelVideos.cshtml" />
     <Content Include="Views\Feed\getLikeVideos.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Button\subscribeChannel.cshtml" />
+    <Content Include="Views\Button\getSubscribe.cshtml" />
+    <Content Include="Views\Button\getLike.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

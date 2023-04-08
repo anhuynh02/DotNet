@@ -1,0 +1,44 @@
+﻿@model TdtuTube.Models.Like
+@using TdtuTube.Libs
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<input id="videoId" name="videoId" value="@Model.video_id" hidden>
+<button id="likeBtn" class="btn-action">
+    @if (Model.like_state == true)
+    {
+        <i class="material-icons text-white md-18 icon-margin">thumb_up</i>
+    }
+    else
+    {
+        <i class="material-icons-outlined text-white md-18 icon-margin">thumb_up</i>
+    }
+    @VideoFormat.readableNumber((int)@Model.Video.like_count)
+</button>
+
+<script>
+    $(document).ready(function () {
+        $("#likeBtn").click(function (e) {
+            $.ajax({
+                url: "@Url.Action("postLike","Button")",
+                type: "POST",
+                data: {
+                    __RequestVerificationToken: $("[name='__RequestVerificationToken']").val(),
+                    videoId: $('#videoId').val()
+                },
+                success: function (data) {
+                    $.ajax({
+                        url: "@Url.Action("getLike","Button")",
+                        type: "GET",
+                        data: {
+                            videoId: $('#videoId').val()
+                        },
+                        success: function (data) {
+                            $("#likeContainer").html(data);
+                        }
+                    });
+                }
+            });
+        })
+    });
+</script>

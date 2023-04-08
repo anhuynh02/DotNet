@@ -13,15 +13,6 @@ namespace TdtuTube
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Video", "{type}/{meta}",
-                new { controller = "Video", action = "Index", meta = UrlParameter.Optional },
-                new RouteValueDictionary
-                {
-                    { "type", "video" }
-                },
-                new[] { "TdtuTube.Controllers" }
-            );
-
             routes.MapRoute("Feed", "{type}/{meta}",
                 new { controller = "Feed", action = "Index", meta = UrlParameter.Optional },
                 new RouteValueDictionary

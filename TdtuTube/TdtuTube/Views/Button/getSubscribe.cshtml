@@ -1,0 +1,42 @@
+﻿@model TdtuTube.Models.Subscribe
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<input id="ownerId" name="ownerId" value="@Model.subscribe_user_id" hidden>
+@if (Model.subscribe_state == true)
+{
+    <button id="subBtn" data-state="1" class="btn-unsubscribe">Đã đăng kí</button>
+}
+else
+{
+    <button id="subBtn" data-state="0" class="btn-subscribe">Đăng kí</button>
+}
+
+<script>
+    $(document).ready(function () {
+        $("#subBtn").click(function (e) {
+            $.ajax({
+                url: "@Url.Action("postSubscribe","Button")",
+                type: "POST",
+                data: {
+                    __RequestVerificationToken: $("[name='__RequestVerificationToken']").val(),
+                    ownerId: $('#ownerId').val()
+                },
+                success: function (data) {
+                    var status = $('#subBtn').data("state");
+                    if (status == 1) {
+                        $('#subBtn').text('Đăng kí');
+                        $('#subBtn').removeClass('btn-unsubscribe');
+                        $('#subBtn').addClass('btn-subscribe');
+                        $('#subBtn').data("state", 0);
+                    } else {
+                        $('#subBtn').text('Đã đăng kí');
+                        $('#subBtn').addClass('btn-unsubscribe');
+                        $('#subBtn').removeClass('btn-subscribe');
+                        $('#subBtn').data("state", 1);
+                    }
+                }
+            });
+        })
+    });
+</script>

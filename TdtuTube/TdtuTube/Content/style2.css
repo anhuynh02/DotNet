@@ -778,10 +778,6 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
 }
 
 #owner {
-    flex: 1;
-    flex-basis: 0.00000000001px;
-    display: flex;
-    flex-direction: row;
     align-items: center;
     box-sizing: border-box;
     margin-right: 12px;
@@ -807,7 +803,6 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
 
 .owner-name-follow {
     overflow: hidden;
-    flex: 1;
     margin-right: 24px;
     display: flex;
     flex-direction: column;
@@ -847,3 +842,21 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
     justify-content: center;
 }
 
+.like-btn {
+    margin-left: auto;
+    margin-right: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.playlist-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon-margin {
+    vertical-align: middle;
+    margin-right: 5px;
+}

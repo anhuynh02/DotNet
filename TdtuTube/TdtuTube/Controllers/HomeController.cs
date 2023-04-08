@@ -53,17 +53,16 @@ namespace TdtuTube.Controllers
         }
         public ActionResult getTags()
         {
-            ViewBag.Meta = "video";
             var v = from t in db.Tags
                     where t.hide == false
                     orderby t.order descending
                     select t;
             return PartialView(v.ToList());
         }
-        public ActionResult getVideos()
+        public ActionResult getVideos(string tag, bool displayAll)
         {
             var v = from i in db.Videos
-                    where i.privacy == false && i.hide == false && i.status == false
+                    where (i.Tag.meta == tag || displayAll) && i.privacy == false && i.hide == false && i.status == false
                     orderby i.order ascending
                     select i;
             return PartialView(v.ToList());

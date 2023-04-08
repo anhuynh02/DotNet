@@ -6,15 +6,34 @@
 
     @{Html.RenderAction("getTags", "Home");}
 
-    @{Html.RenderAction("getVideos", "Home");}
+    <div class="videos-container" id="videos-container">
+        @{Html.RenderAction("getVideos", "Home", new { tag = "", displayAll = true });}
+    </div>
 
 </div>
 
 <script src="/Scripts/home.js"></script>
 <script>
-    let side = document.querySelector('[data-sidebar-id="@ViewBag.Type"]')
-    let div = side.children[0]
-    div.classList = "flex items-center space-x-5 bg-sideBarHoverBg px-7 py-2.5 cursor-pointer"
-    div.children[0].classList = "material-icons text-white md-21"
-    div.children[1].classList = "text-sm font-semibold text-white"
+function displayVideos(e, tag, displayAll) {
+    e.preventDefault();
+    document.querySelector(".bg-white").className = "tag-e bg-pillsBg hover:bg-gray-700 py-1.5 px-3 rounded-full text-white border border-gray-700 transition duration-150";
+    e.target.className = "tag-e bg-white py-1.5 px-3 rounded-full text-black";
+    $.ajax({
+        url: "@Url.Action("getVideos","Home")",
+        type: "GET",
+        data: {
+            tag: tag,
+            displayAll: displayAll
+        },
+        success: function (data) {
+            $("#videos-container").html(data);
+        }
+    });
+}
+
+let side = document.querySelector('[data-sidebar-id="@ViewBag.Type"]')
+let div = side.children[0]
+div.classList = "flex items-center space-x-5 bg-sideBarHoverBg px-7 py-2.5 cursor-pointer"
+div.children[0].classList = "material-icons text-white md-21"
+div.children[1].classList = "text-sm font-semibold text-white"
 </script>

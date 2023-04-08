@@ -23,9 +23,6 @@ const searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener("click", function (e) {
     if (search.value != "")
         window.location.href = "/search?searchQuery=" + search.value;
-
-
-
 })
 
 search.addEventListener("keypress", function (e) {
@@ -38,13 +35,6 @@ search.addEventListener("keypress", function (e) {
 
 const userAvatar = document.getElementById("userAvatar");
 const userInfoDropdown = document.getElementById("userInfoDropdown");
-userAvatar.addEventListener("click", function (e) {
-    if (userInfoDropdown.style.visibility == "visible") {
-        userInfoDropdown.style.visibility = "hidden";
-    } else {
-        userInfoDropdown.style.visibility = "visible";
-    }
-})
 if (userAvatar != null) {
     userAvatar.addEventListener("click", function (e) {
         if (userInfoDropdown.style.visibility == "visible") {

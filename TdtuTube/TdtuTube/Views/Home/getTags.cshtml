@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<TdtuTube.Models.Tag>
 <div class="tags-container" id="tagContainer">
-    <a href="/" class="tag-e bg-white py-1.5 px-3 rounded-full text-black">Tất cả</a>
+    <a href="#" onClick="displayVideos(event, '', true)" class="tag-e bg-white py-1.5 px-3 rounded-full text-black">Tất cả</a>
     @foreach (var i in Model)
     {
-        <a id="@i.meta" href="/@ViewBag.Meta/@i.meta"
+        <a href="#" onClick="displayVideos(event, '@i.meta', false)"
             class="tag-e bg-pillsBg hover:bg-gray-700
                py-1.5 px-3 rounded-full text-white border
                border-gray-700 transition duration-150">

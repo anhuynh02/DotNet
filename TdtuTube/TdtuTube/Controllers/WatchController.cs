@@ -19,6 +19,13 @@ namespace TdtuTube.Controllers
             var v = from i in db.Videos
                     where i.meta == meta
                     select i;
+            Video video = v.FirstOrDefault();
+            if (video != null)
+            {
+                video.view_count += 1;
+                db.Entry(video).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
             return View(v.FirstOrDefault());
         }
         public ActionResult getVideos(int videoId, int tagId)

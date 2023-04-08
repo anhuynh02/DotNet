@@ -52,17 +52,51 @@
                                                 <div class="font-btn">
                                                     @if (Session["UserID"] == null)
                                                     {
-                                                        <button class="btn-subscribe"><a href="/login">Đăng kí</a></button>
+                                                        <a href="/login"><button class="btn-subscribe">Đăng kí</button></a>
                                                     }
                                                     else
                                                     {
-
                                                         if ((int)Session["UserID"] != Model.User.id)
                                                         {
-                                                           
-                                                                {   Html.RenderAction("subscribeChannel", "Button", new { ownerId = Model.User.id }); }
-                                                            
+                                                            Html.RenderAction("getSubscribe", "Button", new { ownerId = Model.User.id });
                                                         }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="like-btn">
+                                                <div id="likeContainer" class="font-btn">
+                                                    @if (Session["UserID"] == null)
+                                                    {
+                                                        <a href="/login">
+                                                            <button class="btn-action">
+                                                                <i class="material-icons-outlined text-white md-18 icon-margin">thumb_up</i>
+                                                                @VideoFormat.readableNumber((int)@Model.like_count)
+                                                            </button>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        Html.RenderAction("getLike", "Button", new { videoId = Model.id });
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="playlist-btn">
+                                                <div class="font-btn">
+                                                    @if (Session["UserID"] == null)
+                                                    {
+                                                        <a href="/login">
+                                                            <button class="btn-action">
+                                                                <i class="material-icons-outlined text-white md-21 icon-margin">playlist_add</i>
+                                                                Lưu
+                                                            </button>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="btn-action">
+                                                            <i class="material-icons-outlined text-white md-21 icon-margin">playlist_add</i>
+                                                            Lưu
+                                                        </button>
                                                     }
                                                 </div>
                                             </div>
@@ -92,8 +126,6 @@
                                             if (Session["UserID"] != null)
                                             {
                                                 <img class="image-profile" src="@Session["UserAvatarPath"]" alt="IMAGE">
-
-
                                                 <div class="video-content-comment__form">
                                                     <input class="video-content-comment__video" type="hidden" name="video-id">
                                                     <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận...">
@@ -112,7 +144,6 @@
                                                 </div>
                                             }
                                         }
-
                                     </div>
                                 </div>
                                 <div class="video-content-comment__list">
@@ -129,11 +160,10 @@
                                             </div>
                                         </div>
                                     }
-
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                     @{Html.RenderAction("getVideos", "Watch", new { videoId = Model.id, tagId = Model.tag_id });}
                 </div>
@@ -149,11 +179,4 @@
     document.getElementById("mainContainer").classList.remove("lg:w-4/5");
     document.getElementById("mainContainer").classList.remove("xl:w-5/6");
     document.getElementById("mainContainer").classList.add("lg:w-5/5");
-    function subscribeAction(e) {
-        if (e.innerHTML === "Đăng ký") {
-            e.innerHTML = "Đã đăng ký";
-        } else {
-            e.innerHTML = "Đăng ký"
-        }
-    }
 </script>
