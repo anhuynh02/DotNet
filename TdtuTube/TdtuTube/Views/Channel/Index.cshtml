@@ -67,7 +67,7 @@
                     <a class="tab tab-active" href="/@ViewBag.Controller/@Model.meta/playlists">Danh sách phát</a>
                 </div>
                 <!-- Work in Progress -->
-                Html.RenderAction("getUserVideos", "Channel", new { userId = Model.id });
+                Html.RenderAction("getPlaylists", "Channel");
             }
         }
     </div>

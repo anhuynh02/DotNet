@@ -669,6 +669,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Button\getSubscribe.cshtml" />
     <Content Include="Views\Button\getLike.cshtml" />
+    <Content Include="Views\Channel\getPLaylists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

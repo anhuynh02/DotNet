@@ -44,3 +44,30 @@ if (userAvatar != null) {
         }
     })
 }
+
+function closePlaylist(btn) {
+    let items = document.getElementById("items");
+    let titleclose = document.getElementById("pl-title-close");
+    let titleopen = document.getElementById("pl-title-open");
+    let pso = document.getElementById("ps-open");
+    let psc = document.getElementById("ps-close");
+    let pl_header = document.getElementById("pl-header")
+    items.hidden = !items.hidden
+    if (items.hidden === true) {
+        pl_header.style.backgroundColor = "#122233f2"
+    } else {
+        pl_header.style.backgroundColor = "#212121"
+    }
+    pso.hidden = !pso.hidden
+    psc.hidden = !psc.hidden
+    titleclose.hidden = !titleclose.hidden
+    titleopen.hidden = !titleopen.hidden
+
+    closeBtn = btn.children[0]
+    if (closeBtn.innerText != "expand_more") {
+        closeBtn.innerText = "expand_more"
+    } else {
+        closeBtn.innerText = "close"
+    }
+
+}

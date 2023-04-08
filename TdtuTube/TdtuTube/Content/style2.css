@@ -860,3 +860,21 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
     vertical-align: middle;
     margin-right: 5px;
 }
+
+.playlist-overlay {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+    color: white;
+}
