@@ -1,0 +1,84 @@
+﻿@model TdtuTube.Models.Video
+
+@{
+    ViewBag.Title = "Upload Video";
+    Layout = "~/Views/Shared/Header.cshtml";
+}
+
+<div class="studio-container lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="">
+    <div class="get-video-first" id="uploadVideo">
+        @using (Html.BeginForm("uploadVideo", "Studio",FormMethod.Post, new { enctype = "multipart/form-data", @class = "create-form" }))
+        {
+            @Html.AntiForgeryToken();
+            @Html.ValidationSummary(true)
+            <div id="firstPart">
+                <img id="upload-img" src="~/Uploads/images/upload.png" width="300" height="300">
+                <label class="label" for="getVid">
+                    <input type="file" class="create-form-file" name="vid" id="getVid" accept=".mov,.MPEG-1,.MP4" hidden required />
+                    <span id="label-title">Lựa chọn video của mình để đăng tải</span>
+                </label>
+            </div>
+            <div id="secondPart" style="display: none">
+                <div class="create-result" id="review">
+                    <p class="result-title">Chi tiết video</p>
+                    <div class="result-content-inside">
+                        <!--<video class="result-video" controls autoplay>
+        <source src="/Uploads/Videos/1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>-->
+                        <div class="result-content-vid">
+                            <img class="result-img" src="~/Uploads/Thumbnails/1.png" />
+                            <div class="result-tad">
+                                <h3 class="result-words" id="result-title-video">Title goes here</h3>
+                                <p class="result-words-des" id="result-des-video">Your video description goes here.</p>
+                                <progress id="progressBar" value="0" max="100" style="width:100%;background-color:red"></progress>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    $("#getVid").change(function () {
+        var formdata = new FormData(); //FormData object
+        var fileInput = document.getElementById('getVid');
+        //Iterating through each files selected in fileInput
+        for (i = 0; i < fileInput.files.length; i++) {
+            //Appending each file to FormData object
+            formdata.append(fileInput.files[i].name, fileInput.files[i]);
+        }
+        console.log(fileInput.files.length)
+        $.ajax({
+            xhr: function () {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function (evt) {
+                    if (evt.lengthComputable) {
+                        var percentComplete = Math.floor((evt.loaded / evt.total) * 100)
+                        console.log(percentComplete);
+                        $('#progressBar').val(percentComplete)
+                    }
+                }, false)
+
+                return xhr
+            },
+            type: 'POST',
+            url: "@Url.Action("getProcess","Studio")",
+            data: formdata,
+            processData: false,
+            success: function (data) {
+                console.log("Success")
+                var html = $("#secondPart").html()
+
+                $("#firstPart").css("display", "none")
+                $("#secondPart").css("display", "block")
+                $("#secondPart").html(html + data)
+            },
+            error: function (response) {
+                alert("error")
+            }
+        })
+    })
+</script>

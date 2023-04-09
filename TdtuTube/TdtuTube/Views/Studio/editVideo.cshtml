@@ -1,0 +1,112 @@
+﻿@model TdtuTube.Models.Video
+
+@{
+    ViewBag.Title = "editVideo";
+    Layout = "~/Views/Shared/Header.cshtml";
+}
+
+<div class="studio-container lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="">
+    <div class="get-video-first" id="uploadVideo">
+        <div class="create-result" id="review">
+            <p class="result-title">Chi tiết video</p>
+            <div class="result-content-inside">
+                <!--<video class="result-video" controls autoplay>
+                <source src="/Uploads/Videos/1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>-->
+                <div class="result-content-vid">
+                    <img class="result-img" src="@Model.thumbnail" />
+                    <div class="result-tad">
+                        <h3 class="result-words" id="result-title-video">Title goes here</h3>
+                        <p class="result-words-des" id="result-des-video">Your video description goes here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm("editVideo", "Studio", FormMethod.Post, new { enctype = "multipart/form-data", @class = "create-form" }))
+        {
+            @Html.AntiForgeryToken();
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.title, "Tiêu đề", htmlAttributes: new { @class = "create-form-label" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "create-form-input", @id = "inputTitle", value = Model.title } })
+                    @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.description, "Mô tả", htmlAttributes: new { @class = "create-form-label", value = Model.description })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.description, new { @class = "create-form-textarea", @id = "inputDes" })
+                    @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="create-form-space">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.tag_id, "Chọn thẻ video", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("tag_id", (SelectList)ViewBag.tag_id, htmlAttributes: new { @class = "form-control", @id = "tag_id" })
+                        @Html.ValidationMessageFor(model => model.tag_id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.privacy, "Quyền riêng tư", htmlAttributes: new { @class = "create-form-label" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.DropDownListFor(model => model.privacy, new List<SelectListItem>()
+                       {
+                           new SelectListItem(){ Text= "Công khai", Value = "false"},
+                           new SelectListItem(){ Text= "Không công khai", Value = "true"}
+                       }, "Chọn quyền riêng tư", new { @id = "privacy" })
+                            @Html.ValidationMessageFor(model => model.privacy, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div></div>
+            </div>
+
+
+            @Html.HiddenFor(model => model.user_id, new { Value = ViewBag.UserId })
+            @Html.HiddenFor(model => model.path)
+            @Html.HiddenFor(model => model.like_count, new { Value = 0 })
+            @Html.HiddenFor(model => model.view_count, new { Value = 0 })
+            @Html.HiddenFor(model => model.comment_count, new { Value = 0 })
+            @Html.HiddenFor(model => model.feature, new { Value = false })
+            @Html.HiddenFor(model => model.hide, new { Value = false })
+
+            @Html.HiddenFor(model => model.length)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.thumbnail, "Chọn ảnh thumbnail", htmlAttributes: new { @class = "create-form-label" })
+                <div class="col-md-10">
+                    <input type="file" class="create-form-file" name="img" id="inputImg" accept=".jpg,.png,.gif,.jpeg,.bmp" />
+                    @Html.ValidationMessageFor(model => model.thumbnail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            @Html.HiddenFor(model => model.meta)
+            @Html.HiddenFor(model => model.datebegin)
+            @Html.HiddenFor(model => model.id, new { Value = Model.id})
+            @Html.HiddenFor(model => model.status, new { Value = false })
+            @Html.HiddenFor(model => model.order, new { Value = 0 })
+
+
+            <div class="form-group">
+                <input type="submit" value="Upload" class="create-form-btn" />
+            </div>
+        }
+    </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="~/Scripts/uploadVideo.js"></script>
+    <script>
+        console.log("@Model.tag_id")
+        document.getElementById("tag_id").value = "@Model.tag_id"
+        document.getElementById("privacy").value = "@Model.privacy".toLowerCase()
+    </script>
+

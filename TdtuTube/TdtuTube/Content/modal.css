@@ -1,0 +1,65 @@
+#popup{
+    position: fixed;
+    background-color: white;
+    padding:30px;
+    width: 700px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 7);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    border-radius: 5px;
+    height:max-content;
+}
+
+#popup.active{
+    top:20%;
+    left:30%;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+}
+
+.delete-modal-title{
+    font-size: 25px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.delete-modal-content{
+    margin-left: 10px
+}
+
+#deleteTitle {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.delete-word{
+    font-size: 15px;
+    color: gray;
+}
+
+.delete-modal-footer{
+    padding-top:20px;
+}
+
+.delete-modal-dismiss{
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-modal-submit {
+    color: blue;
+    margin-left: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.delete-modal-dismiss:hover{
+    opacity: 0.7;
+}
+
+.delete-modal-submit:hover {
+    opacity: 0.7;
+}
