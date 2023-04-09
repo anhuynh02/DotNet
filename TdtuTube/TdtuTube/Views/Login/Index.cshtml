@@ -65,13 +65,13 @@
                 @Html.Label("Name")
             </div>
             <div class="txt_field">
-                @Html.PasswordFor(u => u.password, new { @required = "required", @placeholder = " ", @id = "signupPw" })
+                @Html.PasswordFor(u => u.password, new { @required = "required", @placeholder = " ", @id = "signupPw", @onkeyup = "checkPass()" })
                 <span></span>
                 @Html.Label("Password")
 
             </div>
             <div class="txt_field">
-                <input type="password" onkeyup="checkPass(this)" required placeholder=" " id="signupCfPw" />
+                <input type="password" onkeyup="checkPass()" required placeholder=" " id="signupCfPw" />
                 <span></span>
                 <label>Re-Enter Password</label>
             </div>
@@ -87,11 +87,12 @@
         }
     </div>
     <script>
-        let a = document.getElementById("signupCfPw")
-        function checkPass(a) {
+        
+        function checkPass() {
+            let a = document.getElementById("signupCfPw")
             let pw = document.getElementById("signupPw").value
             let signupBtn = document.getElementById("signupBtn")
-            if (a.value == pw) {
+            if (a.value == pw && a.value != "" && pw != "") {
                 signupBtn.hidden = false
             } else {
                 signupBtn.hidden = true
