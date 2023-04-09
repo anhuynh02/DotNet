@@ -66,7 +66,6 @@ namespace TdtuTube.Controllers
                     user1.name = name;
                     user1.password = BC.HashPassword(password);
                     user1.avatar_path = "/Uploads/Avatars/default.PNG";
-                    user1.meta = "@" + user1.id;
                     user1.role_id = 1;
                     user1.hide = false;
                     user1.order = 0;
@@ -79,6 +78,12 @@ namespace TdtuTube.Controllers
                             where i.email == email
                             select i;
                     var user2 = p.FirstOrDefault();
+                    if (user2 != null) {
+                        User temp = user2;
+                        temp.meta = "@"+user2.id;
+                        db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
                         Session["UserID"] = user2.id;
                         Session["UserRoleID"] = user2.role_id;
                         Session["UserName"] = user2.name;
