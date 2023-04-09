@@ -31,7 +31,7 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
-            routes.MapRoute("Watch", "{type}/{meta}/{action}/{id}",
+            routes.MapRoute("Watch", "{type}/{meta}",
                 new { controller = "Watch", action = "Index", meta = UrlParameter.Optional },
                 new RouteValueDictionary
                 {

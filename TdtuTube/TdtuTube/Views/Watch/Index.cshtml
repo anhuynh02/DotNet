@@ -1,6 +1,8 @@
 ﻿@model TdtuTube.Models.Video
 @using TdtuTube.Libs
 @{
+    var plid = "";
+    int plid2;
     ViewBag.Title = "TdtuTude";
 }
 
@@ -8,9 +10,22 @@
 
     <div id="container-video" style="margin-left: 4rem; margin-top: 4.5rem">
 
+
+
+
+
         @if (Model == null)
         {
-            <h1>Video không tồn tại</h1>
+            if (Request.QueryString["playlist"] != null)
+            {
+                plid = Request.QueryString["playlist"];
+                 Html.RenderAction("getPlaylistVideo", "Channel", new { playlistId =  plid}); 
+            }
+            else
+            {
+                plid = "Video không tồn tại";
+            }
+            
         }
         else if (Model.privacy == true)
         {
@@ -101,7 +116,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
 
                                     </div>
                                     <div class="video-content-description">
@@ -137,7 +152,7 @@
                                             {
                                                 <img class="image-profile" src="~/Uploads/Avatars/Default.png" alt="IMAGE">
                                                 <div class="video-content-comment__form">
-                                                    <input class="video-content-comment__video" type="hidden" name="video-id">                                                    
+                                                    <input class="video-content-comment__video" type="hidden" name="video-id">
                                                     <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận..." onclick="location.href='/login'">
                                                     <div class="video-content-comment__line"></div>
                                                     <button class="btn-comment" type="submit" disabled>Bình luận</button>

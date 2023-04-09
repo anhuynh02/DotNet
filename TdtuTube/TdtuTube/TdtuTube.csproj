@@ -670,6 +670,7 @@
     <Content Include="Views\Button\getSubscribe.cshtml" />
     <Content Include="Views\Button\getLike.cshtml" />
     <Content Include="Views\Channel\getPLaylists.cshtml" />
+    <Content Include="Views\Channel\getPlaylistVideo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
