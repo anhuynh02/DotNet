@@ -49,7 +49,7 @@
     <div id="register-form" class="center" style="display: none">
         <a href="@Session["ReturnURL"]"><i class="material-icons text-white cursor-pointer back-home-page">keyboard_arrow_left</i></a>
         <h1 style="position: relative">Register</h1>
-        @using (Html.BeginForm("PostLogin", "Login", FormMethod.Post))
+        @using (Html.BeginForm("PostSignUp", "Login", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -65,13 +65,13 @@
                 @Html.Label("Name")
             </div>
             <div class="txt_field">
-                @Html.PasswordFor(u => u.password, new { @required = "required", @placeholder = " " })
+                @Html.PasswordFor(u => u.password, new { @required = "required", @placeholder = " ", @id = "signupPw" })
                 <span></span>
                 @Html.Label("Password")
 
             </div>
             <div class="txt_field">
-                <input type="password" required placeholder=" " />
+                <input type="password" onkeyup="checkPass(this)" required placeholder=" " id="signupCfPw" />
                 <span></span>
                 <label>Re-Enter Password</label>
             </div>
@@ -79,7 +79,7 @@
                 @Html.ValidationMessageFor(u => u.email)
                 @Html.ValidationMessageFor(u => u.password)
             </div>
-            <input type="submit" value="Login">
+            <input id="signupBtn" type="submit" value="Sign Up" hidden>
             <div class="signup_link">
                 Have account <a onclick="toggleLogin()">Login here !!</a>
             </div>
@@ -87,6 +87,17 @@
         }
     </div>
     <script>
+        let a = document.getElementById("signupCfPw")
+        function checkPass(a) {
+            let pw = document.getElementById("signupPw").value
+            let signupBtn = document.getElementById("signupBtn")
+            if (a.value == pw) {
+                signupBtn.hidden = false
+            } else {
+                signupBtn.hidden = true
+            }
+
+        }
         function toggleLogin() {
            
             let login = document.getElementById("login-form");
