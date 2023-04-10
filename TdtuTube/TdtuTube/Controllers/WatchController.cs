@@ -13,9 +13,26 @@ namespace TdtuTube.Controllers
     {
         // GET: Watch
         private TdtuTubeEntities db = new TdtuTubeEntities();
-        public ActionResult Index(string meta)
+        public ActionResult Index(string meta, string list, string listmeta)
         {
-            ViewBag.Meta = meta;
+            if (list == "playlist")
+            {
+                var exist = from i in db.Playlists
+                            where i.meta == listmeta
+                            select i;
+                if (exist.FirstOrDefault() != null)
+                {
+                    ViewBag.PlaylistMeta = listmeta;
+                }
+                else
+                {
+                    return Redirect("/watch/" + meta);
+                }
+            }
+            else
+            {
+                return Redirect("/watch/" + meta);
+            }
             var v = from i in db.Videos
                     where i.meta == meta
                     select i;
@@ -27,6 +44,7 @@ namespace TdtuTube.Controllers
                 db.SaveChanges();
             }
             return View(v.FirstOrDefault());
+
         }
         public ActionResult getVideos(int videoId, int tagId)
         {
@@ -36,7 +54,13 @@ namespace TdtuTube.Controllers
                     select i;
             return PartialView(v.ToList());
         }
-        
-       
+        public ActionResult getPlaylist(int playlistId)
+        {
+            var v = from i in db.PlaylistContents
+                    where i.playlist_id == playlistId && i.hide == false
+                    select i;
+            return PartialView(v.ToList());
+        }
+
     }
 }

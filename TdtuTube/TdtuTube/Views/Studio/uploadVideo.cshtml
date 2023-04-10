@@ -111,9 +111,18 @@
         <p class="back-link">@Html.ActionLink("--> Trở lại kênh <--", "Index")</p>
     </div>
 </div>
-@if(ViewBag.result != null){ 
+@if (ViewBag.result != null)
+{
     <h1>ViewBag.result</h1>
 }
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="~/Scripts/uploadVideo.js"></script>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#inputDes').ckeditor();
+    });
+    var editor = CKEDITOR.replace("inputDes")
+    customConfig: '~/Scripts/ckeditor/ckeditor.js'
+</script>

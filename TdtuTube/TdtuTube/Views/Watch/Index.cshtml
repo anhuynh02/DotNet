@@ -1,8 +1,6 @@
 ﻿@model TdtuTube.Models.Video
 @using TdtuTube.Libs
 @{
-    var plid = "";
-    int plid2;
     ViewBag.Title = "TdtuTude";
 }
 
@@ -12,16 +10,7 @@
 
         @if (Model == null)
         {
-            if (Request.QueryString["playlist"] != null)
-            {
-                plid = Request.QueryString["playlist"];
-                 Html.RenderAction("getPlaylistVideo", "Channel", new { playlistId =  plid}); 
-            }
-            else
-            {
-                plid = "Video không tồn tại";
-            }
-            
+            <h1>Video không tồn tại</h1>
         }
         else if (Model.privacy == true)
         {
@@ -41,6 +30,11 @@
                                 Your browser does not support the video tag.
                             </video>
                         </div>
+
+                        @if (ViewBag.PlaylistMeta != null)
+                        {
+                            Html.RenderAction("getPlaylist", "Watch", new { playlistId = ViewBag.PlaylistMeta });
+                        }
 
                         <div class="video-content">
                             <div class="video-content-heading">

@@ -1,9 +1,11 @@
 ﻿@using TdtuTube.Libs
 @model IEnumerable<TdtuTube.Models.Video>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /><div class="table-display">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="~/Content/modal.css" />
+<div class="table-display">
     <div class="title-table-container">
         <table class="title-table">
-            <thead style="text-align:center;"">
+            <thead style="text-align:center;" ">
                 <tr>
                     <th colspan="2">Video</th>
                 </tr>
@@ -12,15 +14,15 @@
                 @foreach (var i in Model)
                 {
                     <tr>
-                        
+
                         <td colspan="2">
                             <div style="display:flex;flex-direction:row;align-items:center">
-                                <img src="@i.thumbnail" style="width:100px;height:90px;padding-right:10px"/>
+                                <img src="@i.thumbnail" style="width:100px;height:90px;padding-right:10px" />
                                 <div>
-                                    <p>@VideoFormat.titleShortening(@i.title,28)</p>
+                                    <p>@VideoFormat.titleShortening(@i.title, 28)</p>
                                     <div style="float:left;">
-                                        <i style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i>
-                                        <i style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
+                                        <a href="@Url.Action("editVideo","Studio", new {id = i.id})"><i style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i></a>
+                                        <i onclick='toggleClass("@i.id","@i.title", "@i.thumbnail","@i.description","@i.length")' style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
                                     </div>
                                 </div>
                             </div>
@@ -63,3 +65,58 @@
         </table>
     </div>
 </div>
+
+<div id="popup">
+    <h1 class="delete-modal-title">Xóa vĩnh viễn video này</h1>
+    <div style="display:flex;flex-direction:row;">
+        <img src="" id="deleteImg" style="width:100px;height:90px;padding-right:10px" />
+        <div class="delete-modal-content">
+            <h3 id="deleteTitle"></h3>
+            <p id="deleteDes" class="delete-word"></p>
+            <p id="deleteLen" class="delete-word"></p>
+        </div>
+    </div>
+    <form action="@Url.Action("deleteVideo","Studio")" method="post" class="delete-modal-footer">
+        <input type="hidden" name="id" value="" id="deleteInput" />
+        <input type="checkbox" id="deleteCheck" />
+        <label for="deleteCheck">Tôi hiểu rằng video sẽ bị xóa vĩnh viễn và không thể khôi phục</label><br />
+
+        <div style="display:flex;flex-direction:row;float: right">
+            <input type="button" onclick="removeModal()" class="delete-modal-dismiss" value="Hủy">
+            <input type="submit" class="delete-modal-submit" disabled value="Xác nhận">
+        </div>
+    </form>
+</div>
+<script>
+    function toggleClass(id,title, img, des, len) {
+        var popup = document.querySelector("#popup")
+        popup.classList.toggle("active")
+
+        document.getElementById("deleteInput").value = id
+        document.getElementById("deleteImg").src = img
+        document.getElementById("deleteTitle").innerText = title
+        document.getElementById("deleteDes").innerText = des
+        document.getElementById("deleteLen").innerText = len
+
+        var body = document.querySelector("body")
+        body.classList.toggle("active")
+    }
+
+    var checkbox = document.getElementById("deleteCheck")
+    var submitBtn = document.querySelector(".delete-modal-submit")
+    checkbox.addEventListener("change", function(){
+        if (checkbox.checked) {
+            console.log("checked")
+            submitBtn.disabled = false
+        } else {
+            console.log("unchecked")
+            submitBtn.disabled = true
+        }
+    })
+
+    function removeModal() {
+        var popup = document.querySelector("#popup")
+        popup.classList.toggle("active")
+    }
+
+</script>

@@ -26,7 +26,7 @@
             <div>
                 <button class="studio-upload-btn">
                     <i class="fa-solid fa-video"></i>
-                    <a class="create-vid-link" href='@Url.Action("uploadVideo", "Studio")'>Thêm một video mới</a>
+                    <a class="create-vid-link" href='@Url.Action("getVideo", "Studio")'>Thêm một video mới</a>
                 </button>
                 @{Html.RenderAction("GetInfoVideo", "Studio", new { userId = Model.id });}
             </div>

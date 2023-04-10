@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TdtuTube.Models.PlaylistContent>
+@using TdtuTube.Libs
+<div class="playlist-panel">
+    <div id="pl-header" class="playlist-header" style="color: white; position: relative">
+        <div class="header-content">
+            <div class="header-top-row">
+                <div class="header-description">
+                    <h3 id="pl-title-open" style="font-size: 20px;">
+                        <span>
+                            @Model.FirstOrDefault().Playlist.name
+                        </span>
+                    </h3>
+
+                    <h3 id="pl-title-close" style="font-size: 14px;" hidden>
+                        Tên bài tiếp theo
+                    </h3>
+
+                    <div class="publisher-container">
+                        <span id="ps-close" style="color:#a3c7cc !important" hidden>@Model.FirstOrDefault().Playlist.name</span>
+                        <span id="ps-open">TdtuTube</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <span onclick="closePlaylist(this)" class="close-playlist-btn">
+            <i class="material-icons text-gray-400 md-21">close</i>
+        </span>
+
+    </div>
+    <div id="items">
+        @foreach (var i in Model)
+        {
+            <div class="playlist-items">
+                <div href="#" id="wc-endpoint">
+                    <div class="playlist-item-container">
+                        <div class="pl-thumbnail-container">
+                            <div class="pl-thumbnails">
+                                <a href="#" class="pl-thumbnail">
+                                    <img src="@i.Video.thumbnail" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="playlist-meta">
+                            <h4>
+                                @i.Video.title
+                            </h4>
+                            <div class="byline-container">
+                                <span class="byline">
+                                    @i.Video.User.name
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using TdtuTube.Models;
 
@@ -16,24 +18,114 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index(string meta)
         {
+            if (Session["UserId"] == null)
+            {
+                return Redirect("/login");
+            }
+            var userMeta = Session["UserMeta"];
             ViewBag.Type = "studio";
             ViewBag.Meta = meta;
             var v = from i in db.Users
-                    where i.meta == "@1" //Tạm thời set cứng id
+                    where i.meta == (string)userMeta
                     select i;
             return View(v.FirstOrDefault());
         }
+
+        [HttpGet]
         public ActionResult uploadVideo()
         {
-            ViewBag.Type = "studio";
+            ViewBag.UserId = (int)Session["UserID"];
             ViewBag.tag_id = new SelectList(db.Tags, "id", "name");
-            ViewBag.user_id = new SelectList(db.Users, "id", "name");
-            return View();
+            ViewBag.Type = "studio";
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult deleteVideo(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Content("Cannot get that id");
+            }
+
+            Video video = db.Videos.Find(id);
+            db.Videos.Remove(video);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult getProcess()
+        {
+            ViewBag.UserId = (int)Session["UserID"];
+            ViewBag.tag_id = new SelectList(db.Tags, "id", "name");
+            ViewBag.Type = "studio";
+            return PartialView();
+        }
+
+        public ActionResult editVideo(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            long videoId = Convert.ToInt64(id);
+            var v = from i in db.Videos
+                    where i.id == videoId
+                    select i;
+            if (v == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.UserId = (int)Session["UserID"];
+            ViewBag.tag_id = new SelectList(db.Tags, "id", "name");
+            ViewBag.Type = "studio";
+            return View(v.FirstOrDefault());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateInput(true)]
+        [ValidateInput(false)]
+        public ActionResult editVideo([Bind(Include = "id,user_id,tag_id,title,description,like_count,view_count,comment_count,privacy,length,thumbnail,path,feature,meta,hide,order,datebegin,status")] Video video, HttpPostedFileBase img)
+        {
+            try
+            {
+                Video temp = db.Videos.Find(video.id);
+                string imgPath = "";
+                string imgName = "";
+                if (ModelState.IsValid)
+                {
+                    if (img != null)
+                    {
+                        imgName = img.FileName;
+                        imgPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Thumbnails/"), imgName);
+                        img.SaveAs(imgPath);
+                        temp.thumbnail = "/Uploads/Thumbnails/" + imgName;
+                    }
+                    temp.title = video.title;
+                    temp.description = video.description;
+                    temp.privacy = video.privacy;
+                    temp.tag_id = video.tag_id;
+                    db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Index");
+
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult uploadVideo([Bind(Include = "id,user_id,tag_id,title,description,like_count,view_count,comment_count,privacy,length,thumbnail,path,feature,meta,hide,order,datebegin,status")] Video video, HttpPostedFileBase img, HttpPostedFileBase vid)
         {
             try
@@ -44,31 +136,32 @@ namespace TdtuTube.Controllers
                 string vidName = "";
                 if (ModelState.IsValid)
                 {
-                    if(vid != null)
+                    if (img != null)
                     {
-                        if(img != null)
-                        {
-                            imgName = img.FileName;
-                            imgPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Thumbnails/"), imgName);
-                            img.SaveAs(imgPath);
-                            video.thumbnail = "/Uploads/Thumbnails/" + imgName;
-                        }
-                        else
-                        {
-                            video.thumbnail = "/Uploads/Thumbnails/default.png";
-                        }
-                        vidName = vid.FileName;
-                        vidPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Videos/"), vidName);
-                        vid.SaveAs(vidPath);
-                        video.path = "/Uploads/Videos/" + vidName;
+                        imgName = img.FileName;
+                        imgPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Thumbnails/"), imgName);
+                        img.SaveAs(imgPath);
+                        video.thumbnail = "/Uploads/Thumbnails/" + imgName;
                     }
-                    video.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                    video.length = "0:00";
-                    ViewBag.result = "Thêm thành công";
-                    db.Videos.Add(video);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    else
+                    {
+                        video.thumbnail = "/Uploads/Thumbnails/default.png";
+                    }
+                    vidName = vid.FileName;
+                    vidPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Videos/"), vidName);
+                    vid.SaveAs(vidPath);
+                    video.path = "/Uploads/Videos/" + vidName;
                 }
+                video.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                video.length = "0:00";
+                video.status = false;
+                int? vidId = db.Videos.Max(v => (int?)v.id) + 1;
+                video.meta = vidId.ToString();
+                ViewBag.result = "Thêm thành công";
+                db.Videos.Add(video);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
             }
             catch (DbEntityValidationException e)
             {
@@ -78,8 +171,8 @@ namespace TdtuTube.Controllers
             {
                 throw ex;
             }
-            return View(video);
         }
+
 
         public ActionResult GetInfoVideo(int userId)
         {
@@ -90,11 +183,16 @@ namespace TdtuTube.Controllers
             return PartialView(v.ToList());
         }
 
-        
+
 
         public void getTags(long? selectedId = null)
         {
             ViewBag.Tag = new SelectList(db.Tags.Where(x => x.hide == false).OrderBy(x => x.order), "id", "name", selectedId);
+        }
+
+        public ActionResult getVideo()
+        {
+            return View();
         }
     }
 }

@@ -28,19 +28,10 @@ namespace TdtuTube.Controllers
                     select i;
             return PartialView(v.ToList());
         }
-        public ActionResult getPLaylists()
+        public ActionResult getPLaylists(int userId)
         {
-            int userId = (int)Session["UserID"];
             var v = from i in db.Playlists
                     where i.user_id == userId
-                    select i;
-            return PartialView(v.ToList());
-        }
-
-        public ActionResult getPlaylistVideo(int playlistId)
-        {
-            var v = from i in db.PlaylistContents
-                    where i.id != playlistId && i.hide == false
                     select i;
             return PartialView(v.ToList());
         }
