@@ -851,6 +851,7 @@
     <Content Include="Views\Studio\getProcess.cshtml" />
     <Content Include="Views\Studio\getVideo.cshtml" />
     <Content Include="Views\Studio\editVideo.cshtml" />
+    <Content Include="Views\Watch\getVideoComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

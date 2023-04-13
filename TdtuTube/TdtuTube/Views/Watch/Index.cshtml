@@ -122,58 +122,14 @@
                             <div class="reload-comment">
 
                             </div>
-                            <div class="video-comment">
-                                <div class="video-content-comment">
-                                    <div class="video-content-comment__number">@Model.comment_count bình luận</div>
-                                    <div class="video-content-comment__post">
-                                        <!-- Check session image. -->
-                                        @{
-                                            if (Session["UserID"] != null)
-                                            {
-                                                <img class="image-profile" src="@Session["UserAvatarPath"]" alt="IMAGE">
-                                                <div class="video-content-comment__form">
-                                                    <input class="video-content-comment__video" type="hidden" name="video-id">
-                                                    <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận...">
-                                                    <div class="video-content-comment__line"></div>
-                                                    <button class="btn-comment" type="submit" disabled>Bình luận</button>
-                                                </div>
-                                            }
-                                            else
-                                            {
-                                                <img class="image-profile" src="~/Uploads/Avatars/Default.png" alt="IMAGE">
-                                                <div class="video-content-comment__form">
-                                                    <input class="video-content-comment__video" type="hidden" name="video-id">
-                                                    <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận..." onclick="location.href='/login'">
-                                                    <div class="video-content-comment__line"></div>
-                                                    <button class="btn-comment" type="submit" disabled>Bình luận</button>
-                                                </div>
-                                            }
-                                        }
-                                    </div>
-                                </div>
-                                <div class="video-content-comment__list">
-                                    @foreach (var i in Model.Comments)
-                                    {
-                                        <div class="video-content-comment__item">
-                                            <img class="image-profile" src="@i.User.avatar_path" alt="IMAGE">
-                                            <div class="video-content-comment__item-heading">
-                                                <div>
-                                                    <span>@i.User.name</span>
-                                                    <span>@VideoFormat.dateAgo((DateTime)i.datebegin)</span>
-                                                </div>
-                                                <p>@i.content</p>
-                                            </div>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
+                            @{ Html.RenderAction("getVideoComments", "Watch", new {videoId = Model.id});}
 
                         </div>
                     </div>
                     @{Html.RenderAction("getVideos", "Watch", new { videoId = Model.id, tagId = Model.tag_id });}
                 </div>
             </div>
-        }
+                        }
     </div>
 
 </div>
@@ -184,4 +140,24 @@
     document.getElementById("mainContainer").classList.remove("lg:w-4/5");
     document.getElementById("mainContainer").classList.remove("xl:w-5/6");
     document.getElementById("mainContainer").classList.add("lg:w-5/5");
+    let comment = document.getElementById("comment-input");
+    let commentBtn = document.getElementById("commentBtn")
+    function checkCommentBtn() {
+        console.log(commentBtn.disabled);
+        if (comment.value != "") {
+            commentBtn.disabled = false
+        } else {
+            commentBtn.disabled = true
+        }
+    }
+
+    comment.addEventListener('keydown', function () {
+        var el = this;
+        setTimeout(function () {
+            el.style.cssText = 'height: 24px;';
+            el.style.cssText = 'height:' + el.scrollHeight + 'px';
+        }, 0);
+    });
+    
+
 </script>

@@ -1,0 +1,85 @@
+﻿@model TdtuTube.Models.Video
+@using TdtuTube.Libs
+<div class="video-comment">
+    <div class="video-content-comment">
+        <div class="video-content-comment__number">@Model.comment_count bình luận</div>
+        <div class="video-content-comment__post">
+            <!-- Check session image. -->
+            @{
+                if (Session["UserID"] != null)
+                {
+
+                    <img class="image-profile" src="@Session["UserAvatarPath"]" alt="IMAGE">
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="video-content-comment__form">
+                        <input id="videoId" class="video-content-comment__video" type="hidden" name="video-id" value="@Model.id">
+                        <textarea id="comment-input" placeholder="Nhập bình luận..." class="comment-input" onkeyup="checkCommentBtn()"></textarea>
+                        <button id="commentBtn" class="btn-comment cmt-button" type="submit" disabled>Bình luận</button>
+                    </div>
+                }
+                else
+                {
+                    <img class="image-profile" src="~/Uploads/Avatars/Default.png" alt="IMAGE">
+                    <div class="video-content-comment__form">
+                        <input class="video-content-comment__video" type="hidden" name="video-id">
+                        <input class="video-content-comment__input" type="text" name="comment" placeholder="Viết bình luận..." onclick="location.href='/login'">
+                        <div class="video-content-comment__line"></div>
+                        <button class="btn-comment" type="submit" disabled>Bình luận</button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="video-content-comment__list" id="videoCommentContainer">
+        @foreach (var i in Model.Comments)
+        {
+            <div class="video-content-comment__item">
+                <img class="image-profile" src="@i.User.avatar_path" alt="IMAGE">
+                <div class="video-content-comment__item-heading">
+                    <div>
+                        <span>@i.User.name</span>
+                        <span>@VideoFormat.dateAgo((DateTime)i.datebegin)</span>
+                    </div>
+                    <p>@i.content</p>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#commentBtn").click(function (e) {
+            console.log($("[name='__RequestVerificationToken']").val())
+            $.ajax({
+                url: "@Url.Action("postComment", "Button")",
+                type: "POST",
+                data: {
+                    content: $("#comment-input").val(),
+                    videoId: $('#videoId').val(),
+                    __RequestVerificationToken: $("[name='__RequestVerificationToken']").val()
+                },
+                success: function (data) {
+
+                    
+                   $.ajax({
+                        url: "@Url.Action("getVideoComments","Watch")",
+                        type: "GET",
+                        data: {
+                            videoId: $('#videoId').val()
+                        },
+                       success: function (data) {
+                           console.log(data)
+                          /* $("#videoCommentContainer").html(data);*/
+                        }
+                    });
+
+
+
+                    }
+            });
+        })
+    });
+</script>

@@ -29,7 +29,7 @@ namespace TdtuTube.Controllers
                     return Redirect("/watch/" + meta);
                 }
             }
-            else
+            else if(list != null)
             {
                 return Redirect("/watch/" + meta);
             }
@@ -60,6 +60,14 @@ namespace TdtuTube.Controllers
                     where i.playlist_id == playlistId && i.hide == false
                     select i;
             return PartialView(v.ToList());
+        }
+
+        public ActionResult getVideoComments(int videoId)
+        {
+            var v = from i in db.Videos
+                    where i.id == videoId && i.privacy == false && i.hide == false && i.status == false
+                    select i;
+            return PartialView(v.FirstOrDefault());
         }
 
     }

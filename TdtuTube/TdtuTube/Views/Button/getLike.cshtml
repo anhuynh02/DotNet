@@ -34,6 +34,7 @@
                             videoId: $('#videoId').val()
                         },
                         success: function (data) {
+                            console.log(data)
                             $("#likeContainer").html(data);
                         }
                     });

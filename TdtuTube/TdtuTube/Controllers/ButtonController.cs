@@ -94,5 +94,22 @@ namespace TdtuTube.Controllers
             Response.StatusCode = (int)HttpStatusCode.OK;
             return Content("Like success !!");
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult postComment(string content, int videoId)
+        {
+            Comment comment = new Comment();
+            comment.content = content;
+            comment.video_id = videoId;
+            comment.hide = false;
+            comment.order = 0;
+            comment.user_id = (int)Session["UserID"];
+            comment.datebegin = DateTime.Now;
+            db.Entry(comment).State = System.Data.Entity.EntityState.Added;
+            db.SaveChanges();
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return Content("Comment success !!");
+        }
+
     }
 }
