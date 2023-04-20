@@ -111,5 +111,15 @@ namespace TdtuTube.Controllers
             return Content("Comment success !!");
         }
 
+        public ActionResult getVideoComments(int videoId)
+        {
+            var v = from i in db.Videos
+                    where i.id == videoId && i.privacy == false && i.hide == false && i.status == false
+                    select i;
+            return PartialView(v.FirstOrDefault());
+        }
+        
+
+
     }
 }

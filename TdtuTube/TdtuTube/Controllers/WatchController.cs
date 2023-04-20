@@ -15,6 +15,7 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index(string meta, string list, string listmeta)
         {
+            
             if (list == "playlist")
             {
                 var exist = from i in db.Playlists
@@ -62,13 +63,7 @@ namespace TdtuTube.Controllers
             return PartialView(v.ToList());
         }
 
-        public ActionResult getVideoComments(int videoId)
-        {
-            var v = from i in db.Videos
-                    where i.id == videoId && i.privacy == false && i.hide == false && i.status == false
-                    select i;
-            return PartialView(v.FirstOrDefault());
-        }
+        
 
     }
 }

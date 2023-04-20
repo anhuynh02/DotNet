@@ -161,16 +161,32 @@ aside {
   line-height: 1.8rem;
   color: #AAAAAA;
 }
-.video-content-description{
-  background: rgba(255, 255, 255, 0.1);
-  padding: 10px;
-  border-radius: 10px;
+.video-content-description {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    max-height: 5rem;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    text-overflow:ellipsis;
 }
-.video-content-description-view{
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: normal;
-  margin-bottom: 8px;
+.video-content-description-view {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+.description-show {
+    max-height: initial;
+}
+.show-more-des{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #373737
 }
 .video-content-description-view span:first-child{
   margin-right: 10px;

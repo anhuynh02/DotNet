@@ -109,12 +109,15 @@
 
 
                                     </div>
-                                    <div class="video-content-description">
+                                    <div class="video-content-description" id="main-desc">
                                         <div class="video-content-description-view">
                                             <span>@VideoFormat.readableNumber((int)Model.view_count) lượt xem</span>
                                             <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
                                         </div>
                                         <p>@Model.description</p>
+                                        <div class="show-more-des" onclick="show_more()">
+                                            Xem thêm...
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +125,7 @@
                             <div class="reload-comment">
 
                             </div>
-                            @{ Html.RenderAction("getVideoComments", "Watch", new {videoId = Model.id});}
+                            @{ Html.RenderAction("getVideoComments", "Button", new {videoId = Model.id});}
 
                         </div>
                     </div>
@@ -149,6 +152,11 @@
         } else {
             commentBtn.disabled = true
         }
+    }
+
+    function show_more() {
+        let des = document.getElementById("main-desc");
+        des.classList.toggle('description-show')
     }
 
     comment.addEventListener('keydown', function () {

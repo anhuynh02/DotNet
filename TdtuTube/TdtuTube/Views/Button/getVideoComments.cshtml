@@ -1,6 +1,7 @@
-﻿@model TdtuTube.Models.Video
+﻿
+@model TdtuTube.Models.Video
 @using TdtuTube.Libs
-<div class="video-comment">
+<div class="video-comment" id="mainComment">
     <div class="video-content-comment">
         <div class="video-content-comment__number">@Model.comment_count bình luận</div>
         <div class="video-content-comment__post">
@@ -32,7 +33,7 @@
         </div>
     </div>
     <div class="video-content-comment__list" id="videoCommentContainer">
-        @foreach (var i in Model.Comments)
+        @foreach (var i in Model.Comments.OrderByDescending(t => t.datebegin))
         {
             <div class="video-content-comment__item">
                 <img class="image-profile" src="@i.User.avatar_path" alt="IMAGE">
@@ -63,16 +64,16 @@
                 },
                 success: function (data) {
 
-                    
+
                    $.ajax({
-                        url: "@Url.Action("getVideoComments","Watch")",
+                        url: "@Url.Action("getVideoComments","Button")",
                         type: "GET",
                         data: {
                             videoId: $('#videoId').val()
                         },
                        success: function (data) {
                            console.log(data)
-                          /* $("#videoCommentContainer").html(data);*/
+                           $("#mainComment").html(data);
                         }
                     });
 
