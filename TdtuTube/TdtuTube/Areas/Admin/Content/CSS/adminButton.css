@@ -1,0 +1,21 @@
+﻿
+
+.btnEdit {
+    color: #4154f1;
+    border: none;
+}
+
+.btnEdit:hover{
+    opacity: 0.8;
+    color: yellowgreen;
+}
+
+.btnDel {
+    color: #4154f1;
+    border: none;
+}
+
+.btnDel:hover {
+    color: red;
+    opacity: 0.8;
+}
