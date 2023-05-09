@@ -109,15 +109,13 @@
 
 
                                     </div>
-                                    <div class="video-content-description" id="main-desc">
+                                    <div class="video-content-description" id="main-desc" onclick="show_more(this)">
                                         <div class="video-content-description-view">
                                             <span>@VideoFormat.readableNumber((int)Model.view_count) lượt xem</span>
                                             <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
                                         </div>
                                         <p>@Model.description</p>
-                                        <div class="show-more-des" onclick="show_more()">
-                                            Xem thêm...
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -154,9 +152,10 @@
         }
     }
 
-    function show_more() {
+    function show_more(a) {
         let des = document.getElementById("main-desc");
         des.classList.toggle('description-show')
+        
     }
 
     comment.addEventListener('keydown', function () {

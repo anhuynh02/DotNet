@@ -72,7 +72,6 @@
                             videoId: $('#videoId').val()
                         },
                        success: function (data) {
-                           console.log(data)
                            $("#mainComment").html(data);
                         }
                     });
@@ -82,5 +81,8 @@
                     }
             });
         })
+        comment = document.getElementById("comment-input");
+        commentBtn = document.getElementById("commentBtn")
+        
     });
 </script>
