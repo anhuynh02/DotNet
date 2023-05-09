@@ -86,6 +86,16 @@
 
                             <div class="flex flex-col w-full mb-2">
 
+                            @if ((int)Session["UserRoleID"] == 1)
+                            {
+                                <a href="/admin">
+                                    <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
+                                        <i class="material-icons text-gray-400 md-21">admin_panel_settings</i>
+                                        <h2 class="text-sm text-white">Quản lý trang web</h2>
+                                    </div>
+                                </a>
+                            }
+
                                 <a href="/channel/@Session["UserMeta"]">
                                     <div class="flex items-center space-x-5 hover:bg-sideBarHoverBg px-7 py-2.5 cursor-pointer">
                                         <i class="material-icons text-gray-400 md-21">account_box</i>
