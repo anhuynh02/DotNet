@@ -53,7 +53,7 @@
 <script>
     $(document).ready(function () {
         $("#commentBtn").click(function (e) {
-            console.log($("[name='__RequestVerificationToken']").val())
+            // console.log($("[name='__RequestVerificationToken']").val())
             $.ajax({
                 url: "@Url.Action("postComment", "Button")",
                 type: "POST",
@@ -63,7 +63,6 @@
                     __RequestVerificationToken: $("[name='__RequestVerificationToken']").val()
                 },
                 success: function (data) {
-
 
                    $.ajax({
                         url: "@Url.Action("getVideoComments","Button")",
@@ -76,13 +75,10 @@
                         }
                     });
 
-
-
-                    }
+                }
             });
         })
         comment = document.getElementById("comment-input");
-        commentBtn = document.getElementById("commentBtn")
-        
+        commentBtn = document.getElementById("commentBtn");
     });
 </script>

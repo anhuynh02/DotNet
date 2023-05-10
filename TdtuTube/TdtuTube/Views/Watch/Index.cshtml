@@ -33,7 +33,7 @@
 
                         @if (ViewBag.PlaylistMeta != null)
                         {
-                            Html.RenderAction("getPlaylist", "Watch", new { playlistId = ViewBag.PlaylistMeta });
+                            Html.RenderAction("getPlaylist", "Watch", new { videoMeta = Model.meta, playlistMeta = ViewBag.PlaylistMeta });
                         }
 
                         <div class="video-content">
@@ -134,27 +134,26 @@
     </div>
 
 </div>
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
-    document.getElementById("sideBar").style.display = "none"
+    document.getElementById("sideBar").style.display = "none";
     document.getElementById("mainContainer").classList.remove("lg:ml-60");
     document.getElementById("mainContainer").classList.remove("lg:w-4/5");
     document.getElementById("mainContainer").classList.remove("xl:w-5/6");
     document.getElementById("mainContainer").classList.add("lg:w-5/5");
     let comment = document.getElementById("comment-input");
-    let commentBtn = document.getElementById("commentBtn")
+    let commentBtn = document.getElementById("commentBtn");
     function checkCommentBtn() {
-        console.log(commentBtn.disabled);
+        // console.log(commentBtn.disabled);
         if (comment.value != "") {
-            commentBtn.disabled = false
+            commentBtn.disabled = false;
         } else {
-            commentBtn.disabled = true
+            commentBtn.disabled = true;
         }
     }
 
     function show_more(a) {
         let des = document.getElementById("main-desc");
-        des.classList.toggle('description-show')
+        des.classList.toggle('description-show');
         
     }
 
@@ -165,6 +164,5 @@
             el.style.cssText = 'height:' + el.scrollHeight + 'px';
         }, 0);
     });
-    
 
 </script>

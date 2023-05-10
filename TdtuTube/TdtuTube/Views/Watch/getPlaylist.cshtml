@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<TdtuTube.Models.PlaylistContent>
 @using TdtuTube.Libs
+@{
+    int index = 0;
+    string itemBackground;
+    var playlist = Model.FirstOrDefault().Playlist;
+    bool isCurrVideo = false;
+    bool isNextVideo = false;
+}
 <div class="playlist-panel">
     <div id="pl-header" class="playlist-header" style="color: white; position: relative">
         <div class="header-content">
@@ -7,17 +14,17 @@
                 <div class="header-description">
                     <h3 id="pl-title-open" style="font-size: 20px;">
                         <span>
-                            @Model.FirstOrDefault().Playlist.name
+                            @playlist.name
                         </span>
                     </h3>
 
                     <h3 id="pl-title-close" style="font-size: 14px;" hidden>
-                        Tên bài tiếp theo
+                        Hết danh sách phát
                     </h3>
 
                     <div class="publisher-container">
-                        <span id="ps-close" style="color:#a3c7cc !important" hidden>@Model.FirstOrDefault().Playlist.name</span>
-                        <span id="ps-open">TdtuTube</span>
+                        <span id="ps-close" style="color:#a3c7cc !important" hidden>@playlist.name</span>
+                        <span id="ps-open">@playlist.User.name - @playlist.video_count video</span>
                     </div>
                 </div>
             </div>
@@ -31,14 +38,35 @@
     <div id="items">
         @foreach (var i in Model)
         {
-            <div class="playlist-items">
-                <div href="#" id="wc-endpoint">
+            index = index + 1;
+            if (ViewBag.VideoMeta != i.Video.meta)
+            {
+                itemBackground = "playlist-item-background";
+            }
+            else
+            {
+                itemBackground = "playlist-item-background-play";
+            }
+            <div onclick="window.location.href = '/watch/@i.Video.meta/playlist/@i.Playlist.meta';" class="@itemBackground playlist-items cursor-pointer">
+                <div id="wc-endpoint">
                     <div class="playlist-item-container">
+                        <div class="playlist-counter">
+                            @if (ViewBag.VideoMeta != i.Video.meta)
+                            {
+                                @index
+                            }
+                            else
+                            {
+                                <i class="material-icons text-white cursor-pointer">play_arrow</i>
+                                isCurrVideo = true;
+                            }
+                        </div>
                         <div class="pl-thumbnail-container">
                             <div class="pl-thumbnails">
-                                <a href="#" class="pl-thumbnail">
+                                <div class="pl-thumbnail">
                                     <img src="@i.Video.thumbnail" alt="">
-                                </a>
+                                    <span class="absolute right-1 bottom-1 p-0.5 px-1 rounded-sm bg-black text-white text-xs bg-opacity-70">@i.Video.length</span>
+                                </div>
                             </div>
                         </div>
                         <div class="playlist-meta">
@@ -54,6 +82,16 @@
                     </div>
                 </div>
             </div>
+            if (isNextVideo)
+            {
+                isNextVideo = false;
+                <script>document.getElementById("pl-title-close").textContent = "Tiếp theo: @i.Video.title";</script>
+            }
+            if (isCurrVideo)
+            {
+                isNextVideo = true;
+                isCurrVideo = false;
+            }
         }
     </div>
 </div>
