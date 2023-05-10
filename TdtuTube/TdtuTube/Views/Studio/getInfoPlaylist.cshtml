@@ -1,0 +1,141 @@
+﻿@using TdtuTube.Libs
+@model IEnumerable<TdtuTube.Models.Playlist>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="~/Content/studioPlaylistModal.css" />
+
+<!--Popup chỉnh sửa playlist-->
+<div id="editPopup">
+    <div class="edit-content">
+        <div class="edit-close" onclick="removeEditModal()">
+            <i style="cursor:pointer;color:#ffffff;" class="fa-solid fa-x fa-sm"></i>
+        </div>
+        <img class="edit-img" src="~/Uploads/Thumbnails/1.png" / alt="Hình đại diện playlist">
+        <form class="edit-form" action="@Url.Action("editPlaylist", "Studio")" method="post">
+            @Html.AntiForgeryToken();
+            <input type="hidden" name="id" id="editId" value="" />
+            <input class="edit-title" type="text" id="editName" name="name" value="Nhạc của tui">
+            <p class="edit-user">@Session["UserName"]</p>
+            <select class="edit-select" name="privacy" id="editPrivacy">
+                <option value="false" selected>Công khai</option>
+                <option value="true">Riêng tư</option>
+            </select>
+            <div class="edit-btn-contain">
+                <button type="submit" class="edit-btn">Lưu thay đổi</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--chỉnh sửa playlist-->
+
+<!--Popup xóa playlist-->
+<div id="delPopup">
+    <h1 class="del-title">Xóa vĩnh viễn playlist này</h1>
+    <form action="@Url.Action("deletePlaylist", "Studio")" method="post">
+        @Html.AntiForgeryToken()
+        <p class="del-word">Bạn có chắc muốn xóa danh sách "<span class="del-name" id="delName">Test</span>" không?</p>
+        <p class="del-word">Lưu ý: Thao tác này không thể thu hồi hay hủy bỏ sau khi đã xác nhận. Các video trong danh sách không bị xóa.</p>
+        <div style="display:flex;flex-direction:row;float: right">
+            <input type="button" onclick="removeDelModal()" class="del-btn" value="Hủy">
+            <input type="hidden" name="id" id="delId" />
+            <input type="submit" class="del-btn" value="Xác nhận">
+        </div>
+    </form>
+</div>
+<!--xóa playlist-->
+
+<div class="table-display">
+    <div class="title-table-container">
+        <table class="title-table">
+            <thead style="text-align:center;" ">
+                <tr>
+                    <th colspan="2">Danh sách phát</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <div style="display:flex;flex-direction:row;align-items:center">
+                                <a href="/watch/@p.PlaylistContents.FirstOrDefault().Video.meta/playlist/@p.meta">
+                                    <div style="height:6rem;" class="relative h-52 sm:h-36 w-full">
+                                        <img class="relative h-full w-full object-cover" src="@p.PlaylistContents.FirstOrDefault().Video.thumbnail" alt="">
+                                        <span class="playlist-overlay">
+                                            @p.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
+                                        </span>
+                                    </div>
+                                </a>
+                                <div style="margin-left: 10px">
+                                    <p>@VideoFormat.titleShortening(@p.name, 28)</p>
+                                    <div style="float:left;">
+                                        <i onclick="openEditModal(@p.id,'@p.name','@p.privacy.ToString().ToLower()')" style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i>
+                                        <i onclick="openDelModal(@p.id,'@p.name')" style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="content-table-container">
+        <table class="content-table">
+            <thead style="text-align:center;">
+                <tr>
+                    <th>Chế độ hiển thị</th>
+                    <th>Ngày cập nhật gần nhất</th>
+                    <th>Số lượng video</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        @if (@i.privacy)
+                        {
+                            <td>Riêng tư</td>
+                        }
+                        else
+                        {
+                            <td>Công khai</td>
+                        }
+                        <td>@i.dateedit</td>
+                        <td>@i.video_count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function openEditModal(id, name, privacy) {
+        var popup = document.querySelector("#editPopup")
+        popup.classList.toggle("active")
+
+        console.log(privacy)
+        document.getElementById("editId").value = id
+        document.getElementById("editName").value = name
+        document.getElementById("editPrivacy").value = privacy
+    }
+
+    function removeEditModal() {
+        var popup = document.querySelector("#editPopup")
+        popup.classList.toggle("active")
+    }
+
+    function openDelModal(id, name) {
+        var popup = document.querySelector("#delPopup")
+        popup.classList.toggle("active")
+
+        document.getElementById("delId").value = id
+        document.getElementById("delName").innerText = name
+    }
+
+    function removeDelModal() {
+        var popup = document.querySelector("#delPopup")
+        popup.classList.toggle("active")
+    }
+</script>
+
