@@ -6,7 +6,7 @@
 
 <div class="flex flex-col lg:ml-60 w-full lg:w-4/5 xl:w-5/6" id="mainContainer">
 
-    <div id="container-video" style="margin-left: 4rem; margin-top: 4.5rem">
+    <div id="container-video" style="margin-left: 4rem; margin-right: 4rem ;margin-top: 4.5rem">
 
         @if (Model == null)
         {
@@ -98,7 +98,7 @@
                                                     }
                                                     else
                                                     {
-                                                        <button class="btn-action">
+                                                        <button class="btn-action" id="addPlaylistBtn" onclick="show_modal()">
                                                             <i class="material-icons-outlined text-white md-21 icon-margin">playlist_add</i>
                                                             Lưu
                                                         </button>
@@ -131,9 +131,55 @@
                 </div>
             </div>
                         }
-    </div>
+         </div>
+            <div class="playlist-modal" id="playlistModal" hidden>
+                <div style="display: flex; flex-direction: row; align-items: center">
+                    <div class="playlist-modal-header">Lưu vào...</div>
+                    <div style="margin-right:14px">
+                        <button title="Hủy" onclick="close_modal()">
+                            <span class="close">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="playlist-add-items">
+                    <div class="playlist-add-item" style="margin-bottom: 14px; margin-left: 14px">
+                        <div class="playlist-item-ist">
+                            <label class="checkbox-container">
+                                One
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                            <div style="margin-right: 12px">
+                                <i class="material-icons text-gray-400 md-21">lock</i>
+                            </div>
+                            
+                        </div>
+                    </div>  
+                </div>
+                <div style="margin-left:14px;margin-bottom: 14px; margin-right:14px">
+                    <div class="txt_field">
+                        <label>
+                            Tên
+                        </label>
+                        <input class="modal-text"  type="text"/>
+                    </div>
+                    <div>
+                        <label>Quyền riêng tư</label>
+                        <select class="modal-option">
+                            <option style="color:black" value="0">Riêng tư</option>
+                            <option style="color:black" value="1">Công khai</option>
+                        </select>
+                    </div>
+                    <div style="float: right; margin: 7px 0 7px 0" class="playlist-modal-button">
+                        <button style="color: #3ea6ff; right:0">
+                            Tạo
+                        </button>
+                    </div>
+                </div>
 
-</div>
+            </div>
+        </div>
 <script>
     document.getElementById("sideBar").style.display = "none";
     document.getElementById("mainContainer").classList.remove("lg:ml-60");
@@ -142,6 +188,14 @@
     document.getElementById("mainContainer").classList.add("lg:w-5/5");
     let comment = document.getElementById("comment-input");
     let commentBtn = document.getElementById("commentBtn");
+    let playlistModal = document.getElementById("playlistModal");
+    function show_modal() {
+        playlistModal.removeAttribute("hidden")
+    }
+    function close_modal() {
+        playlistModal.hidden = true
+    }
+
     function checkCommentBtn() {
         // console.log(commentBtn.disabled);
         if (comment.value != "") {

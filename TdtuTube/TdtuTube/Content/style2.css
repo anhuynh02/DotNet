@@ -339,6 +339,9 @@ aside {
   .container-video-content-channel span{
       font-size: 1.2rem;
   }
+    .watch-video_grid {
+        grid-template-columns: 2fr !important;
+    }
 }
 @media screen and (min-width: 502px ) and (max-width: 887px ) {
   #container-video{
@@ -350,8 +353,8 @@ aside {
   .container-video-grid{
       grid-template-columns: 1fr 1fr;
   }
-  #nav{
-      display: none;
+    .watch-video_grid {
+        grid-template-columns: 2fr !important;
   }
   #nav-sub{
       display: block;
@@ -373,6 +376,9 @@ aside {
   }
   .upload-video-grid{
       grid-template-columns: 1fr;
+  }
+  .watch-video_grid{
+      grid-template-columns: 2fr!important;
   }
   #nav{
       display: none;
@@ -831,7 +837,6 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
     max-width: 100%;
     display: flex;
     flex-direction: row;
-    z-index: 300;
     align-self: flex-start;
 }
 
@@ -904,7 +909,7 @@ canvas, caption, center, cite, code, dd, del, dfn, div, dl, dt, em, embed, field
 }
 
 .playlist-header {
-    padding: 12px 6px 12px 16px;
+    padding: 12px 6px 0 16px;
     flex: none;
     background-color: #212121;
     display: block;
@@ -958,6 +963,7 @@ h3 {
 #wc-endpoint {
     display: block;
     flex: 1;
+    flex-basis: 1e-9px;
 }
 
 .playlist-item-container {
@@ -973,6 +979,7 @@ h3 {
     overflow: hidden;
     display: block;
     flex: none;
+    margin-left: 1rem
 }
 
 .pl-thumbnails {
@@ -1005,21 +1012,7 @@ h3 {
     display: flex;
     flex-direction: column;
     flex: 1;
-}
-
-.playlist-counter {
-    min-width: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.playlist-item-background:hover {
-    background-color: #272727;
-}
-
-.playlist-item-background-play {
-    background-color: rgba(18, 34, 51, 0.95);
+    flex-basis: 1e-9px;
 }
 
 h4 {
@@ -1091,3 +1084,27 @@ h4 {
         background-color: #cccccc;
         color: #666666;
     }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+

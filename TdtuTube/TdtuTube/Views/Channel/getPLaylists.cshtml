@@ -4,29 +4,61 @@
 <div class="videos-container" id="videos-container" style="margin-top: 0px; height: 50%;">
     @foreach (var i in Model)
     {
-        <div class="flex flex-col space-y-3 cursor-pointer">
-            <!-- thumbnail -->
-            <a href="/watch/@i.PlaylistContents.FirstOrDefault().Video.meta/playlist/@i.meta">
-                <div class="relative h-52 sm:h-36 w-full">
-                    <img class="relative h-full w-full object-cover" src="@i.PlaylistContents.FirstOrDefault().Video.thumbnail" alt="">
-                    <span class="playlist-overlay">
-                        @i.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
-                    </span>
-                </div>
-            </a>
-            <!-- video details -->
-            <div class="flex flex-col flex-auto space-y-1.5 mb-3">
+        if (@i.PlaylistContents.FirstOrDefault() != null)
+        {
+            <div class="flex flex-col space-y-3 cursor-pointer">
+                <!-- thumbnail -->
+                <a href="/watch/@i.PlaylistContents.FirstOrDefault().Video.meta/playlist/@i.meta">
+                    <div class="relative h-52 sm:h-36 w-full">
 
-                <div class="flex items-center space-x-3">
-                    <a title="@i.name" href="/watch/@i.PlaylistContents.FirstOrDefault().Video.meta/playlist/@i.meta" class="text-sm text-bold text-white pr-1">@VideoFormat.titleShortening(i.name, 45)</a>
-                </div>
+                        <img class="relative h-full w-full object-cover" src="@i.PlaylistContents.FirstOrDefault().Video.thumbnail" alt="">
+                        <span class="playlist-overlay">
+                            @i.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
+                        </span>
+                    </div>
+                </a>
+                <!-- video details -->
+                <div class="flex flex-col flex-auto space-y-1.5 mb-3">
 
-                <div class="flex space-x-1">
-                    <span class="text-xs text-gray-400 sql-date">Cập nhật @VideoFormat.dateAgo((DateTime)i.dateedit)</span>
-                </div>
+                    <div class="flex items-center space-x-3">
+                        <a title="@i.name" href="/watch/@i.PlaylistContents.FirstOrDefault().Video.meta/playlist/@i.meta" class="text-sm text-bold text-white pr-1">@VideoFormat.titleShortening(i.name, 45)</a>
+                    </div>
 
+                    <div class="flex space-x-1">
+                        <span class="text-xs text-gray-400 sql-date">Cập nhật @VideoFormat.dateAgo((DateTime)i.dateedit)</span>
+                    </div>
+
+                </div>
             </div>
-        </div>
+        }
+        else
+        {
+            <div class="flex flex-col space-y-3 cursor-pointer">
+                <!-- thumbnail -->
+                <a href="/channel/@i.User.meta">
+                    <div class="relative h-52 sm:h-36 w-full">
+
+                        <img class="relative h-full w-full object-cover" src="~\Uploads\Thumbnails\default.PNG" alt="">
+                        <span class="playlist-overlay">
+                            @i.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
+                        </span>
+                    </div>
+                </a>
+                <!-- video details -->
+                <div class="flex flex-col flex-auto space-y-1.5 mb-3">
+
+                    <div class="flex items-center space-x-3">
+                        <a title="@i.name" href="/channel/@i.User.meta" class="text-sm text-bold text-white pr-1">@VideoFormat.titleShortening(i.name, 45)</a>
+                    </div>
+
+                    <div class="flex space-x-1">
+                        <span class="text-xs text-gray-400 sql-date">Cập nhật @VideoFormat.dateAgo((DateTime)i.dateedit)</span>
+                    </div>
+
+                </div>
+            </div>
+        }
+
     }
 
-    </div>
+</div>
