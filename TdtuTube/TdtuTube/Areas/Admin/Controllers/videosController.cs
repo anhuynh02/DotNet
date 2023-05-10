@@ -14,7 +14,8 @@ namespace TdtuTube.Areas.Admin.Controllers
         TdtuTubeEntities __db = new TdtuTubeEntities();
         public ActionResult Index()
         {
-
+            if (Session["UserRoleID"] == null || (int)Session["UserRoleID"] != 1)
+                return Redirect("/login");
             return View(__db.Videos.ToList());
         }
 

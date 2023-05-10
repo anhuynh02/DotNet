@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Services.Description;
 using TdtuTube.Models;
 
@@ -15,6 +17,8 @@ namespace TdtuTube.Areas.Admin.Controllers
         TdtuTubeEntities __db = new TdtuTubeEntities();
         public ActionResult Index()
         {
+            if (Session["UserRoleID"] == null || (int)Session["UserRoleID"] != 1)
+                return Redirect("/login");
             return View(__db.Tags.ToList());
         }
 
@@ -41,12 +45,13 @@ namespace TdtuTube.Areas.Admin.Controllers
 
         public JsonResult Edit(int? id)
         {
+            __db.Configuration.ProxyCreationEnabled = false;
             if(id == null)
             {
                 return Json(new { Message = "Không tìm thấy", JsonRequestBehavior.AllowGet });
             }
             var v = from i in __db.Tags
-                    where i.id == id //Tạm thời set cứng id
+                    where i.id == id
                     select i;
             if (v == null)
             {
@@ -78,6 +83,20 @@ namespace TdtuTube.Areas.Admin.Controllers
             {
                 throw ex;
             }
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Content("Cannot get that id");
+            }
+            Tag temp = __db.Tags.Find(id);
+            __db.Tags.Remove(temp);
+            __db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -68,6 +68,21 @@
 
 
 <div class="form-group">
-    <input type="submit" value="Upload" class="create-form-btn" />
+    <input type="submit" value="Đăng tải" class="create-form-btn" />
 </div>
 <script src="~/Scripts/uploadVideo.js"></script>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    $(window).on('load', function () {
+        $('#inputDes').ckeditor();
+    });
+    var editor = CKEDITOR.replace("inputDes", {
+        customConfig: '/Scripts/ckeditor/ckeditor.js'
+    })
+    editor.on('change', function (evt) {
+        // Update the counter with text length of editor HTML output.
+
+        console.log(editor.document.getBody().getText())
+        $("#result-des-video").text(editor.document.getBody().getText());
+    }, editor.element.$);
+</script>

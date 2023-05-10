@@ -12,7 +12,7 @@
     }
     else
     {
-        <h2 class="studio-title">Nội dung của kênh</h2>
+        <h2 style="color:whitesmoke;" class="studio-title">Nội dung của kênh</h2>
         if (ViewBag.Meta != "playlists")
         {
             <div class="studio-tab-container">
@@ -25,7 +25,7 @@
             </div>
             <div>
                 <button class="studio-upload-btn">
-                    <i class="fa-solid fa-video"></i>
+                    <i class="fa-solid fa-video fa-lg" style="color: #ffffff;"></i>
                     <a class="create-vid-link" href='@Url.Action("getVideo", "Studio")'>Thêm một video mới</a>
                 </button>
                 @{Html.RenderAction("GetInfoVideo", "Studio", new { userId = Model.id });}
@@ -40,6 +40,9 @@
                 <div class="studio-tab studio-tab-active">
                     <a class="studio-tab-title " href="/studio/index/playlists">Danh sách phát</a>
                 </div>
+            </div>
+            <div>
+                @{Html.RenderAction("getInfoPlaylist", "Studio", new { userId = Model.id });}
             </div>
         }
     }

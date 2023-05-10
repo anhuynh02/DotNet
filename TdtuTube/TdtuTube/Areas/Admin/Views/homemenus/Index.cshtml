@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
 
-<table class="table table-striped table-hover">
+<table id="homemenuTable" class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
@@ -36,9 +36,40 @@
                         </a>
                     </td>
                 }
-                <td><a href="#">Chỉnh sửa</a></td>
+                <td><button class="btnEdit" onclick="openEditModal(@menu.id,'@menu.name')" data-bs-toggle="modal" data-bs-target="#editTag">Chỉnh sửa</button></td>
             </tr>
         }
     </tbody>
 </table>
 
+<div class="modal fade" id="editTag" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Chỉnh sửa Home Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "homemenus", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken();
+                    <input type="hidden" name="id" id="editId" />
+                    <div class="form-group m-3">
+                        <label for="name">Tên của menu</label>
+                        <input type="text" class="form-control" name="name" id="editName" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary ">Sửa</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openEditModal(id, name) {
+        document.getElementById("editName").value = name
+        document.getElementById("editId").value = id
+    }
+</script>

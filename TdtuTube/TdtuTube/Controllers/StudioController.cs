@@ -48,7 +48,18 @@ namespace TdtuTube.Controllers
                 Response.StatusCode = (int)HttpStatusCode.NotFound;
                 return Content("Cannot get that id");
             }
-
+            var l = from i in db.Likes
+                    where i.video_id == id
+                    select i;
+            db.Likes.RemoveRange(l);
+            var c = from i in db.Comments
+                    where i.video_id == id
+                    select i;
+            db.Comments.RemoveRange(c);
+            var pc = from i in db.PlaylistContents
+                     where i.video_id == id
+                     select i;
+            db.PlaylistContents.RemoveRange(pc);
             Video video = db.Videos.Find(id);
             db.Videos.Remove(video);
             db.SaveChanges();
@@ -177,7 +188,7 @@ namespace TdtuTube.Controllers
         public ActionResult GetInfoVideo(int userId)
         {
             var v = from i in db.Videos
-                    where i.User.id == userId && i.privacy == false && i.hide == false && i.status == false
+                    where i.User.id == userId
                     orderby i.order ascending
                     select i;
             return PartialView(v.ToList());
@@ -193,6 +204,59 @@ namespace TdtuTube.Controllers
         public ActionResult getVideo()
         {
             return View();
+        }
+
+        public ActionResult getInfoPlaylist(int userId)
+        {
+            var v = from i in db.Playlists
+                    where i.User.id == userId
+                    select i;
+            return PartialView(v.ToList());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult editPlaylist([Bind(Include = "id,user_id,name,video_count,privacy,meta,hide,order,dateedit,datebegin")] Playlist p)
+        {
+            Playlist temp = db.Playlists.Find(p.id);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    temp.name = p.name;
+                    temp.privacy = p.privacy;
+                    db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return Redirect("/studio/index/playlists");
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult deletePlaylist(int? id)
+        {
+            if (id == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return Content("Cannot get that id");
+            }
+            var v = from i in db.PlaylistContents
+                    where i.playlist_id == id
+                    select i;
+            db.PlaylistContents.RemoveRange(v);
+            Playlist p = db.Playlists.Find(id);
+            db.Playlists.Remove(p);
+            db.SaveChanges();
+            return Redirect("/studio/index/playlists");
         }
     }
 }

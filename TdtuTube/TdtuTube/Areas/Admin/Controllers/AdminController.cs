@@ -13,7 +13,9 @@ namespace TdtuTube.Areas.Admin.Controllers
         TdtuTubeEntities __db = new TdtuTubeEntities();
         public ActionResult Index()
         {
-            return Redirect("/Admin/users");
+            if(Session["UserRoleID"] == null ||(int) Session["UserRoleID"] != 1)
+                return Redirect("/login");
+            return Redirect("/admin/users");
         }
 
         public ActionResult getFunction()

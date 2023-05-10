@@ -10,10 +10,10 @@
         @using (Html.BeginForm("uploadVideo", "Studio",FormMethod.Post, new { enctype = "multipart/form-data", @class = "create-form" }))
         {
             @Html.AntiForgeryToken();
-            @Html.ValidationSummary(true)
+            @Html.ValidationSummary(false)
             <div id="firstPart">
-                <img id="upload-img" src="~/Uploads/images/upload.png" width="300" height="300">
                 <label class="label" for="getVid">
+                    <img id="upload-img" src="~/Uploads/images/upload.png" width="300" height="300">
                     <input type="file" class="create-form-file" name="vid" id="getVid" accept=".mov,.MPEG-1,.MP4" hidden required />
                     <span id="label-title">Lựa chọn video của mình để đăng tải</span>
                 </label>
@@ -22,10 +22,6 @@
                 <div class="create-result" id="review">
                     <p class="result-title">Chi tiết video</p>
                     <div class="result-content-inside">
-                        <!--<video class="result-video" controls autoplay>
-        <source src="/Uploads/Videos/1.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>-->
                         <div class="result-content-vid">
                             <img class="result-img" src="~/Uploads/Thumbnails/1.png" />
                             <div class="result-tad">
