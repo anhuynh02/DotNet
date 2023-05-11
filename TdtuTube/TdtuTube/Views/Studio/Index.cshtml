@@ -13,7 +13,7 @@
     else
     {
         <h2 style="color:whitesmoke;" class="studio-title">Nội dung của kênh</h2>
-        if (ViewBag.Meta != "playlists")
+        if (ViewBag.Meta != "playlists" && ViewBag.Meta != "users")
         {
             <div class="studio-tab-container">
                 <div class="studio-tab studio-tab-active">
@@ -21,6 +21,9 @@
                 </div>
                 <div class="studio-tab">
                     <a class="studio-tab-title" href="/studio/index/playlists">Danh sách phát</a>
+                </div>
+                <div class="studio-tab">
+                    <a class="studio-tab-title " href="/studio/index/users">Thông tin cá nhân</a>
                 </div>
             </div>
             <div>
@@ -31,7 +34,7 @@
                 @{Html.RenderAction("GetInfoVideo", "Studio", new { userId = Model.id });}
             </div>
         }
-        else
+        else if (ViewBag.Meta == "playlists")
         {
             <div class="studio-tab-container">
                 <div class="studio-tab">
@@ -40,9 +43,29 @@
                 <div class="studio-tab studio-tab-active">
                     <a class="studio-tab-title " href="/studio/index/playlists">Danh sách phát</a>
                 </div>
+                <div class="studio-tab">
+                    <a class="studio-tab-title " href="/studio/index/users">Thông tin cá nhân</a>
+                </div>
             </div>
             <div>
                 @{Html.RenderAction("getInfoPlaylist", "Studio", new { userId = Model.id });}
+            </div>
+        }
+        else if(ViewBag.Meta == "users")
+        {
+            <div class="studio-tab-container">
+                <div class="studio-tab">
+                    <a class="studio-tab-title" href="/studio/index/videos">Video</a>
+                </div>
+                <div class="studio-tab">
+                    <a class="studio-tab-title " href="/studio/index/playlists">Danh sách phát</a>
+                </div>
+                <div class="studio-tab studio-tab-active">
+                    <a class="studio-tab-title " href="/studio/index/users">Thông tin cá nhân</a>
+                </div>
+            </div>
+            <div>
+                @{Html.RenderAction("getInfoUser", "Studio", new { userId = Model.id });}
             </div>
         }
     }

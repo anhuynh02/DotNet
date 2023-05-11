@@ -10,10 +10,6 @@
         <div class="create-result" id="review">
             <p class="result-title">Chi tiết video</p>
             <div class="result-content-inside">
-                <!--<video class="result-video" controls autoplay>
-                    <source src="/Uploads/Videos/1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>-->
                 <div class="result-content-vid">
                     <img class="result-img" src="@Model.thumbnail" />
                     <div class="result-tad">
@@ -117,8 +113,21 @@
     editor.on('change', function (evt) {
         // Update the counter with text length of editor HTML output.
 
-        console.log(editor.document.getBody().getText())
         $("#result-des-video").text(editor.document.getBody().getText());
     }, editor.element.$);
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.result-img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputImg").change(function () {
+        readURL(this);
+    })
 </script>
 

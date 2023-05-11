@@ -82,7 +82,20 @@
     editor.on('change', function (evt) {
         // Update the counter with text length of editor HTML output.
 
-        console.log(editor.document.getBody().getText())
         $("#result-des-video").text(editor.document.getBody().getText());
     }, editor.element.$);
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.result-img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputImg").change(function () {
+        readURL(this);
+    })
 </script>

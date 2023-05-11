@@ -1,0 +1,131 @@
+﻿.studio-user{
+    width:90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding:0 10px;
+}
+
+.user-img{
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    margin: 20px 0;
+    height: max-content;
+}
+
+.user-title{
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.user-content{
+    color: lightgray;
+    font-size: 20px;
+    margin: 10px 0;
+    width: 90%;
+    border-bottom: 1px solid #ffffff;
+}
+
+.user-avatar{
+    padding-right: 50px;
+    width:max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-info{
+    padding-left: 10px;
+    height: max-content;
+    border-left: 1px solid #ffffff
+}
+
+.studio-user-btn{
+    width:85%;
+    display: flex;
+    flex-direction: row;
+    justify-content:end;
+    margin-top: 30px;
+}
+
+.user-eBtn {
+    background-color: #202020;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.user-eBtn:hover {
+    background-color: orangered;
+}
+
+#userEditPopup {
+    position: fixed;
+    background-color: white;
+    padding: 30px;
+    width: 500px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 7);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    border-radius: 5px;
+    height: max-content;
+}
+
+#userEditPopup.active {
+    top: 10%;
+    left: 40%;
+    visibility: visible;
+    opacity: 1;
+    transition: .5s;
+}
+
+.edit-img{
+    width: 150px;
+    height:100px;
+    padding-right: 50px;
+}
+
+.edit-input{
+    width: 95%;
+    border-bottom: 1px solid black;
+    margin-bottom: 15px;
+}
+.edit-header {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.edit-title {
+    font-size: 17px;
+}
+
+.edit-label {
+    font-size: 17px;
+    cursor: pointer;
+    text-align:center;
+}
+
+.edit-close-btn {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 15px 10px
+}
+
+.edit-close-btn:hover{
+    color: orangered;
+}
+
+.edit-submit-btn {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.edit-submit-btn:hover{
+    color: greenyellow;
+}
+

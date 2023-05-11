@@ -258,5 +258,50 @@ namespace TdtuTube.Controllers
             db.SaveChanges();
             return Redirect("/studio/index/playlists");
         }
+
+        public ActionResult getInfoUser(int? userId)
+        {
+            var v = from i in db.Users
+                    where i.id == userId
+                    select i;
+            return PartialView(v.FirstOrDefault());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult editUser([Bind(Include = "id,name,email,password,subscriber_count,avatar_path,role_id,meta,hide,order, datebegin, status")] User u, HttpPostedFileBase img)
+        {
+            try
+            {
+                User temp = db.Users.Find(u.id);
+                string imgPath = "";
+                string imgName = "";
+                if (ModelState.IsValid)
+                {
+                    if (img != null)
+                    {
+                        imgName = img.FileName;
+                        imgPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Avatars/"), imgName);
+                        img.SaveAs(imgPath);
+                        temp.avatar_path = "/Uploads/Avatars/" + imgName;
+                    }
+                    temp.name = u.name;
+                    temp.email = u.email;;
+                    db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                }
+                return Redirect("/studio/index/users");
+
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

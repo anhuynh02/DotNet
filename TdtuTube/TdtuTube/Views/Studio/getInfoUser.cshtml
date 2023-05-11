@@ -1,0 +1,80 @@
+﻿@model TdtuTube.Models.User
+
+<link rel="stylesheet" href="~/Content/studioUser.css" />
+<div class="studio-user">
+    <div class="user-avatar">
+        <img class="user-img" src="@Model.avatar_path" />
+        <h3 class="user-title">Hình ảnh đại diện hiển thị trên kênh</h3>
+    </div>
+    <div class="user-info">
+        <h3 class="user-title">Tên chủ kênh</h3>
+        <p class="user-content">@Model.name</p>
+
+        <h3 class="user-title">Tên người dùng</h3>
+        <p class="user-content">@Model.meta</p>
+
+        <h3 class="user-title">Địa chỉ email</h3>
+        <p class="user-content">@Model.email</p>
+
+        <h3 class="user-title">Số lượng người đăng ký</h3>
+        <p class="user-content">@Model.subscriber_count</p>
+    </div>
+</div>
+<div class="studio-user-btn">
+    <button class="user-eBtn" onclick="openEditModal(@Model.id,'@Model.name', '@Model.email')">Chỉnh sửa thông tin</button>
+</div>
+
+<!--Popup chỉnh sửa thông tin-->
+<div id="userEditPopup">
+    <h1 class="edit-header">Chỉnh sửa thông tin cá nhân</h1>
+    <form action="@Url.Action("editUser", "Studio")" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="editId" value="@Model.id" name="id" />
+        <p class="edit-title">Tên chủ kênh</p>
+        <input class="edit-input" id="editName" type="text" name="name" value="@Model.name"/>
+        <p class="edit-title">Email</p>
+        <input class="edit-input" id="editEmail" type="text" name="email" value="@Model.email"/>
+        <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;">
+            <label class="edit-label" for="avatar">Cập nhật hình ảnh hiển thị</label>
+            <input type="file" name="img" id="avatar" accept=".jpg,.png,.gif,.jpeg,.bmp" hidden>
+            <img class="edit-img" id="editImg" src="@Model.avatar_path" />
+        </div>
+        <div style="display:flex;flex-direction:row;float:right">
+            <input type="button" onclick="removeEditModal()" class="edit-close-btn" value="Hủy">
+            <input type="submit" class="edit-submit-btn" value="Xác nhận">
+        </div>
+    </form>
+</div>
+<!--chỉnh sửa thông tin-->
+
+<script>
+    function openEditModal(id, name, email) {
+        var popup = document.querySelector("#userEditPopup")
+        popup.classList.toggle("active")
+
+        console.log(privacy)
+        document.getElementById("editId").value = id
+        document.getElementById("editName").value = name
+        document.getElementById("editEmail").value = email
+    }
+
+    function removeEditModal() {
+        var popup = document.querySelector("#userEditPopup")
+        popup.classList.toggle("active")
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#editImg').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#avatar").change(function () {
+        console.log($("#avatar").val())
+        readURL(this);
+    })
+</script>
