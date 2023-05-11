@@ -155,6 +155,7 @@
     <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PlaylistController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Controllers\WatchController.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Models\Playlist.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PlaylistContainVideoModel.cs" />
     <Compile Include="Models\PlaylistContent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -427,6 +429,8 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\modal.css" />
     <Content Include="Content\playlistmodal.css" />
+    <Content Include="Content\studioPlaylistModal.css" />
+    <Content Include="Content\studioUser.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\style2.css" />
     <Content Include="Models\Model1.Context.tt">
@@ -730,7 +734,6 @@
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\homemenus\haha.cshtml" />
     <Content Include="Areas\Admin\Views\homemenus\Index.cshtml" />
-    <None Include="Content\.editorconfig" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -856,6 +859,9 @@
     <Content Include="Views\Studio\getVideo.cshtml" />
     <Content Include="Views\Studio\editVideo.cshtml" />
     <Content Include="Views\Button\getVideoComments.cshtml" />
+    <Content Include="Views\Studio\getInfoPlaylist.cshtml" />
+    <Content Include="Views\Studio\getInfoUser.cshtml" />
+    <Content Include="Views\Playlist\getWatchPlaylists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
