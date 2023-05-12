@@ -350,3 +350,7 @@ F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\Sy
 F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Memory.xml
 F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Numerics.Vectors.xml
 F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.xml
+C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.Shell.xml
