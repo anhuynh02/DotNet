@@ -862,14 +862,11 @@
     <Content Include="Views\Studio\getVideo.cshtml" />
     <Content Include="Views\Studio\editVideo.cshtml" />
     <Content Include="Views\Button\getVideoComments.cshtml" />
-<<<<<<< Updated upstream
-=======
     <Content Include="Views\Studio\getInfoPlaylist.cshtml" />
     <Content Include="Views\Studio\getInfoUser.cshtml" />
     <Content Include="Views\Playlist\getWatchPlaylists.cshtml" />
     <Content Include="Views\Search\searchChannel.cshtml" />
     <Content Include="Views\Search\searchVideosWithUser.cshtml" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
