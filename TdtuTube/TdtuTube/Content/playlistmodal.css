@@ -1,16 +1,12 @@
-.playlist-modal {
-    background-color: grey;
-    color: white;
-    position: fixed;
-    top: 40%;
-    left: 42%;
-    z-index: 2203;
-    box-sizing: border-box;
-    border-radius: 14px;
+.modal-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
+
 .playlist-modal-header {
     color: var(--yt-spec-text-primary);
-    padding: 16px 24px;
+    padding: 6px 12px;
     flex: 1;
     flex-basis: 20px;
     font-family: 'Roboto','Arial',sans-serif;
@@ -18,6 +14,7 @@
     line-height: 2.2rem;
     font-weight: 400;
 }
+
 .playlist-item-ist {
     --paper-checkbox-vertical-align: top;
     --paper-checkbox-margin: 3px;
@@ -27,6 +24,7 @@
     flex-direction: row;
     justify-content: space-between
 }
+
 .checkbox-container {
     display: block;
     position: relative;
@@ -38,51 +36,51 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .checkbox-container input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+    /* Hide the browser's default checkbox */
+    .checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+/* Create a custom checkbox */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
     height: 25px;
     width: 25px;
     background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .checkbox-container:hover input ~ .checkmark {
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .checkbox-container input:checked ~ .checkmark {
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
     background-color: #2196F3;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .checkbox-container input:checked ~ .checkmark:after {
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .checkbox-container .checkmark:after {
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;
@@ -92,7 +90,7 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+}
 
 input[type=text].modal-text {
     width: 100%;
@@ -102,9 +100,14 @@ input[type=text].modal-text {
     height: 20px;
     background: #ffffff5a;
     border: none;
-    border-radius:0 8px 8px 0;
+    border-radius: 0 8px 8px 0;
     border-bottom: 2px solid grey;
 }
+
+    input[type=text].modal-text::placeholder {
+        color: white;
+    }
+
 .modal-option {
     width: 100%;
     color: white;
@@ -113,24 +116,19 @@ input[type=text].modal-text {
     border-radius: 0 8px 8px 0;
     border-bottom: 2px solid grey;
 }
-option{
+
+option {
     background: #ffffff5a
 }
-::placeholder {
-    color: red;
-    z-index: 10
-    
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: red;
+
+.playlist-modal-button {
+    width: fit-content;
+    margin-top: 8px;
+    margin-left: auto;
+    padding: 0 7px;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: red;
-}
-
-.playlist-modal-button:hover{
-    border-radius: 14px;
-    padding: 0 7px 0 7px;
-    background-color: lightblue;
-}
+    .playlist-modal-button:hover {
+        border-radius: 14px;
+        background-color: lightblue;
+    }

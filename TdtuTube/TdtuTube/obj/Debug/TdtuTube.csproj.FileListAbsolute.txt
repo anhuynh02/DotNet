@@ -354,3 +354,7 @@ C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.
 C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.Shell.dll
 C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.xml
 C:\Users\anhuy\OneDrive\Documents\GitHub\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.Shell.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.Shell.dll
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.xml
+F:\Code Project\NET Framework\Công nghệ .NET\DotNet\TdtuTube\TdtuTube\bin\Microsoft.WindowsAPICodePack.Shell.xml

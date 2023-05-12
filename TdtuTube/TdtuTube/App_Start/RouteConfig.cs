@@ -40,6 +40,15 @@ namespace TdtuTube
                 new[] { "TdtuTube.Controllers" }
             );
 
+            routes.MapRoute("Playlist", "{type}/{action}/{meta}",
+                new { controller = "Playlist", action = "Index", meta = UrlParameter.Optional },
+                new RouteValueDictionary
+                {
+                                { "type", "playlist" }
+                },
+                new[] { "TdtuTube.Controllers" }
+            );
+
             routes.MapRoute("Button", "{type}/{action}/{meta}",
                 new { controller = "Button", action = "Index", meta = UrlParameter.Optional },
                 new RouteValueDictionary
