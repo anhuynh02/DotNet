@@ -179,7 +179,7 @@
 
     </div>
     <script>
-        let query = window.location.search.slice(13);
+        let query = window.location.search.slice(13).replace("%20", " ");
         if (query!=null) {
             let searchBar = document.getElementById("search")
             searchBar.value = query;
