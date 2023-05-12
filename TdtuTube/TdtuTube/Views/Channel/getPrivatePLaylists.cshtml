@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<TdtuTube.Models.Playlist>
 @using TdtuTube.Libs
 
-<div class="videos-container" id="videos-container" style="margin-top: 0px; height: 50%;">
     @foreach (var i in Model)
     {
         if (@i.PlaylistContents.FirstOrDefault() != null)
@@ -38,7 +37,7 @@
                 <a href="/channel/@i.User.meta">
                     <div class="relative h-52 sm:h-36 w-full">
 
-                        <img class="relative h-full w-full object-cover" src="~\Uploads\Thumbnails\default.PNG" alt="">
+                        <img class="relative h-full w-full object-cover" src="/Uploads/Thumbnails/default.PNG" alt="">
                         <span class="playlist-overlay">
                             @i.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
                         </span>
@@ -60,4 +59,3 @@
         }
     }
 
-</div>

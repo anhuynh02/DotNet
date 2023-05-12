@@ -38,7 +38,7 @@
                 <a href="/channel/@i.User.meta">
                     <div class="relative h-52 sm:h-36 w-full">
 
-                        <img class="relative h-full w-full object-cover" src="~\Uploads\Thumbnails\default.PNG" alt="">
+                        <img class="relative h-full w-full object-cover" src="/Uploads/Thumbnails/default.PNG" alt="">
                         <span class="playlist-overlay">
                             @i.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
                         </span>
@@ -58,6 +58,13 @@
                 </div>
             </div>
         }
-    }
 
+    }
+    @if (Session["UserID"] != null)
+    {
+        if ((int)Session["UserID"] == Model.FirstOrDefault().User.id)
+        {
+            Html.RenderAction("getPrivatePlaylists", "Channel", new { userId = Model.FirstOrDefault().User.id });
+        }
+    }
 </div>

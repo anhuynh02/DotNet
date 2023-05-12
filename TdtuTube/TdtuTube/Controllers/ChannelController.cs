@@ -36,7 +36,7 @@ namespace TdtuTube.Controllers
             return PartialView(v.ToList());
         }
 
-        public ActionResult gePrivatePLaylists(int userId)
+        public ActionResult getPrivatePLaylists(int userId)
         {
             var v = from i in db.Playlists
                     where i.user_id == userId && i.privacy == true
