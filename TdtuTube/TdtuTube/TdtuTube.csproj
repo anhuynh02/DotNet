@@ -162,7 +162,6 @@
     <Compile Include="Controllers\FeedController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\PlaylistController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="Controllers\WatchController.cs" />
@@ -203,7 +202,6 @@
     <Compile Include="Models\Playlist.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PlaylistContainVideoModel.cs" />
     <Compile Include="Models\PlaylistContent.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -741,6 +739,7 @@
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\homemenus\haha.cshtml" />
     <Content Include="Areas\Admin\Views\homemenus\Index.cshtml" />
+    <None Include="Content\.editorconfig" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -868,10 +867,6 @@
     <Content Include="Views\Button\getVideoComments.cshtml" />
     <Content Include="Views\Studio\getInfoPlaylist.cshtml" />
     <Content Include="Views\Studio\getInfoUser.cshtml" />
-<<<<<<< HEAD
-=======
-    <Content Include="Views\Playlist\getWatchPlaylists.cshtml" />
->>>>>>> 53d838956132079a708aa14253a642bfe76844ab
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
