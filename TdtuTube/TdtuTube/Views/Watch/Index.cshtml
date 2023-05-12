@@ -98,7 +98,7 @@
                                                     }
                                                     else
                                                     {
-                                                        <button class="btn-action" id="addPlaylistBtn" onclick="show_modal()">
+                                                        <button class="btn-action" id="addPlaylistBtn" onclick="showAddToPlaylistModal()">
                                                             <i class="material-icons-outlined text-white md-21 icon-margin">playlist_add</i>
                                                             Lưu
                                                         </button>
@@ -115,7 +115,7 @@
                                             <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
                                         </div>
                                         <p>@Model.description</p>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                             <div class="reload-comment">
 
                             </div>
-                            @{ Html.RenderAction("getVideoComments", "Button", new {videoId = Model.id});}
+                            @{ Html.RenderAction("getVideoComments", "Button", new { videoId = Model.id });}
 
                         </div>
                     </div>
@@ -131,55 +131,76 @@
                 </div>
             </div>
                         }
-         </div>
-            <div class="playlist-modal" id="playlistModal" hidden>
-                <div style="display: flex; flex-direction: row; align-items: center">
-                    <div class="playlist-modal-header">Lưu vào...</div>
-                    <div style="margin-right:14px">
-                        <button title="Hủy" onclick="close_modal()">
-                            <span class="close">&times;</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="playlist-add-items">
-                    <div class="playlist-add-item" style="margin-bottom: 14px; margin-left: 14px">
-                        <div class="playlist-item-ist">
-                            <label class="checkbox-container">
-                                One
-                                <input type="checkbox" checked="checked">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div style="margin-right: 12px">
-                                <i class="material-icons text-gray-400 md-21">lock</i>
-                            </div>
-                            
-                        </div>
-                    </div>  
-                </div>
-                <div style="margin-left:14px;margin-bottom: 14px; margin-right:14px">
-                    <div class="txt_field">
-                        <label>
-                            Tên
-                        </label>
-                        <input class="modal-text"  type="text"/>
-                    </div>
-                    <div>
-                        <label>Quyền riêng tư</label>
-                        <select class="modal-option">
-                            <option style="color:black" value="0">Riêng tư</option>
-                            <option style="color:black" value="1">Công khai</option>
-                        </select>
-                    </div>
-                    <div style="float: right; margin: 7px 0 7px 0" class="playlist-modal-button">
-                        <button style="color: #3ea6ff; right:0">
-                            Tạo
-                        </button>
-                    </div>
-                </div>
+    </div>
 
+</div>
+
+<!-- Add to playlist modal -->
+<div id="modalBackground" class="modal-background">
+    <div class="modal-content">
+        <!-- Modal title -->
+        <div class="modal-title">
+            <div class="playlist-modal-header">Lưu vào...</div>
+            <div style="margin-right:14px">
+                <button title="Hủy" onclick="hideAddToPlaylistModal()">
+                    <span class="close">&times;</span>
+                </button>
             </div>
         </div>
+        <!-- Playlist list -->
+        <div id="playlistList" class="scroll-bar playlist-add-items">
+
+            @if (Session["UserId"] != null)
+            {
+                Html.RenderAction("getWatchPlaylists", "Playlist", new { videoId = Model.id });
+            }
+
+        </div>
+
+        <!-- Add new playlist -->
+        <div id="btnShowAddPlaylistForm" onclick="showAddPlaylistForm();" class="add-playlist-form-container cursor-pointer">
+            <i class="material-icons text-white md-21">+</i> Tạo danh sách phát mới
+        </div>
+
+        <div id="addPlaylistForm" style="display: none;" class="add-playlist-form-container">
+            <div class="txt_field">
+                <label>
+                    Tên
+                </label>
+                <input id="addPlaylistName" class="modal-text" placeholder="Nhập tên danh sách phát..." maxlength="100" required type="text" />
+                <div style="display: flex">
+                    <!-- Error message -->
+                    <div id="inputError" style="color: red; display: none;">
+                        Bắt buộc
+                    </div>
+                    <!-- Character counter -->
+                    <div style="margin-left: auto;">
+                        <span id="inputCounter">0</span>/100
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label>Quyền riêng tư</label>
+                <select id="addPlaylistPrivacy" class="modal-option">
+                    <option style="color:black" value="1">Riêng tư</option>
+                    <option style="color:black" value="0">Công khai</option>
+                </select>
+            </div>
+            <div class="playlist-modal-button cursor-pointer">
+                <button id="btnAddPlaylist" style="color: #ababab;" disabled>
+                    Tạo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast message -->
+<div id="toast">
+    Đã thêm vào
+    Đã xóa khỏi
+</div>
+
 <script>
     document.getElementById("sideBar").style.display = "none";
     document.getElementById("mainContainer").classList.remove("lg:ml-60");
@@ -188,12 +209,135 @@
     document.getElementById("mainContainer").classList.add("lg:w-5/5");
     let comment = document.getElementById("comment-input");
     let commentBtn = document.getElementById("commentBtn");
-    let playlistModal = document.getElementById("playlistModal");
-    function show_modal() {
-        playlistModal.removeAttribute("hidden")
+    const modalBackground = document.getElementById("modalBackground");
+    const btnShowAddPlaylistForm = document.getElementById("btnShowAddPlaylistForm");
+    const playlistList = document.getElementById("playlistList");
+    const addPlaylistForm = document.getElementById("addPlaylistForm");
+    const addPlaylistName = document.getElementById("addPlaylistName");
+    const inputError = document.getElementById("inputError");
+    const inputCounter = document.getElementById("inputCounter");
+    const addPlaylistPrivacy = document.getElementById("addPlaylistPrivacy");
+    const btnAddPlaylist = document.getElementById("btnAddPlaylist");
+    const toast = document.getElementById("toast");
+
+    const videoId = @Model.id;
+
+    // Show add to playlist modal
+    function showAddToPlaylistModal() {
+        modalBackground.style.display = "block";
     }
-    function close_modal() {
-        playlistModal.hidden = true
+
+    // Hide add to playlist modal when click close icon
+    function hideAddToPlaylistModal() {
+        modalBackground.style.display = "none";
+        btnShowAddPlaylistForm.style.display = "block";
+        addPlaylistForm.style.display = "none";
+
+        resetForm();
+    }
+
+    // Hide add to playlist modal when click outside of modal
+    window.onclick = function (event) {
+        if (event.target == modalBackground) {
+            hideAddToPlaylistModal();
+        }
+    }
+
+    // Reset add new playlist form
+    function resetForm() {
+        addPlaylistForm.children[0].removeAttribute("style");
+        inputError.style.display = "none";
+        btnAddPlaylist.disabled = false;
+        btnAddPlaylist.style.color = "#3ea6ff";
+        addPlaylistName.value = "";
+        inputCounter.textContent = addPlaylistName.value.length;
+        addPlaylistPrivacy.value = "0";
+    }
+
+    // Show form to add new playlist
+    function showAddPlaylistForm() {
+        btnShowAddPlaylistForm.style.display = "none";
+        addPlaylistForm.style.display = "block";
+    }
+
+    // Update count show error if input is empty
+    addPlaylistName.addEventListener("input", function () {
+        if (addPlaylistName.value.trim() == "") {
+            addPlaylistForm.children[0].style = "color: red";
+            inputError.style.display = "block";
+            btnAddPlaylist.disabled = true;
+            btnAddPlaylist.style.color = "#ababab";
+        } else {
+            addPlaylistForm.children[0].removeAttribute("style");
+            inputError.style.display = "none";
+            btnAddPlaylist.disabled = false;
+            btnAddPlaylist.style.color = "#3ea6ff";
+        }
+        inputCounter.textContent = addPlaylistName.value.length;
+    });
+
+    // Add video to exist playlists
+    function addVideoToPlaylist(e, playlistId, playlistName) {
+        let url;
+        if (e.target.checked) {
+            url = "/Playlist/postPlaylistContent";
+            toast.textContent = "Đã thêm vào " + playlistName;
+        } else {
+            url = "/Playlist/deletePlaylistContent";
+            toast.textContent = "Đã xóa khỏi " + playlistName;
+        }
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                __RequestVerificationToken: $("[name='__RequestVerificationToken']").val(),
+                playlistId: playlistId,
+                videoId: videoId
+            },
+            success: function () {
+                showToast();
+            }
+        });
+    }
+
+    // Create new playlist and add video to it
+    btnAddPlaylist.addEventListener('click', function () {
+        $.ajax({
+            url: "/Playlist/postPlaylist",
+            type: "POST",
+            data: {
+                __RequestVerificationToken: $("[name='__RequestVerificationToken']").val(),
+                name: $("#addPlaylistName").val().trim(),
+                privacy: $("#addPlaylistPrivacy").val(),
+                videoId: videoId
+            },
+            success: function () {
+                toast.textContent = "Đã thêm vào " + $("#addPlaylistName").val().trim();
+
+                hideAddToPlaylistModal();
+
+                showToast();
+
+                $.ajax({
+                    url: "/Playlist/getWatchPlaylists",
+                    type: "GET",
+                    data: {
+                        videoId: videoId
+                    },
+                    success: function (data) {
+                        playlistList.innerHTML = data;
+;                   }
+                });
+            }
+        });
+    });
+
+    // Show toast message
+    function showToast() {
+        toast.className = "show";
+        setTimeout(function () {
+            toast.className = toast.className.replace("show", "");
+        }, 3000);
     }
 
     function checkCommentBtn() {
@@ -207,16 +351,15 @@
 
     function show_more(a) {
         let des = document.getElementById("main-desc");
-        des.classList.toggle('description-show');
-        
+        des.classList.toggle("description-show");
+
     }
 
-    comment.addEventListener('keydown', function () {
+    comment.addEventListener("keydown", function () {
         var el = this;
         setTimeout(function () {
-            el.style.cssText = 'height: 24px;';
-            el.style.cssText = 'height:' + el.scrollHeight + 'px';
+            el.style.cssText = "height: 24px;";
+            el.style.cssText = "height:" + el.scrollHeight + "px";
         }, 0);
     });
-
 </script>

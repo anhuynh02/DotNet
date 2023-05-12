@@ -1,16 +1,12 @@
-.playlist-modal {
-    background-color: grey;
-    color: white;
-    position: fixed;
-    top: 40%;
-    left: 42%;
-    z-index: 2203;
-    box-sizing: border-box;
-    border-radius: 14px;
+.modal-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
+
 .playlist-modal-header {
     color: var(--yt-spec-text-primary);
-    padding: 16px 24px;
+    padding: 6px 12px;
     flex: 1;
     flex-basis: 20px;
     font-family: 'Roboto','Arial',sans-serif;
@@ -18,6 +14,7 @@
     line-height: 2.2rem;
     font-weight: 400;
 }
+
 .playlist-item-ist {
     --paper-checkbox-vertical-align: top;
     --paper-checkbox-margin: 3px;
@@ -105,6 +102,11 @@ input[type=text].modal-text {
     border-radius:0 8px 8px 0;
     border-bottom: 2px solid grey;
 }
+
+input[type=text].modal-text::placeholder {
+    color: white;
+}
+
 .modal-option {
     width: 100%;
     color: white;
@@ -113,24 +115,18 @@ input[type=text].modal-text {
     border-radius: 0 8px 8px 0;
     border-bottom: 2px solid grey;
 }
-option{
+option {
     background: #ffffff5a
 }
-::placeholder {
-    color: red;
-    z-index: 10
-    
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: red;
+
+.playlist-modal-button {
+    width: fit-content;
+    margin-top: 8px;
+    margin-left: auto;
+    padding: 0 7px;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: red;
-}
-
-.playlist-modal-button:hover{
+.playlist-modal-button:hover {
     border-radius: 14px;
-    padding: 0 7px 0 7px;
     background-color: lightblue;
 }
