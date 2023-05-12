@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TdtuTube.Models.User>
+@using TdtuTube.Libs
+
+@foreach (var i in Model)
+{
+    <div class="video-search__ist">
+        <div class="video-search__item">
+            <div class="video-search__img relative">
+                <a href="/channel/@i.meta">
+                    <img class="rounded-full object-cover" style="width:50%; margin: auto" src="@i.avatar_path" alt="thumbnail">
+                </a>
+            </div>
+            <div class="video-search__content" style="justify-content:center">
+                <div class="video-search-title" style="font-weight: 500; font-size: larger"><a href="/channel/@i.meta" title="@i.name">@i.name</a></div>
+                <div class="video-search-title" style="font-weight: 500;"><a href="/channel/@i.meta" title="@i.name">@i.meta</a></div>
+                <div class="text-xs text-gray-400 sql-date datenview" style="font-size: 14.6px">@i.subscriber_count người đăng kí</div>
+            </div>
+        </div>
+    </div>
+    {Html.RenderAction("searchVideosWithUser", "Search");}
+}

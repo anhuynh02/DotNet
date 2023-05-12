@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<TdtuTube.Models.Video>
+@using TdtuTube.Libs
+
+@foreach (var i in Model)
+{
+    <div class="video-search__ist">
+        <div class="video-search__item">
+            <div class="video-search__img relative">
+                <a href="/watch/@i.meta">
+                    <img class="img-search" src="@i.thumbnail" alt="thumbnail">
+                    <span class="absolute right-1 bottom-1 p-0.5 px-1 rounded-sm bg-black text-white text-xs bg-opacity-70">@i.length</span>
+                </a>
+            </div>
+            <div class="video-search__content">
+                <div class="video-search-title" style="font-weight: 500;"><a href="/watch/@i.meta" title="@i.title">@VideoFormat.titleShortening(i.title, 55)</a></div>
+                <div class="text-xs text-gray-400 sql-date datenview" style="font-size: 14.6px">@VideoFormat.readableNumber((int)i.view_count) lượt xem • @VideoFormat.dateAgo((DateTime)i.datebegin)</div>
+                <div class="flex items-center space-x-3 channel-info">
+                    <a title="@i.User.name" href="/channel/@i.User.meta">
+                        <img class="rounded-full object-cover cursor-pointer" style="padding-right: 8px" width="24px" height="24px" src="@i.User.avatar_path" alt="">
+                        <span>
+                            <a title="" href="/channel/@i.User.meta" class="text-sm text-bold pr-1 channel-name" style="color: #35CBED">@i.User.name</a>
+                        </span>
+                </div>
+                <div class="video-search-description">
+                    @VideoFormat.titleShortening(i.description, 55)
+                </div>
+            </div>
+        </div>
+    </div>
+}
