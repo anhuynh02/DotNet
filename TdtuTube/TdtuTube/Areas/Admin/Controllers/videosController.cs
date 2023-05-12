@@ -19,6 +19,36 @@ namespace TdtuTube.Areas.Admin.Controllers
             return View(__db.Videos.ToList());
         }
 
+        public ActionResult featureOrNot(int? id)
+        {
+            try
+            {
+                Video video = __db.Videos.Find(id);
+                if (ModelState.IsValid)
+                {
+                    if (video.feature == false)
+                    {
+                        video.feature = true;
+                    }
+                    else
+                    {
+                        video.feature = false;
+                    }
+                    __db.Entry(video).State = System.Data.Entity.EntityState.Modified;
+                    __db.SaveChanges();
+                }
+                return Redirect("/admin/videos");
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public ActionResult lockOrUnlock(int? id)
         {
             try
@@ -36,16 +66,16 @@ namespace TdtuTube.Areas.Admin.Controllers
                     }
                     __db.Entry(video).State = System.Data.Entity.EntityState.Modified;
                     __db.SaveChanges();
-                    return RedirectToAction("Index");
                 }
-            }catch(DbEntityValidationException e)
+                return Redirect("/admin/videos"); ;
+            }
+            catch(DbEntityValidationException e)
             {
                 throw e;
             }catch(Exception e)
             {
                 throw e;
             }
-            return RedirectToAction("Index");
         }
 
         public Video getById(long id)

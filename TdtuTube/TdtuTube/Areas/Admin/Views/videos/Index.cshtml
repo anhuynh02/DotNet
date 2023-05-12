@@ -13,6 +13,7 @@
                 <th>Like</th>
                 <th>View</th>
                 <th>Length</th>
+                <th>Feature</th>
                 <th>Locked</th>
             </tr>
         </thead>
@@ -26,6 +27,22 @@
                     <td>@v.like_count</td>
                     <td>@v.view_count</td>
                     <td>@v.length</td>
+                    @if ((bool)!v.feature)
+                    {
+                        <td>
+                            <a href="@Url.Action("featureOrNot","videos", new {id = v.id})">
+                                <i class="fa-regular fa-square"></i>
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a href="@Url.Action("featureOrNot","videos", new {id = v.id})">
+                                <i class="fa-sharp fa-regular fa-square-check"></i>
+                            </a>
+                        </td>
+                    }
                     @if ((bool)!v.status)
                     {
                         <td>
@@ -40,7 +57,7 @@
                         <td>
                             <a href="@Url.Action("lockOrUnlock","videos",new {id = v.id})">
                                 <i class="fa-solid fa-lock"></i>
-                                 <span> - Mở khóa</span>
+                                <span> - Mở khóa</span>
                             </a>
                         </td>
                     }
