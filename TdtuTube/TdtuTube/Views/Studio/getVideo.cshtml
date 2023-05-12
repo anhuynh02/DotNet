@@ -48,8 +48,24 @@
         }
         console.log(fileInput.files.length)
         $.ajax({
+            type: 'POST',
+            url: "@Url.Action("getProcess","Studio")",
+            data: formdata,
+            processData: false,
+            success: function (data) {
+                console.log("Success")
+                var html = $("#secondPart").html()
+                $(".create-form").css("border-bottom","1px solid gray")
+                
+                $("#secondPart").html(html + data)
+            },
+            error: function (response) {
+                alert("error")
+            },
             xhr: function () {
                 var xhr = new window.XMLHttpRequest();
+                $("#firstPart").css("display", "none")
+                $("#secondPart").css("display", "block")
                 xhr.upload.addEventListener("progress", function (evt) {
                     if (evt.lengthComputable) {
                         var percentComplete = Math.floor((evt.loaded / evt.total) * 100)
@@ -59,21 +75,6 @@
                 }, false)
 
                 return xhr
-            },
-            type: 'POST',
-            url: "@Url.Action("getProcess","Studio")",
-            data: formdata,
-            processData: false,
-            success: function (data) {
-                console.log("Success")
-                var html = $("#secondPart").html()
-
-                $("#firstPart").css("display", "none")
-                $("#secondPart").css("display", "block")
-                $("#secondPart").html(html + data)
-            },
-            error: function (response) {
-                alert("error")
             }
         })
     })

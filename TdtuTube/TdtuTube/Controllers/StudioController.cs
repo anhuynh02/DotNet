@@ -8,7 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using Microsoft.WindowsAPICodePack.Shell;
+using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using TdtuTube.Models;
+using static System.Net.WebRequestMethods;
 
 namespace TdtuTube.Controllers
 {
@@ -162,9 +165,25 @@ namespace TdtuTube.Controllers
                     vidPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Videos/"), vidName);
                     vid.SaveAs(vidPath);
                     video.path = "/Uploads/Videos/" + vidName;
+
+                    ShellFile so = ShellFile.FromFilePath(vidPath);
+                    double nanoseconds;
+                    double.TryParse(so.Properties.System.Media.Duration.Value.ToString(),
+                    out nanoseconds);
+
+                    if (nanoseconds > 0)
+                    {
+                        double seconds = Convert100NanosecondsToMilliseconds(nanoseconds) / 1000;
+                        int ttl_seconds = Convert.ToInt32(seconds);
+                        TimeSpan time = TimeSpan.FromSeconds(ttl_seconds);
+                        video.length = time.ToString(@"m\:ss");
+                    }
+                    else
+                    {
+                        video.length = "0:00";
+                    }
                 }
                 video.datebegin = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-                video.length = "0:00";
                 video.status = false;
                 int? vidId = db.Videos.Max(v => (int?)v.id) + 1;
                 video.meta = vidId.ToString();
@@ -302,6 +321,11 @@ namespace TdtuTube.Controllers
             {
                 throw ex;
             }
+        }
+
+        public static double Convert100NanosecondsToMilliseconds(double nanoseconds)
+        {
+            return nanoseconds * 0.0001;
         }
     }
 }

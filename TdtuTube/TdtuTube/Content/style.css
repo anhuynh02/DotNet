@@ -1661,7 +1661,6 @@ tbody td {
 .create-form {
     width: 95%;
     margin: 5px 0px;
-    border-bottom: 1px solid gray;
     height: max-content;
     padding: 10px;
 }
