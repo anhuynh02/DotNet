@@ -13,6 +13,10 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index()
         {
+            if (Session["UserID"] != null)
+            {
+                return Redirect("/");
+            }
             return View();
         }
         [HttpPost]

@@ -12,8 +12,14 @@ namespace TdtuTube.Controllers
     {
         private TdtuTubeEntities db = new TdtuTubeEntities();
         // GET: Search
-        public ActionResult Index()
+        public ActionResult Index(string searchQuery)
         {
+            if (searchQuery == null)
+            {
+                return Redirect("/");
+            }
+            ViewBag.Title = searchQuery + " - TdtuTube";
+            ViewBag.Query = searchQuery;
             return View();
         }
 
@@ -28,7 +34,7 @@ namespace TdtuTube.Controllers
                     orderby i.order ascending
                     select i;
             ".".Contains(".");
-            var v = t.ToList().Where(i => VideoFormat.normalize(i.title).Contains(searchQuery.ToLower()));
+            var v = t.ToList().Where(i => VideoFormat.normalize(i.title).Contains(VideoFormat.normalize(searchQuery.ToLower())));
             return PartialView(v);
         }
         public ActionResult searchChannel(string searchQuery)
@@ -42,7 +48,7 @@ namespace TdtuTube.Controllers
                     orderby i.order ascending
                     select i;
             ".".Contains(".");
-            var v = t.ToList().Where(i => VideoFormat.normalize(i.name).Contains(searchQuery.ToLower()));
+            var v = t.ToList().Where(i => VideoFormat.normalize(i.name).Contains(VideoFormat.normalize(searchQuery.ToLower())));
             return PartialView(v.Take(5));
         }
 
@@ -57,7 +63,7 @@ namespace TdtuTube.Controllers
                     orderby i.order ascending
                     select i;
             ".".Contains(".");
-            var v = t.ToList().Where(i => VideoFormat.normalize(i.User.name).Contains(searchQuery.ToLower()));
+            var v = t.ToList().Where(i => VideoFormat.normalize(i.User.name).Contains(VideoFormat.normalize(searchQuery.ToLower())));
             return PartialView(v);
         }
     }
