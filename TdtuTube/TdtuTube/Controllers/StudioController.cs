@@ -148,6 +148,7 @@ namespace TdtuTube.Controllers
                 string imgName = "";
                 string vidPath = "";
                 string vidName = "";
+                string vidExtension = "";
                 if (ModelState.IsValid)
                 {
                     if (img != null)
@@ -161,10 +162,12 @@ namespace TdtuTube.Controllers
                     {
                         video.thumbnail = "/Uploads/Thumbnails/default.png";
                     }
+                    vidExtension = Path.GetExtension(vid.FileName);
                     vidName = vid.FileName;
-                    vidPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Videos/"), vidName);
+                    string newVidName = (db.Videos.Max(v => (int?)v.id) + 1).ToString() + vidExtension;
+                    vidPath = Path.Combine(HttpContext.Server.MapPath("/Uploads/Videos/"), newVidName);
                     vid.SaveAs(vidPath);
-                    video.path = "/Uploads/Videos/" + vidName;
+                    video.path = "/Uploads/Videos/" + newVidName;
 
                     ShellFile so = ShellFile.FromFilePath(vidPath);
                     double nanoseconds;

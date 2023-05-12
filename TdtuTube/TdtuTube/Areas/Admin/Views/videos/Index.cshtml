@@ -30,7 +30,7 @@
                     @if ((bool)!v.feature)
                     {
                         <td>
-                            <a href="@Url.Action("featureOrNot","videos", new {id = v.id})">
+                            <a href="@Url.Action("setFeature","videos", new {id = v.id})">
                                 <i class="fa-regular fa-square"></i>
                             </a>
                         </td>
@@ -38,7 +38,7 @@
                     else
                     {
                         <td>
-                            <a href="@Url.Action("featureOrNot","videos", new {id = v.id})">
+                            <a href="@Url.Action("setFeature","videos", new {id = v.id})">
                                 <i class="fa-sharp fa-regular fa-square-check"></i>
                             </a>
                         </td>

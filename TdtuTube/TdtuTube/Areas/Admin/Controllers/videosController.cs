@@ -19,7 +19,7 @@ namespace TdtuTube.Areas.Admin.Controllers
             return View(__db.Videos.ToList());
         }
 
-        public ActionResult featureOrNot(int? id)
+        public ActionResult setFeature(int? id)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace TdtuTube.Areas.Admin.Controllers
                     __db.Entry(video).State = System.Data.Entity.EntityState.Modified;
                     __db.SaveChanges();
                 }
-                return Redirect("/admin/videos");
+                return Redirect("/admin/videos"); ;
             }
             catch (DbEntityValidationException e)
             {
