@@ -68,6 +68,12 @@
                 </div>
                 <!-- Work in Progress -->
                 Html.RenderAction("getPlaylists", "Channel", new { userId = Model.id });
+                if (Session["UserID"] != null){
+                    if ((int)Session["UserID"] == Model.id)
+                    {
+                        Html.RenderAction("getPrivatePlaylists", "Channel", new { userId = Model.id });
+                    }
+                }
             }
         }
     </div>

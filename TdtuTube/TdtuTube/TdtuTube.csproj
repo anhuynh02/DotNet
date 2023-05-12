@@ -877,6 +877,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Channel\gePrivatetPLaylists.cshtml" />
+    <Content Include="Views\Channel\gePrivatePLaylists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

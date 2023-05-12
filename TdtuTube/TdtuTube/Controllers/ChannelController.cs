@@ -31,7 +31,15 @@ namespace TdtuTube.Controllers
         public ActionResult getPLaylists(int userId)
         {
             var v = from i in db.Playlists
-                    where i.user_id == userId
+                    where i.user_id == userId && i.privacy == false
+                    select i;
+            return PartialView(v.ToList());
+        }
+
+        public ActionResult gePrivatePLaylists(int userId)
+        {
+            var v = from i in db.Playlists
+                    where i.user_id == userId && i.privacy == true
                     select i;
             return PartialView(v.ToList());
         }
