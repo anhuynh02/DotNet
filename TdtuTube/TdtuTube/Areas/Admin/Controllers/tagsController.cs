@@ -29,8 +29,14 @@ namespace TdtuTube.Areas.Admin.Controllers
         {
             try
             {
-                __db.Tags.Add(tag);
-                __db.SaveChanges();
+                var t = from i in __db.Tags
+                        where i.meta.Equals(tag.meta)
+                        select i;
+                if(t.FirstOrDefault() == null)
+                {
+                    __db.Tags.Add(tag);
+                    __db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch (DbEntityValidationException e)
@@ -92,6 +98,14 @@ namespace TdtuTube.Areas.Admin.Controllers
             {
                 Response.StatusCode = (int)HttpStatusCode.NotFound;
                 return Content("Cannot get that id");
+            }
+            var v = from i in __db.Videos
+                    where i.tag_id == id
+                    select i;
+            foreach(var vid in v)
+            {
+                vid.tag_id = 1;
+                __db.Entry(vid).State = System.Data.Entity.EntityState.Modified;
             }
             Tag temp = __db.Tags.Find(id);
             __db.Tags.Remove(temp);
