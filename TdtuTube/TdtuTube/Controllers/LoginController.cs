@@ -13,6 +13,7 @@ namespace TdtuTube.Controllers
         private TdtuTubeEntities db = new TdtuTubeEntities();
         public ActionResult Index()
         {
+            
             if (Session["UserID"] != null)
             {
                 return Redirect("/");
@@ -31,6 +32,7 @@ namespace TdtuTube.Controllers
                 var user = v.FirstOrDefault();
                 if (user != null)
                 {
+                    TempData.Remove("emailError");
                     if (BC.Verify(password, user.password))
                     {
                         Session["UserID"] = user.id;
@@ -43,11 +45,22 @@ namespace TdtuTube.Controllers
                         if (Session["ReturnURL"] != null)
                         {
                             string URL = (string)Session["ReturnURL"];
+                            TempData.Remove("passwordError");
+                            
                             return Redirect(URL);
                         }
-
+                        
+                    }
+                    else
+                    {
+                        TempData["passwordError"] = "Vui lòng kiểm tra lại mật khẩu";
                     }
                 }
+                else
+                {
+                    TempData["emailError"] = "Tài khoản không tồn tại";
+                }
+                
             }
             
             return Redirect("/login");
