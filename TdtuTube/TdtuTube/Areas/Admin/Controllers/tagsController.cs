@@ -36,6 +36,12 @@ namespace TdtuTube.Areas.Admin.Controllers
                 {
                     __db.Tags.Add(tag);
                     __db.SaveChanges();
+                    TempData["tagCreateSuccess"] = "Tạo tag mới thành công";
+                    TempData.Remove("tagCreateError");
+                }
+                else
+                {
+                    TempData["tagCreateError"] = "Tạo tag mới không thành công - Trùng tên tag đã có";
                 }
                 return RedirectToAction("Index");
             }
@@ -73,12 +79,24 @@ namespace TdtuTube.Areas.Admin.Controllers
         {
             try
             {
-                Tag temp = __db.Tags.Find(tag.id);
-                temp.name = tag.name;
-                temp.meta = tag.meta;
-                temp.hide = tag.hide;
-                __db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
-                __db.SaveChanges();
+                var t = from i in __db.Tags
+                        where i.meta.Equals(tag.meta)
+                        select i;
+                if (t.FirstOrDefault() == null)
+                {
+                    Tag temp = __db.Tags.Find(tag.id);
+                    temp.name = tag.name;
+                    temp.meta = tag.meta;
+                    temp.hide = tag.hide;
+                    __db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                    __db.SaveChanges();
+                    TempData.Remove("tagEditError");
+                    TempData["tagEditSuccess"] = "Chỉnh sửa tag thành công";
+                }
+                else
+                {
+                    TempData["tagEditError"] = "Chỉnh sửa tag không thành công - Trùng tên tag đã có";
+                }
                 return RedirectToAction("Index", "tags");
             }
             catch (DbEntityValidationException e)
@@ -109,6 +127,7 @@ namespace TdtuTube.Areas.Admin.Controllers
             }
             Tag temp = __db.Tags.Find(id);
             __db.Tags.Remove(temp);
+            TempData["tagDelSuccess"] = "Xóa tag thành công";
             __db.SaveChanges();
             return RedirectToAction("Index");
         }

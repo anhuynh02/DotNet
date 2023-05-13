@@ -13,5 +13,11 @@ namespace TdtuTube.Controllers
         {
             return View();
         }
+
+        public ActionResult notFound()
+        {
+            return View();
+        }
     }
+
 }

@@ -85,12 +85,13 @@ namespace TdtuTube.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             long videoId = Convert.ToInt64(id);
+            long userId = Convert.ToInt64(Session["UserId"]);
             var v = from i in db.Videos
-                    where i.id == videoId
+                    where i.id == videoId && i.user_id == userId
                     select i;
-            if (v == null)
+            if (v.FirstOrDefault() == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("notFound","Locked");
             }
             ViewBag.UserId = (int)Session["UserID"];
             ViewBag.tag_id = new SelectList(db.Tags, "id", "name");

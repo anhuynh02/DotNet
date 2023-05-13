@@ -4,7 +4,20 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
 }
-
+@if (TempData["menuEditError"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["menuEditError"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["menuEditSuccess"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["menuEditSuccess"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 <table id="homemenuTable" class="table table-striped">
     <thead>
         <tr>
@@ -20,7 +33,7 @@
             <tr>
                 <td>@menu.id</td>
                 <td>@menu.name</td>
-                @if ((bool) @menu.hide == false)
+                @if ((bool)@menu.hide == false)
                 {
                     <td>
                         <a href="@Url.Action("hideOrShow","homemenus",new {id = menu.id})">

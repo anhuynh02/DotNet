@@ -57,10 +57,22 @@ namespace TdtuTube.Areas.Admin.Controllers
         {
             try
             {
-                HomeMenu temp = __db.HomeMenus.Find(menu.id);
-                temp.name = menu.name;
-                __db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
-                __db.SaveChanges();
+                var t = from i in __db.HomeMenus
+                        where i.name.Equals(menu.name)
+                        select i;
+                if (t.FirstOrDefault() == null)
+                {
+                    HomeMenu temp = __db.HomeMenus.Find(menu.id);
+                    temp.name = menu.name;
+                    __db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
+                    __db.SaveChanges();
+                    TempData["menuEditSuccess"] = "Chỉnh sửa menu thành công";
+                }
+                else
+                {
+                    TempData["menuEditError"] = "Chỉnh sửa menu thất bại";
+                }
+                
                 return RedirectToAction("Index", "homemenus");
             }
             catch (DbEntityValidationException e)
