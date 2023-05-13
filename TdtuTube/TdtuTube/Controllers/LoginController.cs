@@ -38,6 +38,7 @@ namespace TdtuTube.Controllers
                         Session["UserName"] = user.name;
                         Session["UserAvatarPath"] = user.avatar_path;
                         Session["UserMeta"] = user.meta;
+                        Session["UserStatus"] = user.status;
                         Session["Error"] = null;
                         if (Session["ReturnURL"] != null)
                         {

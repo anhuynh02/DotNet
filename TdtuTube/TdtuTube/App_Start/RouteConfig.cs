@@ -66,6 +66,14 @@ namespace TdtuTube
                 },
                 new[] { "TdtuTube.Controllers" }
             );
+            routes.MapRoute("Locked", "{type}",
+                new { controller = "Locked", action = "Index" },
+                new RouteValueDictionary
+                {
+                    { "type", "lock" }
+                },
+                new[] { "TdtuTube.Controllers" }
+            );
 
             routes.MapRoute("Login", "{type}",
                 new { controller = "Login", action = "Index"},
