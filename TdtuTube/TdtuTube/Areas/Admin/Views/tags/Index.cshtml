@@ -19,11 +19,14 @@
     <tbody>
         @foreach (var tag in Model)
         {
-            <tr>
-                <td>@tag.id</td>
-                <td>@tag.name</td>
-                <td><button class="btnEdit" onclick="openEditModal(@tag.id)" data-bs-toggle="modal" data-bs-target="#editTag">Chỉnh sửa</button> | <button class="btnDel" onclick="openDelModal(@tag.id, '@tag.name')" data-bs-toggle="modal" data-bs-target="#delTag">Xóa</button></td>
-            </tr>
+            if (tag.id != 1)
+            {
+                <tr>
+                    <td>@tag.id</td>
+                    <td>@tag.name</td>
+                    <td><button class="btnEdit" onclick="openEditModal(@tag.id)" data-bs-toggle="modal" data-bs-target="#editTag">Chỉnh sửa</button> | <button class="btnDel" onclick="openDelModal(@tag.id, '@tag.name')" data-bs-toggle="modal" data-bs-target="#delTag">Xóa</button></td>
+                </tr>
+            }
         }
     </tbody>
 </table>

@@ -114,7 +114,7 @@
                                             <span>@VideoFormat.readableNumber((int)Model.view_count) lượt xem</span>
                                             <span>@VideoFormat.dateAgo((DateTime)Model.datebegin)</span>
                                         </div>
-                                        <p>@Model.description</p>
+                                        <p>@Html.Raw(@Model.description)</p>
 
                                     </div>
                                 </div>

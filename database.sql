@@ -149,6 +149,7 @@ CREATE TABLE [Tag]
 )
 
 INSERT INTO [Tag] ([name], [meta]) VALUES
+	(N'Tổng hợp','tong-hop'),
 	(N'Âm nhạc', 'am-nhac'),
 	(N'Trò chơi', 'tro-choi'),
 	(N'Tin tức', 'tin-tuc'),
