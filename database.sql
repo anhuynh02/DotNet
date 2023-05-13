@@ -416,6 +416,10 @@ INSERT INTO [Playlist] ([user_id], [name], [privacy], [meta], [datebegin]) VALUE
 	(1, 'Test Playlist', 0, '1', '2023-03-21 18:51:00');
 
 GO
+INSERT INTO [Playlist] ([user_id], [name], [privacy], [meta], [datebegin]) VALUES
+	(1, 'Private Playlist', 1, '2', '2023-03-21 18:51:00');
+
+GO
 CREATE TABLE [PlaylistContent]
 (
 	[id] INT IDENTITY(1,1),

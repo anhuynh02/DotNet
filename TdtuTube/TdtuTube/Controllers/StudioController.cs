@@ -309,7 +309,7 @@ namespace TdtuTube.Controllers
                         temp.avatar_path = "/Uploads/Avatars/" + imgName;
                     }
                     temp.name = u.name;
-                    temp.email = u.email;;
+                    temp.email = u.email; ;
                     db.Entry(temp).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }

@@ -26,7 +26,6 @@
     </div>
 </div>
 <!--chỉnh sửa playlist-->
-
 <!--Popup xóa playlist-->
 <div id="delPopup">
     <h1 class="del-title">Xóa vĩnh viễn playlist này</h1>
@@ -54,27 +53,55 @@
             <tbody>
                 @foreach (var p in Model)
                 {
-                    <tr>
-                        <td colspan="2">
-                            <div style="display:flex;flex-direction:row;align-items:center">
-                                <a href="/watch/@p.PlaylistContents.FirstOrDefault().Video.meta/playlist/@p.meta">
-                                    <div style="height:6rem;" class="relative h-52 sm:h-36 w-full">
-                                        <img class="relative h-full w-full object-cover" src="@p.PlaylistContents.FirstOrDefault().Video.thumbnail" alt="">
-                                        <span class="playlist-overlay">
-                                            @p.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
-                                        </span>
-                                    </div>
-                                </a>
-                                <div style="margin-left: 10px">
-                                    <p>@VideoFormat.titleShortening(@p.name, 28)</p>
-                                    <div style="float:left;">
-                                        <i onclick="openEditModal(@p.id,'@p.name','@p.privacy.ToString().ToLower()')" style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i>
-                                        <i onclick="openDelModal(@p.id,'@p.name')" style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
+                    if (@p.PlaylistContents.FirstOrDefault() != null)
+                    {
+                        <tr>
+                            <td colspan="2">
+                                <div style="display:flex;flex-direction:row;align-items:center">
+                                    <a href="/watch/@p.PlaylistContents.FirstOrDefault().Video.meta/playlist/@p.meta">
+                                        <div style="height:6rem;" class="relative h-52 sm:h-36 w-full">
+                                            <img class="relative h-full w-full object-cover" src="@p.PlaylistContents.FirstOrDefault().Video.thumbnail" alt="">
+                                            <span class="playlist-overlay">
+                                                @p.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <div style="margin-left: 10px">
+                                        <p>@VideoFormat.titleShortening(@p.name, 28)</p>
+                                        <div style="float:left;">
+                                            <i onclick="openEditModal(@p.id,'@p.name','@p.privacy.ToString().ToLower()')" style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i>
+                                            <i onclick="openDelModal(@p.id,'@p.name')" style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="2">
+                                <div style="display:flex;flex-direction:row;align-items:center">
+                                    <a href="/studio/index/playlists">
+                                        <div style="height:6rem;" class="relative h-52 sm:h-36 w-full">
+                                            <img class="relative h-full w-full object-cover" src="/Uploads/Thumbnails/default.PNG"  alt=""/>
+                                            <span class="playlist-overlay">
+                                                @p.video_count<i class="material-icons text-white cursor-pointer">playlist_play</i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <div style="margin-left: 10px">
+                                        <p>@VideoFormat.titleShortening(@p.name, 28)</p>
+                                        <div style="float:left;">
+                                            <i onclick="openEditModal(@p.id,'@p.name','@p.privacy.ToString().ToLower()')" style="cursor:pointer;" class="fa-regular fa-pen-to-square"></i>
+                                            <i onclick="openDelModal(@p.id,'@p.name')" style="cursor:pointer;" class="fa-regular fa-trash-can"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
                 }
             </tbody>
         </table>
