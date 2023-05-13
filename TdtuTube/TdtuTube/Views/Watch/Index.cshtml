@@ -16,8 +16,11 @@
         {
             <h1>Đây là Video riêng tư</h1>
         }
-        else
-        {
+        else if(Model.status is true)
+            {
+                <h1>Video này đang bị khóa</h1>
+            }
+        else{
             <div id="watch-video" onload="display_sidebar()">
                 <div id="notification-wrapper"></div>
                 <div class="watch-video_grid">
