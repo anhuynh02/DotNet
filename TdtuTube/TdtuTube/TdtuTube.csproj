@@ -882,6 +882,7 @@
     <Content Include="Views\Channel\getPrivatePLaylists.cshtml" />
     <Content Include="Views\Locked\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Locked\notFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
