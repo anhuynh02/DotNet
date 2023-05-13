@@ -60,7 +60,7 @@
         }
 
     }
-    @if (Session["UserID"] != null)
+    @if (Session["UserID"] != null && Model.FirstOrDefault() != null)
     {
         if ((int)Session["UserID"] == Model.FirstOrDefault().User.id)
         {
