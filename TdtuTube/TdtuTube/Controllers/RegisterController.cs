@@ -75,7 +75,7 @@ namespace TdtuTube.Controllers
                 }
                 else
                 {
-                    TempData["registerEmailError"] = "Email existed";
+                    TempData["registerEmailError"] = "Email đã tồn tại vui lòng thử email khác";
                 }
             }
 
