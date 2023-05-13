@@ -435,10 +435,6 @@ aside {
         font-size: 1.2rem;
     }
 
-    .video-comment {
-        display: none;
-    }
-
     .watch-video_grid {
         grid-template-columns: 1fr;
     }
